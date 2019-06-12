@@ -1,3 +1,6 @@
-# Quasar App
+# Kistaff Community App
 
-> WIP
+## Setup
+execute command : quasar dev
+
+
