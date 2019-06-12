@@ -8,6 +8,7 @@ const routes = [
       { path: '/profile', component: () => import('pages/account/Profile.vue'), meta: { auth: true } },
       { path: '/missions', component: () => import('pages/workspace/Missions.vue'), meta: { auth: true } },
       { path: '/posts', component: () => import('pages/community/Posts.vue'), meta: { auth: true } },
+      { path: '/posts/:id', component: () => import('pages/community/Post.vue'), meta: { auth: true } },
       { path: '/discussions', component: () => import('pages/community/Discussions.vue'), meta: { auth: true } },
       { path: '/tools', component: () => import('pages/tooling/Tools.vue'), meta: { auth: true } },
       { path: '/logout', component: () => import('pages/account/Logout.vue'), meta: { auth: true } }

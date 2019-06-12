@@ -1,12 +1,26 @@
 <template>
   <q-page padding>
-    <h3>Discussions</h3>
+    <div
+      v-for="dis in discussions"
+      :key="dis.id">
+      <h6>{{dis.subject}}</h6>
+    </div>
   </q-page>
 </template>
 
 <script>
+import { makeFindMixin } from 'feathers-vuex'
+
 export default {
-  // name: 'PageName',
+  name: 'Discussions',
+  mixins: [
+    makeFindMixin({ service: 'discussions' })
+  ],
+  computed: {
+    discussionsParams () {
+      return { query: {} }
+    }
+  }
 }
 </script>
 
