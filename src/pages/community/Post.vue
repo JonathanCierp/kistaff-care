@@ -13,12 +13,12 @@
           <div class="row">
             <div class="text-grey col">
               <q-icon name="event" class="text-h6"/>
-              <span class=" text-h8">{{ publishedAt }} </span>
+              <span class=" text-h8">{{ post.publishedAt }} </span>
             </div>
 
             <div class="text-grey text-right col">
               <q-icon name="chat" class="text-h6"/>
-              <span class=" text-h8">{{ comments }} comments</span>
+              <span class=" text-h8">{{ post.nbComments }} comments</span>
             </div>
           </div>
         </q-card-section>
@@ -27,7 +27,7 @@
 
         <q-card-section>
           <q-badge
-            v-for="tag in tags"
+            v-for="tag in post.tagList"
             :key="tag"
             class="q-mr-xs q-pa-xs"
             color="text-blue"
@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import { date } from 'quasar'
 import { makeGetMixin } from 'feathers-vuex'
 
 export default {
@@ -57,15 +56,6 @@ export default {
   computed: {
     postId () {
       return this.$route.params.id
-    },
-    publishedAt () {
-      return date.formatDate(this.post.updatedAt, 'MMM DD, YYYY, hh:mm a.')
-    },
-    comments () {
-      return 10
-    },
-    tags () {
-      return ['IDE', 'Soins', 'Douleur']
     }
   }
 }
