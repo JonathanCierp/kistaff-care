@@ -1,5 +1,5 @@
 <template>
-  <q-item clickable v-ripple>
+  <q-item :to="link" exact>
     <q-item-section avatar>
       <q-avatar size="56px"
         font-size="32px"
@@ -22,7 +22,12 @@
 <script>
 export default {
   name: 'RequestItem',
-  props: ['request']
+  props: ['request'],
+  computed: {
+    link () {
+      return '/requests/' + this.request.Id
+    }
+  }
 }
 </script>
 

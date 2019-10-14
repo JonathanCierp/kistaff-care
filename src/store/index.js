@@ -74,10 +74,16 @@ export default new Vuex.Store({
             return 'AIzaSyCtlrDPIKTDD_YPB6Rj4cg_11ETo4j160M'
           },
           get fromDate () {
-            return date.formatDate(this.xService_Request__r.xFromDate__c, 'DD MMM YYYY à hh:mm')
+            return date.formatDate(
+              this.xService_Request__r.xFromDate__c,
+              'DD MMM YYYY à hh:mm'
+            )
           },
           get toDate () {
-            return date.formatDate(this.xService_Request__r.xToDate__c, 'DD MMM YYYY à hh:mm')
+            return date.formatDate(
+              this.xService_Request__r.xToDate__c,
+              'DD MMM YYYY à hh:mm'
+            )
           },
           get geoLink () {
             if (this.xService_Request__r.xAddress__c) {
@@ -87,11 +93,12 @@ export default new Vuex.Store({
             return null
           },
           get geoImage () {
-            if (this.xAddress__c) {
-              return `https://maps.googleapis.com/maps/api/staticmap?center=${this.xService_Request__r.xAddress__c}&` +
-                   `markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C${this.xService_Request__r.xAddress__c}&` +
-                   `zoom=11&scale=1&size=400x200&maptype=roadmap&format=png&` +
-                   `visual_refresh=true&key=${this.api_key}`
+            if (this.xService_Request__r.xAddress__c) {
+              return `https://maps.googleapis.com/maps/api/staticmap?` +
+              `center=${this.xService_Request__r.xAddress__c}&` +
+              `markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C${this.xService_Request__r.xAddress__c}&` +
+              `zoom=11&scale=1&size=400x200&maptype=roadmap&format=png&` +
+              `visual_refresh=true&key=${this.api_key}`
             }
 
             return null
@@ -108,7 +115,8 @@ export default new Vuex.Store({
             }
           },
           get label () {
-            return `${this.xService_Request__r.xOrganization__r.Name} | ${this.xService_Request__r.xSubject__c}`
+            return `${this.xService_Request__r.xOrganization__r.Name} | \
+                    ${this.xService_Request__r.xSubject__c}`
           },
           get icon () {
             if (this.xStatus__c === 'Requested') {
@@ -122,6 +130,13 @@ export default new Vuex.Store({
               return 'blue'
             } else {
               return 'green'
+            }
+          },
+          get title () {
+            if (this.xStatus__c === 'Requested') {
+              return 'Êtes-vous intéressé(e)?'
+            } else {
+              return 'Êtes-vous toujours disponible?'
             }
           }
         }
