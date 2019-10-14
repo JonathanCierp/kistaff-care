@@ -1,12 +1,32 @@
 <template>
   <q-page padding>
-   <h3>Profiles</h3>
+    <record-details v-if="loggedUser"
+      serviceName="contacts"
+      sobjectName="Contact"
+      layoutName="Employee Layout (App)"
+      :sobjectId="loggedUser.employeeId"/>
   </q-page>
 </template>
 
 <script>
-export default {
+import RecordDetails from '../../components/salesforce/RecordDetails'
 
+export default {
+  name: 'Profile',
+  components: {
+    'record-details': RecordDetails
+  },
+  computed: {
+    loggedUser () {
+      if (this.$store.state.auth) {
+        if (this.$store.state.auth.user) {
+          return this.$store.state.auth.user
+        }
+      }
+
+      return null
+    }
+  }
 }
 </script>
 

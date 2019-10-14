@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-page-container style="background: url(assets/background_1.png)">
+    <q-page-container style="background: url(/statics/images/background.png)">
       <router-view />
     </q-page-container>
   </q-layout>

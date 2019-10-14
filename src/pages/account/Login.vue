@@ -7,7 +7,7 @@
       >
       <q-card-section>
         <div class="absolute-center">
-            <img src="~assets/app-logo.png" class="app-logo"/>
+            <img src="/statics/images/app-logo.png" class="app-logo"/>
         </div>
       </q-card-section>
       <br/>

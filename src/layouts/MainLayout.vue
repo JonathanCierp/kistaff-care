@@ -58,24 +58,14 @@ export default {
           icon: 'settings'
         },
         {
+          label: 'Requests',
+          to: '/requests',
+          icon: 'assignment_late'
+        },
+        {
           label: 'Missions',
           to: '/missions',
-          icon: 'event'
-        },
-        {
-          label: 'Posts',
-          to: '/posts',
-          icon: 'library_books'
-        },
-        {
-          label: 'Discussions',
-          to: '/discussions',
-          icon: 'forum'
-        },
-        {
-          label: 'Tools',
-          to: '/tools',
-          icon: 'widgets'
+          icon: 'assignment_turned_in'
         },
         {
           label: 'Logout',

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import feathersVuex from 'feathers-vuex'
 import feathersClient from '../lib/feathersClient'
+import { date } from 'quasar'
 
 const { service, auth, FeathersVuex } = feathersVuex(feathersClient, { idField: 'id' })
 
@@ -11,25 +12,125 @@ Vue.use(FeathersVuex)
 export default new Vuex.Store({
   plugins: [
     // Users Service
-    service('users', {
-      instanceDefaults: {
-        email: '',
-        password: ''
-      }
-    }),
+    service('users', {}),
 
     // Auth Service
     auth({ userService: 'users' }),
 
-    // Posts Service
-    service('posts', {
-      instanceDefaults: {}
+    // Sobjects Service
+    service('sobjects', {
+      idField: 'name'
     }),
 
-    // Discussions Service
-    service('discussions', {
-      instanceDefaults: {},
-      debug: true
+    // Layouts Service
+    service('layouts', {
+      idField: 'Id'
+    }),
+
+    // LayoutInfos Service
+    service('layoutInfos', {
+      idField: 'Id'
+    }),
+
+    // Listviews Service
+    service('listviews', {
+      idField: 'Id'
+    }),
+
+    // Contacts Service
+    service('contacts', {
+      idField: 'Id'
+    }),
+
+    // Messages Service
+    service('messages', {
+      idField: 'Id',
+      instanceDefaults (data, { store, Model, Models }) {
+        return {
+          get publishedAt () {
+            return date.formatDate(this.CreatedDate, 'MMM DD, YYYY, hh:mm a.')
+          },
+          get title () {
+            let typeToLabel = {
+              'New Job': 'Nouvelle mission',
+              'Job Assignment': 'Affectation de mission',
+              'Job Cancellation': 'Annulation de mission',
+              'Assignment Confirmation': 'Confirmation de mission',
+              'Checkin': 'Check In',
+              'Checkout': 'Check Out'
+            }
+
+            return typeToLabel[this.xType__c]
+          }
+        }
+      }
+    }),
+    // Requests Service
+    service('requests', {
+      idField: 'Id',
+      instanceDefaults (data, { store, Model, Models }) {
+        return {
+          get api_key () {
+            return 'AIzaSyCtlrDPIKTDD_YPB6Rj4cg_11ETo4j160M'
+          },
+          get fromDate () {
+            return date.formatDate(this.xService_Request__r.xFromDate__c, 'DD MMM YYYY à hh:mm')
+          },
+          get toDate () {
+            return date.formatDate(this.xService_Request__r.xToDate__c, 'DD MMM YYYY à hh:mm')
+          },
+          get geoLink () {
+            if (this.xService_Request__r.xAddress__c) {
+              return `http://maps.google.com/maps?q=${this.xService_Request__r.xAddress__c}`
+            }
+
+            return null
+          },
+          get geoImage () {
+            if (this.xAddress__c) {
+              return `https://maps.googleapis.com/maps/api/staticmap?center=${this.xService_Request__r.xAddress__c}&` +
+                   `markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C${this.xService_Request__r.xAddress__c}&` +
+                   `zoom=11&scale=1&size=400x200&maptype=roadmap&format=png&` +
+                   `visual_refresh=true&key=${this.api_key}`
+            }
+
+            return null
+          },
+          get message () {
+            if (this.xStatus__c === 'Requested') {
+              if (this.xService_Request__r.xDetails__c) {
+                return this.xService_Request__r.xDetails__c
+              } else {
+                return this.NewJobMsg__c
+              }
+            } else {
+              return this.AssignmentMsg__c
+            }
+          },
+          get label () {
+            return `${this.xService_Request__r.xOrganization__r.Name} | ${this.xService_Request__r.xSubject__c}`
+          },
+          get icon () {
+            if (this.xStatus__c === 'Requested') {
+              return 'insert_invitation'
+            } else {
+              return 'event_available'
+            }
+          },
+          get iconColor () {
+            if (this.xStatus__c === 'Requested') {
+              return 'blue'
+            } else {
+              return 'green'
+            }
+          }
+        }
+      }
+    }),
+
+    // Missions Service
+    service('missions', {
+      idField: 'Id'
     })
   ]
 })

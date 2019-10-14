@@ -53,7 +53,13 @@ module.exports = function (ctx) {
         'QCheckbox',
         'QImg',
         'QBadge',
-        'QSeparator'
+        'QSeparator',
+        'QDate',
+        'QTime',
+        'QPopupProxy',
+        'QSelect',
+        'QForm',
+        'QAvatar'
       ],
 
       directives: [
@@ -70,7 +76,7 @@ module.exports = function (ctx) {
 
       config: {
         notify: {
-          color: 'red'
+          color: 'blue'
         }
       },
       // iconSet: 'ionicons-v4'
