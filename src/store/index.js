@@ -65,6 +65,7 @@ export default new Vuex.Store({
         }
       }
     }),
+
     // Requests Service
     service('requests', {
       idField: 'Id',
@@ -108,10 +109,10 @@ export default new Vuex.Store({
               if (this.xService_Request__r.xDetails__c) {
                 return this.xService_Request__r.xDetails__c
               } else {
-                return this.NewJobMsg__c
+                return this.xNewJobMsg__c
               }
             } else {
-              return this.AssignmentMsg__c
+              return this.xAssignmentMsg__c
             }
           },
           get label () {
@@ -127,9 +128,9 @@ export default new Vuex.Store({
           },
           get iconColor () {
             if (this.xStatus__c === 'Requested') {
-              return 'blue'
+              return 'blue-4'
             } else {
-              return 'green'
+              return 'green-4'
             }
           },
           get title () {
@@ -145,7 +146,39 @@ export default new Vuex.Store({
 
     // Missions Service
     service('missions', {
-      idField: 'Id'
+      idField: 'Id',
+      instanceDefaults (data, { store, Model, Models }) {
+        return {
+          get fromDate () {
+            return date.formatDate(
+              this.xFromDate__c,
+              'DD MMM YYYY à hh:mm'
+            )
+          },
+          get toDate () {
+            return date.formatDate(
+              this.xToDate__c,
+              'DD MMM YYYY à hh:mm'
+            )
+          },
+          get label () {
+            return `${this.xOrganization__r.Name} | \
+                    ${this.xSubject__c}`
+          },
+          get icon () {
+            return 'event_available'
+          },
+          get iconColor () {
+            return 'green-4'
+          },
+          get message () {
+            return this.xAssignmentMsg__c
+          },
+          get upcoming () {
+            return new Date(this.xFromDate__c) >= new Date()
+          }
+        }
+      }
     })
   ]
 })

@@ -53,5 +53,15 @@ export default {
     password_length: 'The minimum length of the password is {length} characters.',
     password_match: 'Passwords do not match.',
     email: 'A valid email address is required'
+  },
+  workspace: {
+    mission_address: 'Mission address:',
+    upcoming: 'Upcoming',
+    history: 'History',
+    accept: 'Yes',
+    decline: 'No',
+    add_to_calendar: 'Add to Calendar',
+    assignments: 'Assignments',
+    newjobs: 'New Jobs'
   }
 }

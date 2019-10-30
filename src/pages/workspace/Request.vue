@@ -41,7 +41,7 @@
         <a :href="request.geoLink"
           class="text-blue-grey-14">
           <span>
-            <b>Lieu de la mission: </b>{{request.xService_Request__r.xAddress__c}}
+            <b>{{ this.$t('workspace.mission_address') }}</b>{{request.xService_Request__r.xAddress__c}}
           </span>
           <img alt="Geo Location"
             :src="request.geoImage"
@@ -53,14 +53,17 @@
         class="separator"/>
 
       <q-card-section class="q-pa-sm">
-          <div class="row">
+          <div class="row q-pt-sm">
             <div class="text-blue-grey-10 col">
               <span class="text-h8"><b>{{ request.title }}</b></span>
             </div>
           </div>
-          <div class="float-right">
-            <q-btn label="Oui" type="submit" color="primary"/>
-            <q-btn label="Non" type="reset" color="primary" flat class="q-ml-sm" />
+          <div class="float-right q-pt-sm">
+            <q-btn :label="this.$t('workspace.accept')" @click="accept" color="green-4" class="q-mr-sm q-px-lg"/>
+            <q-btn :label="this.$t('workspace.decline')" @click="decline" color="grey-4" text-color="black" class="q-mx-sm q-px-lg"/>
+
+            <q-btn v-if="request.xStatus__c === 'Requested'"
+              label="Jamais" @click="mute" color="red-4" text-color="white" class="q-ml-sm q-px-lg"/>
           </div>
       </q-card-section>
     </q-card>
@@ -81,12 +84,55 @@ export default {
     requestId () {
       return this.$route.params.id
     }
+  },
+  methods: {
+    accept: function () {
+      const { Request } = this.$FeathersVuex
+      let req = new Request({
+        Id: this.request.Id,
+        xService_Staff__c: this.request.xService_Staff__c
+      })
+
+      if (this.request.xStatus__c === 'Requested') {
+        req = Object.assign(req, {
+          xResponse_Status__c: 'Accepted',
+          xStatus__c: 'Submitted'
+        })
+      } else {
+        req = Object.assign(req, {
+          xStatus__c: 'Confirmed'
+        })
+      }
+
+      req.save().then(req => {
+        this.$router.push('/requests')
+      })
+    },
+    decline: function () {
+      const { Request } = this.$FeathersVuex
+      let req = new Request({ id: this.request.Id })
+
+      if (this.request.xStatus__c === 'Requested') {
+        req = Object.assign(req, {
+          xResponse_Status__c: 'Declined',
+          xStatus__c: 'Submitted'
+        })
+      } else {
+        req = Object.assign(req, {
+          xStatus__c: 'Not Available'
+        })
+      }
+
+      req.save().then(req => {
+        this.$router.push('/requests')
+      })
+    },
+    mute: function () {
+      console.log('mute')
+    }
   }
 }
 </script>
 
 <style>
-.request {
-
-}
 </style>

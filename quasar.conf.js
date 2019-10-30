@@ -59,7 +59,11 @@ module.exports = function (ctx) {
         'QPopupProxy',
         'QSelect',
         'QForm',
-        'QAvatar'
+        'QAvatar',
+        'QTabs',
+        'QTab',
+        'QTabPanels',
+        'QTabPanel'
       ],
 
       directives: [
@@ -79,7 +83,6 @@ module.exports = function (ctx) {
           color: 'blue'
         }
       },
-      // iconSet: 'ionicons-v4'
       lang: 'en-us'
     },
 

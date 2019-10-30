@@ -3,9 +3,11 @@ import VueI18n from 'vue-i18n'
 import messages from 'src/i18n'
 import { Quasar } from 'quasar'
 
+console.log(messages)
+
 Vue.use(VueI18n)
 const i18nInstance = new VueI18n({
-  locale: 'en-us',
+  locale: 'fr',
   fallbackLocale: 'en-us',
   messages
 })

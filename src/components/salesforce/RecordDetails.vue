@@ -36,8 +36,8 @@
       </div>
     </q-card-section>
     <div>
-      <q-btn label="Submit" type="submit" color="primary"/>
-      <q-btn label="Cancel" type="reset" color="primary" flat class="q-ml-sm" />
+      <q-btn :label="this.$t('buttons.submit')" type="submit" color="primary"/>
+      <q-btn :label="this.$t('buttons.cancel')" type="reset" color="primary" flat class="q-ml-sm" />
     </div>
   </q-form>
 </template>
