@@ -29,8 +29,8 @@
           align="justify"
           position="bottom"
           narrow-indicator>
-          <q-tab name="upcoming" :label="this.$t('workspace.upcoming')"></q-tab>
-          <q-tab name="history" :label="this.$t('workspace.history')"></q-tab>
+          <q-tab name="upcoming" :label="this.$t('workspace.upcoming') + ' (' + upcomingMissions.length +')'"></q-tab>
+          <q-tab name="history" :label="this.$t('workspace.history') + ' (' + historyMissions.length +')'"></q-tab>
       </q-tabs>
     </q-card>
   </q-page>
@@ -53,6 +53,7 @@ export default {
       return {
         query: {
           $limit: 200,
+          xIsConfirmed__c: true,
           xStatus__c: {
             $in: [
               'Assigned',

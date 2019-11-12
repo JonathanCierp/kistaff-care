@@ -56,12 +56,19 @@ export default {
   },
   workspace: {
     mission_address: 'Lieu de la mission:',
-    upcoming: 'A venir',
-    history: 'Histoirique',
-    accept: 'Oui',
-    decline: 'Non',
+    upcoming: 'Programmées',
+    history: 'Effectuées',
+    accept: 'Accepter',
+    decline: 'Décliner',
+    mute: 'Jamais',
     add_to_calendar: 'Ajouter au calendrier',
-    assignments: 'Demandes affectées',
-    newjobs: 'Nouvelles demandes'
+    assignments: 'A confirmer',
+    newjobs: 'Nouvelles'
+  },
+  navigation: {
+    account: 'Compte',
+    missions: 'Missions',
+    requests: 'Demandes',
+    logout: 'Se déconnecter'
   }
 }

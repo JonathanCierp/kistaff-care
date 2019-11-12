@@ -58,10 +58,17 @@ export default {
     mission_address: 'Mission address:',
     upcoming: 'Upcoming',
     history: 'History',
-    accept: 'Yes',
-    decline: 'No',
+    accept: 'Accept',
+    decline: 'Decline',
+    mute: 'Never',
     add_to_calendar: 'Add to Calendar',
     assignments: 'Assignments',
     newjobs: 'New Jobs'
+  },
+  navigation: {
+    account: 'Account',
+    missions: 'Missions',
+    requests: 'Requests',
+    logout: 'Logout'
   }
 }

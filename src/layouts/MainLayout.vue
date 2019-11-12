@@ -53,22 +53,22 @@ export default {
       leftDrawerOpen: this.$q.platform.is.desktop,
       navs: [
         {
-          label: 'Account',
+          label: this.$i18n.t('navigation.account'),
           to: '/profile',
           icon: 'settings'
         },
         {
-          label: 'Requests',
+          label: this.$i18n.t('navigation.requests'),
           to: '/requests',
           icon: 'assignment_late'
         },
         {
-          label: 'Missions',
+          label: this.$i18n.t('navigation.missions'),
           to: '/missions',
           icon: 'assignment_turned_in'
         },
         {
-          label: 'Logout',
+          label: this.$i18n.t('navigation.logout'),
           to: '/logout',
           icon: 'exit_to_app'
         }

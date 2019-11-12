@@ -2,20 +2,19 @@
   <q-page>
     <q-card flat>
       <q-tab-panels v-model="tab" animated>
-          <q-tab-panel name="assignments">
+          <q-tab-panel name="newjobs">
             <q-list>
               <request-item
-                  v-for="request in requests"
+                  v-for="request in newRequests"
                   :key="request.Id"
                   :request="request"
                   class="request-item"/>
             </q-list>
           </q-tab-panel>
-
-          <q-tab-panel name="newjobs">
+          <q-tab-panel name="assignments">
             <q-list>
               <request-item
-                  v-for="request in requests"
+                  v-for="request in assignedRequests"
                   :key="request.Id"
                   :request="request"
                   class="request-item"/>
@@ -28,8 +27,8 @@
           class="bg-primary text-white fixed-bottom full-width"
           align="justify"
           narrow-indicator>
-          <q-tab name="assignments" :label="this.$t('workspace.assignments')"></q-tab>
-          <q-tab name="newjobs" :label="this.$t('workspace.newjobs')" ></q-tab>
+          <q-tab name="newjobs" :label="this.$t('workspace.newjobs') + ' (' + newRequests.length +')'"></q-tab>
+          <q-tab name="assignments" :label="this.$t('workspace.assignments')  + ' (' + assignedRequests.length +')'"></q-tab>
       </q-tabs>
     </q-card>
   </q-page>
@@ -60,11 +59,21 @@ export default {
           xIs_Available__c: true
         }
       }
+    },
+    newRequests: function () {
+      return this.requests.filter(function (x) {
+        return x.xStatus__c === 'Requested'
+      })
+    },
+    assignedRequests: function () {
+      return this.requests.filter(function (x) {
+        return x.xStatus__c !== 'Requested'
+      })
     }
   },
   data () {
     return {
-      tab: 'assignments'
+      tab: 'newjobs'
     }
   }
 }

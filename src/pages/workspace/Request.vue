@@ -52,20 +52,10 @@
       <q-separator inset
         class="separator"/>
 
-      <q-card-section class="q-pa-sm">
-          <div class="row q-pt-sm">
-            <div class="text-blue-grey-10 col">
-              <span class="text-h8"><b>{{ request.title }}</b></span>
-            </div>
-          </div>
-          <div class="float-right q-pt-sm">
-            <q-btn :label="this.$t('workspace.accept')" @click="accept" color="green-4" class="q-mr-sm q-px-lg"/>
-            <q-btn :label="this.$t('workspace.decline')" @click="decline" color="grey-4" text-color="black" class="q-mx-sm q-px-lg"/>
-
-            <q-btn v-if="request.xStatus__c === 'Requested'"
-              label="Jamais" @click="mute" color="red-4" text-color="white" class="q-ml-sm q-px-lg"/>
-          </div>
-      </q-card-section>
+        <q-btn-group spread class="fixed-bottom full-width">
+          <q-btn :label="this.$t('workspace.accept')" @click="accept" color="green-4" class="q-pa-sm"/>
+          <q-btn :label="this.$t('workspace.decline')" @click="decline" color="red-4" text-color="white" class="q-pa-sm"/>
+        </q-btn-group>
     </q-card>
   </q-page>
 </template>

@@ -72,7 +72,7 @@ export default new Vuex.Store({
       instanceDefaults (data, { store, Model, Models }) {
         return {
           get api_key () {
-            return 'AIzaSyCtlrDPIKTDD_YPB6Rj4cg_11ETo4j160M'
+            return 'AIzaSyC4i-pG8Fws9BIp5ZFlqMNF7Il28yuK8I0'
           },
           get fromDate () {
             return date.formatDate(
@@ -98,7 +98,7 @@ export default new Vuex.Store({
               return `https://maps.googleapis.com/maps/api/staticmap?` +
               `center=${this.xService_Request__r.xAddress__c}&` +
               `markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C${this.xService_Request__r.xAddress__c}&` +
-              `zoom=11&scale=1&size=400x200&maptype=roadmap&format=png&` +
+              `zoom=11&scale=1&size=500x750&maptype=roadmap&format=png&` +
               `visual_refresh=true&key=${this.api_key}`
             }
 
@@ -149,6 +149,9 @@ export default new Vuex.Store({
       idField: 'Id',
       instanceDefaults (data, { store, Model, Models }) {
         return {
+          get api_key () {
+            return 'AIzaSyC4i-pG8Fws9BIp5ZFlqMNF7Il28yuK8I0'
+          },
           get fromDate () {
             return date.formatDate(
               this.xFromDate__c,
@@ -169,13 +172,34 @@ export default new Vuex.Store({
             return 'event_available'
           },
           get iconColor () {
-            return 'green-4'
+            if (this.upcoming) {
+              return 'green-4'
+            }
+            return 'grey-4'
           },
           get message () {
             return this.xAssignmentMsg__c
           },
           get upcoming () {
             return new Date(this.xFromDate__c) >= new Date()
+          },
+          get geoLink () {
+            if (this.xAddress__c) {
+              return `http://maps.google.com/maps?q=${this.xAddress__c}`
+            }
+
+            return null
+          },
+          get geoImage () {
+            if (this.xAddress__c) {
+              return `https://maps.googleapis.com/maps/api/staticmap?` +
+              `center=${this.xAddress__c}&` +
+              `markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C${this.xAddress__c}&` +
+              `zoom=11&scale=1&size=500x750&maptype=roadmap&format=png&` +
+              `visual_refresh=true&key=${this.api_key}`
+            }
+
+            return null
           }
         }
       }

@@ -38,27 +38,35 @@
       <q-card-section
         class="q-pa-sm"
         v-if="mission.xAddress__c">
-        <b>{{ this.$t('workspace.mission_address') }} </b>{{mission.xAddress__c}}
+        <a :href="mission.geoLink"
+          class="text-blue-grey-14">
+          <span>
+            <b>{{ this.$t('workspace.mission_address') }}</b>{{mission.xAddress__c}}
+          </span>
+          <img alt="Geo Location"
+            :src="mission.geoImage"
+            class="image-map">
+        </a>
       </q-card-section>
 
       <q-separator inset
         class="separator"/>
 
-      <q-card-section class="q-pa-sm fixed-bottom"
+      <div class="fixed-bottom full-width"
         v-if="mission.upcoming">
-          <div class="float-right q-pt-sm">
-            <q-btn :label="this.$t('workspace.add_to_calendar')"
-              @click="addToCalendar"
-              color="green-4"
-              class="full-width"/>
-          </div>
-      </q-card-section>
+        <q-btn :label="this.$t('workspace.add_to_calendar')"
+          @click="addToCalendar"
+          color="blue-4"
+          size="lg"
+          class="full-width"/>
+      </div>
     </q-card>
   </q-page>
 </template>
 
 <script>
 import { makeGetMixin } from 'feathers-vuex'
+import { createEvent } from 'ics'
 
 export default {
   name: 'mission',
@@ -74,7 +82,19 @@ export default {
   },
   methods: {
     addToCalendar: function () {
-      console.log('Add to calendar')
+      console.log(this.mission.xICal_Event__c)
+      let event = JSON.parse(this.mission.xICal_Event__c)
+      createEvent(event, (error, value) => {
+        if (error) {
+          console.log(error)
+        } else {
+          let hiddenElement = document.createElement('a')
+          hiddenElement.href = 'data:text/plain;charset=utf-8,' + encodeURI(value)
+          hiddenElement.download = this.mission.Name + '_calendar.ics'
+          hiddenElement.target = '_self'
+          hiddenElement.click()
+        }
+      })
     }
   }
 }
