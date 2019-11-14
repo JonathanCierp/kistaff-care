@@ -12,7 +12,7 @@ Vue.use(FeathersVuex)
 export default new Vuex.Store({
   plugins: [
     // Users Service
-    service('users', {}),
+    service('users', { idField: 'Id' }),
 
     // Auth Service
     auth({ userService: 'users' }),

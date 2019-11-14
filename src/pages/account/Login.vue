@@ -93,8 +93,8 @@ export default {
 
         this.$auth.login({
           strategy: 'local',
-          email: this.email,
-          password: this.password
+          Username: this.email,
+          xAppPassword__c: this.password
         }).finally(() => {
           this.loading = false
         })

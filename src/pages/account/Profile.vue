@@ -4,7 +4,7 @@
       serviceName="contacts"
       sobjectName="Contact"
       layoutName="Employee Layout (App)"
-      :sobjectId="loggedUser.employeeId"/>
+      :sobjectId="loggedUser.ContactId"/>
   </q-page>
 </template>
 
