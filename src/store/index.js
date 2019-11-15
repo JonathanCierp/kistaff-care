@@ -128,9 +128,9 @@ export default new Vuex.Store({
           },
           get iconColor () {
             if (this.xStatus__c === 'Requested') {
-              return 'blue-4'
+              return 'blue-6'
             } else {
-              return 'green-4'
+              return 'green-6'
             }
           },
           get title () {
@@ -173,9 +173,9 @@ export default new Vuex.Store({
           },
           get iconColor () {
             if (this.upcoming) {
-              return 'green-4'
+              return 'green-6'
             }
-            return 'grey-4'
+            return 'grey-5'
           },
           get message () {
             return this.xAssignmentMsg__c
@@ -200,6 +200,24 @@ export default new Vuex.Store({
             }
 
             return null
+          }
+        }
+      }
+    }),
+
+    // Organizations Service
+    service('organizations', {
+      idField: 'Id',
+      instanceDefaults (data, { store, Model, Models }) {
+        return {
+          get label () {
+            return this.Account.Name
+          },
+          get color () {
+            if (this.xStatus__c === 'Accepted') {
+              return 'green-6'
+            }
+            return 'grey-5'
           }
         }
       }

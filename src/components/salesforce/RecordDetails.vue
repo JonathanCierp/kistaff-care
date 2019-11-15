@@ -36,8 +36,10 @@
       </div>
     </q-card-section>
     <div>
-      <q-btn :label="this.$t('buttons.submit')" type="submit" color="primary"/>
-      <q-btn :label="this.$t('buttons.cancel')" type="reset" color="primary" flat class="q-ml-sm" />
+      <q-btn-group spread class="fixed-bottom full-width">
+         <q-btn :label="this.$t('buttons.submit')" type="submit" color="primary" class="q-pa-sm"/>
+         <q-btn :label="this.$t('buttons.cancel')" type="reset" color="grey-5" class="q-pa-sm"/>
+        </q-btn-group>
     </div>
   </q-form>
 </template>
@@ -133,7 +135,7 @@ export default {
     },
     onSubmit () {
       this.$q.notify({
-        color: 'green-4',
+        color: 'green-6',
         textColor: 'white',
         icon: 'fas fa-check-circle',
         message: 'Submitted'

@@ -69,6 +69,7 @@ export default {
     account: 'Compte',
     missions: 'Missions',
     requests: 'Demandes',
+    organizations: 'Etablissements',
     logout: 'Se déconnecter'
   }
 }

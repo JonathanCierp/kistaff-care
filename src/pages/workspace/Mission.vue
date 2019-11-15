@@ -52,12 +52,11 @@
       <q-separator inset
         class="separator"/>
 
-      <div class="fixed-bottom full-width"
-        v-if="mission.upcoming">
+      <div class="fixed-bottom full-width">
         <q-btn :label="this.$t('workspace.add_to_calendar')"
           @click="addToCalendar"
-          color="blue-4"
-          size="lg"
+          color="blue-6"
+          size="1rem"
           class="full-width"/>
       </div>
     </q-card>

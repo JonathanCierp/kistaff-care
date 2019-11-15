@@ -58,6 +58,11 @@ export default {
           icon: 'settings'
         },
         {
+          label: this.$i18n.t('navigation.organizations'),
+          to: '/organizations',
+          icon: 'location_city'
+        },
+        {
           label: this.$i18n.t('navigation.requests'),
           to: '/requests',
           icon: 'assignment_late'

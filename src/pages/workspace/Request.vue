@@ -53,8 +53,8 @@
         class="separator"/>
 
         <q-btn-group spread class="fixed-bottom full-width">
-          <q-btn :label="this.$t('workspace.accept')" @click="accept" color="green-4" class="q-pa-sm"/>
-          <q-btn :label="this.$t('workspace.decline')" @click="decline" color="red-4" text-color="white" class="q-pa-sm"/>
+          <q-btn :label="this.$t('workspace.accept')" @click="accept" color="green-6" class="q-pa-sm"/>
+          <q-btn :label="this.$t('workspace.decline')" @click="decline" color="red-5" text-color="white" class="q-pa-sm"/>
         </q-btn-group>
     </q-card>
   </q-page>

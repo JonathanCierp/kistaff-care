@@ -10,6 +10,7 @@ const routes = [
       { path: '/requests/:id', component: () => import('pages/workspace/Request.vue'), meta: { auth: true } },
       { path: '/missions', component: () => import('pages/workspace/Missions.vue'), meta: { auth: true } },
       { path: '/missions/:id', component: () => import('pages/workspace/Mission.vue'), meta: { auth: true } },
+      { path: '/organizations', component: () => import('pages/workspace/Organizations.vue'), meta: { auth: true } },
       { path: '/logout', component: () => import('pages/account/Logout.vue'), meta: { auth: true } }
     ]
   },
