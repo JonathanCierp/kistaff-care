@@ -166,6 +166,11 @@ module.exports = function (ctx) {
       // noIosLegacyBuildFlag: true // uncomment only if you know what you are doing
     },
 
+    capacitor: {
+      appId: 'com.kistaff.app',
+      appName: 'kistaff'
+    },
+
     electron: {
       // bundler: 'builder', // or 'packager'
 
