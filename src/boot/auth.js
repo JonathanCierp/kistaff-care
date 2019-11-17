@@ -1,5 +1,4 @@
 export default ({ app, router, store, Vue }) => {
-  console.log(store.state.auth)
   const auth = {
     currentUser (prop) {
       let u = store.state.auth.user || false
