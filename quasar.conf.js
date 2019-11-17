@@ -22,11 +22,7 @@ module.exports = function (ctx) {
 
     extras: [
       'roboto-font',
-      'material-icons' // optional, you are not bound to it
-      // 'ionicons-v4',
-      // 'mdi-v3',
-      // 'fontawesome-v5',
-      // 'eva-icons'
+      'material-icons'
     ],
 
     framework: {
@@ -165,11 +161,6 @@ module.exports = function (ctx) {
     cordova: {
       // id: 'org.cordova.quasar.app'
       // noIosLegacyBuildFlag: true // uncomment only if you know what you are doing
-    },
-
-    capacitor: {
-      appId: 'com.kistaff.app',
-      appName: 'kistaff'
     },
 
     electron: {
