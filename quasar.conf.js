@@ -9,7 +9,8 @@ module.exports = function (ctx) {
 
       // Added by HEL
       'auth',
-      'vuelidate'
+      'vuelidate',
+      'fcm'
     ],
 
     // Added by HEL

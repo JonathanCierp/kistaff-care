@@ -1,7 +1,0 @@
-{
-  "appId": "com.kistaff.app",
-  "appName": "kistaff",
-  "bundledWebRuntime": false,
-  "npmClient": "yarn",
-  "webDir": "www"
-}
