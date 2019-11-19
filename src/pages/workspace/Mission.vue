@@ -52,7 +52,7 @@
       <q-separator inset
         class="separator"/>
 
-      <div class="fixed-bottom full-width">
+      <div class="fixed-bottom full-width q-pa-xs">
         <q-btn :label="this.$t('workspace.add_to_calendar')"
           @click="addToCalendar"
           color="blue-6"

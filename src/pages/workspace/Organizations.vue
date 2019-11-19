@@ -20,7 +20,7 @@
       </q-list>
 
       <div class="fixed-bottom full-width">
-        <q-btn :label="this.$t('buttons.submit')"
+        <q-btn :label="this.$t('buttons.save')"
           :disable="!changed"
           @click="submit"
           color="blue-6"

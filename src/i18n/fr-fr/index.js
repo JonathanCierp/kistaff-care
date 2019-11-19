@@ -25,7 +25,8 @@ export default {
     send: 'Envoyer',
     close: 'Fermer',
     next: 'Suivant',
-    previous: 'Précédent'
+    previous: 'Précédent',
+    save: 'Enregistrer'
   },
   headers: {
     login: 'Bienvenue sur KISTAFF',
@@ -66,7 +67,8 @@ export default {
     newjobs: 'Nouvelles'
   },
   navigation: {
-    account: 'Compte',
+    home: 'Accueil',
+    account: 'Mon compte',
     missions: 'Missions',
     requests: 'Demandes',
     organizations: 'Etablissements',

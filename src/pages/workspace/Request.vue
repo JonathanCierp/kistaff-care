@@ -52,10 +52,10 @@
       <q-separator inset
         class="separator"/>
 
-        <q-btn-group spread class="fixed-bottom full-width">
-          <q-btn :label="this.$t('workspace.accept')" @click="accept" color="green-6" class="q-pa-sm"/>
-          <q-btn :label="this.$t('workspace.decline')" @click="decline" color="red-5" text-color="white" class="q-pa-sm"/>
-        </q-btn-group>
+      <q-btn-group spread class="fixed-bottom full-width q-pa-xs">
+        <q-btn :label="this.$t('workspace.accept')" @click="accept" color="light-green" class="q-pa-sm"/>
+        <q-btn :label="this.$t('workspace.decline')" @click="decline" color="warning" text-color="white" class="q-pa-sm"/>
+      </q-btn-group>
     </q-card>
   </q-page>
 </template>

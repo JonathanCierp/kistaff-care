@@ -1,5 +1,5 @@
 <template>
-  <q-form v-if="ready"
+  <q-card flat v-if="ready"
     name="record-details"
     @submit="onSubmit"
     @reset="onReset"
@@ -35,13 +35,12 @@
         </div>
       </div>
     </q-card-section>
-    <div>
-      <q-btn-group spread class="fixed-bottom full-width">
-         <q-btn :label="this.$t('buttons.submit')" type="submit" color="primary" class="q-pa-sm"/>
-         <q-btn :label="this.$t('buttons.cancel')" type="reset" color="grey-5" class="q-pa-sm"/>
-        </q-btn-group>
-    </div>
-  </q-form>
+
+    <q-btn-group spread class="fixed-bottom full-width q-pa-xs">
+      <q-btn :label="this.$t('buttons.save')" type="submit" color="primary" class="q-pa-sm"/>
+      <q-btn :label="this.$t('buttons.cancel')" type="reset" color="grey-2" text-color="primary" class="q-pa-sm"/>
+    </q-btn-group>
+  </q-card>
 </template>
 
 <script>
@@ -135,7 +134,7 @@ export default {
     },
     onSubmit () {
       this.$q.notify({
-        color: 'green-6',
+        color: 'light-green',
         textColor: 'white',
         icon: 'fas fa-check-circle',
         message: 'Submitted'

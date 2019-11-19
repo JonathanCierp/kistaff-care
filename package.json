@@ -11,19 +11,20 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "@capacitor/core": "^1.3.0",
     "@feathersjs/authentication-client": "^1.0.11",
     "@feathersjs/feathers": "^3.3.1",
     "@feathersjs/socketio-client": "^1.2.1",
     "@quasar/extras": "^1.3.3",
     "feathers-vuex": "^1.7.0",
     "ics": "^2.18.0",
-    "quasar": "^1.4.1",
+    "quasar": "^1.4.3",
     "socket.io-client": "^2.2.0",
     "vue-i18n": "^7.3.3",
     "vuelidate": "^0.7.4"
   },
   "devDependencies": {
-    "@quasar/app": "^1.2.3",
+    "@quasar/app": "^1.2.4",
     "@quasar/quasar-app-extension-dotenv": "^1.0.0-beta.11",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",

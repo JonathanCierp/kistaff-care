@@ -53,9 +53,19 @@ export default {
       leftDrawerOpen: this.$q.platform.is.desktop,
       navs: [
         {
-          label: this.$i18n.t('navigation.account'),
-          to: '/profile',
-          icon: 'settings'
+          label: this.$i18n.t('navigation.home'),
+          to: '/home',
+          icon: 'home'
+        },
+        {
+          label: this.$i18n.t('navigation.missions'),
+          to: '/missions',
+          icon: 'event'
+        },
+        {
+          label: this.$i18n.t('navigation.requests'),
+          to: '/requests',
+          icon: 'shop_two'
         },
         {
           label: this.$i18n.t('navigation.organizations'),
@@ -63,14 +73,9 @@ export default {
           icon: 'location_city'
         },
         {
-          label: this.$i18n.t('navigation.requests'),
-          to: '/requests',
-          icon: 'assignment_late'
-        },
-        {
-          label: this.$i18n.t('navigation.missions'),
-          to: '/missions',
-          icon: 'assignment_turned_in'
+          label: this.$i18n.t('navigation.account'),
+          to: '/profile',
+          icon: 'settings'
         },
         {
           label: this.$i18n.t('navigation.logout'),
