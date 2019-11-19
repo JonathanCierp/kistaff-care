@@ -7,7 +7,8 @@
       >
       <q-card-section>
         <div class="absolute-center">
-            <img src="/statics/images/app-logo.png" class="app-logo"/>
+            <img src="/statics/images/app-logo.png"
+              class="app-logo"/>
         </div>
       </q-card-section>
       <br/>
@@ -36,11 +37,6 @@
           required
           @keyup.enter="login"
         />
-        <q-checkbox
-          id="rememberMe"
-          v-model="rememberMe"
-          :label="this.$t('labels.remember_me')"
-        />
       </q-card-section>
 
       <q-card-actions>
@@ -59,11 +55,6 @@
             <a>{{ this.$t('labels.password_forgot') }}</a>
           </router-link>
         </div>
-        <div class="col text-right">
-          <router-link to="/login/signup">
-            <a>{{ this.$t('labels.signup_member') }}</a>
-          </router-link>
-        </div>
       </div>
     </q-card>
   </q-page>
@@ -78,7 +69,6 @@ export default {
     return {
       email: '',
       password: '',
-      rememberMe: false,
       loading: false
     }
   },

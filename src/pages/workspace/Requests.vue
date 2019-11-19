@@ -27,8 +27,10 @@
           class="bg-primary text-white fixed-bottom full-width"
           align="justify"
           narrow-indicator>
-          <q-tab name="newjobs" :label="this.$t('workspace.newjobs') + ' (' + newRequests.length +')'"></q-tab>
-          <q-tab name="assignments" :label="this.$t('workspace.assignments')  + ' (' + assignedRequests.length +')'"></q-tab>
+          <q-tab name="newjobs"
+            :label="this.$t('workspace.newjobs') + ' (' + newRequests.length +')'"></q-tab>
+          <q-tab name="assignments"
+            :label="this.$t('workspace.assignments')  + ' (' + assignedRequests.length +')'"></q-tab>
       </q-tabs>
     </q-card>
   </q-page>

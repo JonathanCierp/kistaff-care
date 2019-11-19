@@ -128,9 +128,9 @@ export default new Vuex.Store({
           },
           get iconColor () {
             if (this.xStatus__c === 'Requested') {
-              return 'blue-6'
+              return 'teal'
             } else {
-              return 'green-6'
+              return 'amber'
             }
           },
           get title () {
@@ -169,13 +169,16 @@ export default new Vuex.Store({
                     ${this.xSubject__c}`
           },
           get icon () {
+            if (this.upcoming) {
+              return 'event'
+            }
             return 'event_available'
           },
           get iconColor () {
             if (this.upcoming) {
-              return 'green-6'
+              return 'light-green'
             }
-            return 'grey-5'
+            return 'lime'
           },
           get message () {
             return this.xAssignmentMsg__c
@@ -215,7 +218,7 @@ export default new Vuex.Store({
           },
           get color () {
             if (this.xStatus__c === 'Accepted') {
-              return 'green-6'
+              return 'light-green'
             }
             return 'grey-5'
           }
