@@ -91,14 +91,14 @@ export default {
     }
   },
   created: function () {
-    const { Sobject } = this.$FeathersVuex
+    const { SObject } = this.$FeathersVuex
     const { Layout } = this.$FeathersVuex
-    const { Layoutinfo } = this.$FeathersVuex
+    const { LayoutInfo } = this.$FeathersVuex
     const sobjectName = this.sobjectName
     const layoutName = this.layoutName
 
     // Get the object metadata
-    Sobject.get(this.sobjectName).then(metadata => {
+    SObject.get(this.sobjectName).then(metadata => {
       this.metadata = metadata
 
       // Find the layout
@@ -110,7 +110,7 @@ export default {
       }).then(layouts => {
         // Get the layout details
         if (layouts && layouts.length === 1) {
-          Layoutinfo.get(layouts[0].Id).then(layout => {
+          LayoutInfo.get(layouts[0].Id).then(layout => {
             if (layout && layout.Metadata) {
               let secRank = 0
               let colRank = 0

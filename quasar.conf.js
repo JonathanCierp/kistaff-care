@@ -101,7 +101,8 @@ module.exports = function (ctx) {
           loader: 'eslint-loader',
           exclude: /node_modules/
         })
-      }
+      },
+      transpileDependencies: ['feathers-vuex']
     },
 
     devServer: {

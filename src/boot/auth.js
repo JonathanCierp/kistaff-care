@@ -8,7 +8,7 @@ export default ({ app, router, store, Vue }) => {
     login (payload, quiet) {
       return store.dispatch('auth/authenticate', payload)
         .then(() => {
-          router.push('/profile')
+          router.push('/home')
 
           Vue.prototype.$q.notify({
             message: "Right on, let's do this!",
