@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     accept: function () {
-      const { Request } = this.$FeathersVuex
+      const { Request } = this.$FeathersVuex.api
       let req = new Request({
         Id: this.request.Id,
         xService_Staff__c: this.request.xService_Staff__c
@@ -106,7 +106,7 @@ export default {
       })
     },
     decline: function () {
-      const { Request } = this.$FeathersVuex
+      const { Request } = this.$FeathersVuex.api
       let req = new Request({ id: this.request.Id })
 
       if (this.request.xStatus__c === 'Requested') {

@@ -44,8 +44,9 @@
 </template>
 
 <script>
-import { makeGetMixin } from 'feathers-vuex'
 import RecordField from './RecordField'
+
+import { makeGetMixin } from 'feathers-vuex'
 
 export default {
   name: 'RecordDetails',
@@ -91,9 +92,9 @@ export default {
     }
   },
   created: function () {
-    const { SObject } = this.$FeathersVuex
-    const { Layout } = this.$FeathersVuex
-    const { LayoutInfo } = this.$FeathersVuex
+    const { SObject } = this.$FeathersVuex.api
+    const { Layout } = this.$FeathersVuex.api
+    const { LayoutInfo } = this.$FeathersVuex.api
     const sobjectName = this.sobjectName
     const layoutName = this.layoutName
 
@@ -106,7 +107,8 @@ export default {
         query: {
           $sobject: sobjectName,
           $layout: layoutName
-        }
+        },
+        paginate: false
       }).then(layouts => {
         // Get the layout details
         if (layouts && layouts.length === 1) {

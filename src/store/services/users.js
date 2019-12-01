@@ -7,7 +7,7 @@ import feathersClient,
 class User extends BaseModel {
   // eslint-disable-next-line no-useless-constructor
   constructor (data, options) {
-    super(data, { idField: 'Id' })
+    super(data, options)
   }
 
   static modelName = 'User'

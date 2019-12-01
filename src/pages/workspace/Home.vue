@@ -144,7 +144,8 @@ export default {
               'Assigned'
             ]
           }
-        }
+        },
+        paginate: false
       }
     },
     requestsParams () {
@@ -158,7 +159,8 @@ export default {
             ]
           },
           xIs_Available__c: true
-        }
+        },
+        paginate: false
       }
     },
     organizationsParams () {
@@ -171,7 +173,8 @@ export default {
               'Suspended'
             ]
           }
-        }
+        },
+        paginate: false
       }
     },
     newRequests: function () {
