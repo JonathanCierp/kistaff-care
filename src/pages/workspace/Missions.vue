@@ -40,6 +40,7 @@
 
 <script>
 import { makeFindMixin } from 'feathers-vuex'
+
 import MissionItem from '../../components/workspace/MissionItem'
 
 export default {
@@ -68,7 +69,8 @@ export default {
               null
             ]
           }
-        }
+        },
+        paginate: false
       }
     },
     upcomingMissions: function () {

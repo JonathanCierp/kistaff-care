@@ -1,4 +1,3 @@
-// src/store/store.js
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { FeathersVuex } from '../lib/feathersClient'

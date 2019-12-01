@@ -18,13 +18,19 @@ const {
   makeAuthPlugin,
   BaseModel,
   models,
+  clients,
   FeathersVuex
-} = feathersVuex(feathersClient)
+} = feathersVuex(feathersClient, {
+  serverAlias: 'api',
+  idField: 'Id',
+  debug: true
+})
 
 export {
   makeAuthPlugin,
   makeServicePlugin,
   BaseModel,
   models,
+  clients,
   FeathersVuex
 }

@@ -7,10 +7,10 @@ import feathersClient,
 class LayoutInfo extends BaseModel {
   // eslint-disable-next-line no-useless-constructor
   constructor (data, options) {
-    super(data, options)
+    super(data, { idField: 'Id' })
   }
 
-  static modelName = 'Layout'
+  static modelName = 'LayoutInfo'
 }
 
 const servicePath = 'layoutInfos'

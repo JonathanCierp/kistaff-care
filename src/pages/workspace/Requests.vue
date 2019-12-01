@@ -59,7 +59,8 @@ export default {
             ]
           },
           xIs_Available__c: true
-        }
+        },
+        paginate: false
       }
     },
     newRequests: function () {

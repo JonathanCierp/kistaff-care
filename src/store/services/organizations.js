@@ -5,9 +5,8 @@ import feathersClient,
 } from '../../lib/feathersClient'
 
 class Organization extends BaseModel {
-  // eslint-disable-next-line no-useless-constructor
   constructor (data, options) {
-    super(data, options)
+    super(data, { idField: 'Id' })
   }
 
   static modelName = 'Organization'

@@ -7,7 +7,7 @@ import feathersClient,
 class ListView extends BaseModel {
   // eslint-disable-next-line no-useless-constructor
   constructor (data, options) {
-    super(data, options)
+    super(data, { idField: 'Id' })
   }
 
   static modelName = 'ListView'
