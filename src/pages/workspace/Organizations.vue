@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     submit: function () {
-      const { Organization } = this.$FeathersVuex
+      const { Organization } = this.$FeathersVuex.api
 
       this.organizations.forEach(org => {
         let newOrg = new Organization({
