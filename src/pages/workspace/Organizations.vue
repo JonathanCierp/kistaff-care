@@ -25,7 +25,7 @@
           <div class="q-pa-xs full-width">
             <q-btn :label="this.$t('buttons.save')"
               :disable="!changed"
-              @click="submit"
+              @click="saveRecords"
               color="primary"
               size="1rem"
               class="full-width"/>
@@ -60,7 +60,7 @@ export default {
     }
   },
   methods: {
-    submit: function () {
+    saveRecords: function () {
       const { Organization } = this.$FeathersVuex.api
 
       this.organizations.forEach(org => {
@@ -71,6 +71,8 @@ export default {
 
         newOrg.save()
       })
+
+      this.changed = false
     },
     notifyToggle: function (value) {
       this.changed = true
