@@ -26,7 +26,7 @@
             <q-btn :label="this.$t('buttons.save')"
               :disable="!changed"
               @click="submit"
-              color="blue-6"
+              color="primary"
               size="1rem"
               class="full-width"/>
           </div>

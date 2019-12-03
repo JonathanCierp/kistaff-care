@@ -55,11 +55,11 @@
           <q-btn-group spread flat class="full-width q-pa-xs">
             <q-btn :label="this.$t('workspace.accept')"
               @click="accept"
-              color="light-green"
+              color="positive"
               class="q-pa-sm"/>
             <q-btn :label="this.$t('workspace.decline')"
               @click="decline"
-              color="amber-10"
+              color="warning"
               text-color="white"
               class="q-pa-sm"/>
           </q-btn-group>

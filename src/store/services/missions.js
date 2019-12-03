@@ -46,9 +46,9 @@ class Mission extends BaseModel {
 
   get iconColor () {
     if (this.upcoming) {
-      return 'light-green'
+      return 'positive'
     }
-    return 'lime'
+    return 'grey-5'
   }
 
   get message () {

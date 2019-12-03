@@ -9,7 +9,7 @@
             <q-card flat>
               <q-card-section class="row">
                 <div class="float-left">
-                  <q-avatar rounded size="60px" color="light-green" text-color="white">
+                  <q-avatar rounded size="60px" color="positive" text-color="white">
                     <q-icon name="event" />
                   </q-avatar>
                 </div>
@@ -38,7 +38,7 @@
             <q-card flat="">
               <q-card-section class="row">
                 <div class="float-left">
-                  <q-avatar rounded size="60px" color="amber" text-color="white">
+                  <q-avatar rounded size="60px" color="warning" text-color="white">
                     <q-icon name="assignment_turned_in" />
                   </q-avatar>
                 </div>
@@ -67,7 +67,7 @@
             <q-card flat>
               <q-card-section class="row">
                 <div class="float-left">
-                  <q-avatar rounded square size="60px" color="teal" text-color="white">
+                  <q-avatar rounded square size="60px" color="secondary" text-color="white">
                     <q-icon name="shop_two" />
                   </q-avatar>
                 </div>
@@ -96,7 +96,7 @@
             <q-card flat>
               <q-card-section class="row">
                 <div class="float-left">
-                  <q-avatar rounded size="60px" color="blue" text-color="white">
+                  <q-avatar rounded size="60px" color="primary" text-color="white">
                     <q-icon name="location_city" />
                   </q-avatar>
                 </div>

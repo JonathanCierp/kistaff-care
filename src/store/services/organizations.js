@@ -18,7 +18,7 @@ class Organization extends BaseModel {
 
   get color () {
     if (this.xStatus__c === 'Accepted') {
-      return 'light-green'
+      return 'positive'
     }
     return 'grey-5'
   }

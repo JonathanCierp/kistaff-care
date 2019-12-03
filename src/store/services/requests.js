@@ -79,9 +79,9 @@ class Request extends BaseModel {
 
   get iconColor () {
     if (this.xStatus__c === 'Requested') {
-      return 'teal'
+      return 'positive'
     } else {
-      return 'amber'
+      return 'secondary'
     }
   }
 

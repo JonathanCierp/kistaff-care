@@ -55,7 +55,7 @@
           <div class="full-width q-pa-xs">
             <q-btn :label="this.$t('workspace.add_to_calendar')"
               @click="addToCalendar"
-              color="blue-6"
+              color="primary"
               size="1rem"
               class="full-width"/>
           </div>
