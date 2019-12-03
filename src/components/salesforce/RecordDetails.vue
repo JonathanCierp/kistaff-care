@@ -1,8 +1,6 @@
 <template>
   <q-card flat v-if="ready"
-    name="record-details"
-    @submit="onSubmit"
-    @reset="onReset">
+    name="record-details">
     <div class="content-wrapper">
       <div class="main-content">
         <q-card-section
@@ -19,19 +17,23 @@
                 :record="record"
                 :metadata="metadata"
                 :fieldName="layoutItem.field"
-                :behavior="layoutItem.behavior"/>
+                :behavior="layoutItem.behavior"
+                :mode="mode"/>
               <div v-else>
                 <record-field :record="record"
                           :metadata="metadata"
-                          fieldName="Salutation"/>
+                          fieldName="Salutation"
+                          :mode="mode"/>
 
                 <record-field :record="record"
                           :metadata="metadata"
-                          fieldName="FirstName"/>
+                          fieldName="FirstName"
+                          :mode="mode"/>
 
                 <record-field :record="record"
                           :metadata="metadata"
-                          fieldName="LastName"/>
+                          fieldName="LastName"
+                          :mode="mode"/>
               </div>
             </div>
           </div>
@@ -39,15 +41,29 @@
       </div>
 
       <div class="toolbar">
-        <q-btn-group spread flat class="full-width q-pa-xs">
+        <q-btn-group v-if="mode=='edit'"
+          spread flat
+          class="full-width q-pa-xs">
           <q-btn :label="this.$t('buttons.save')"
-            type="submit"
+            @click="saveRecord"
             color="primary"
             class="q-pa-sm"/>
           <q-btn :label="this.$t('buttons.cancel')"
-            type="reset"
+            @click="toggleEditMode"
             color="grey-2"
             text-color="primary"
+            class="q-pa-sm"/>
+        </q-btn-group>
+
+        <q-btn-group v-if="mode=='view'"
+          spread flat
+          class="full-width q-pa-xs">
+          <q-btn :label="this.$t('buttons.update')"
+            @click="toggleEditMode"
+            color="primary"
+            class="q-pa-sm"/>
+          <q-btn :label="this.$t('buttons.password')"
+            color="dark"
             class="q-pa-sm"/>
         </q-btn-group>
       </div>
@@ -66,7 +82,8 @@ export default {
   data () {
     return {
       metadata: null,
-      layout: null
+      layout: null,
+      mode: 'view'
     }
   },
   components: {
@@ -146,7 +163,7 @@ export default {
       return metadata.name === 'Contact' &&
              fieldName === 'Name'
     },
-    onSubmit () {
+    saveRecord () {
       this.$q.notify({
         color: 'light-green',
         textColor: 'white',
@@ -154,9 +171,8 @@ export default {
         message: 'Submitted'
       })
     },
-
-    onReset () {
-      console.log('reset')
+    toggleEditMode () {
+      this.mode = (this.mode === 'view') ? 'edit' : 'view'
     }
   }
 }

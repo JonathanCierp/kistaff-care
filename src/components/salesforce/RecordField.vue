@@ -3,7 +3,7 @@
   <q-checkbox v-if="isCheckbox"
     :id="field.name"
     :label="field.label"
-    :readonly="behavior=='Readonly'"
+    :readonly="isReadonly"
     v-model="fieldValue"/>
 
   <!-- Date field -->
@@ -11,7 +11,7 @@
     :id="field.name"
     :label="field.label"
     :required="required"
-    :readonly="behavior=='Readonly'"
+    :readonly="isReadonly"
     v-model="fieldValue"
     :rules="['date']"
     mask="date">
@@ -29,7 +29,7 @@
     :id="field.name"
     :label="field.label"
     :required="required"
-    :readonly="behavior=='Readonly'"
+    :readonly="isReadonly"
     v-model="fieldValue"
     :rules="['time']"
     mask="time">
@@ -47,7 +47,7 @@
     :id="field.name"
     :label="field.label"
     :required="required"
-    :readonly="behavior=='Readonly'"
+    :readonly="isReadonly"
     v-model="fieldValue">
     <template v-slot:prepend>
       <q-icon name="event" class="cursor-pointer">
@@ -71,7 +71,7 @@
     :id="field.name"
     :label="field.label"
     :required="required"
-    :readonly="behavior=='Readonly'"
+    :readonly="isReadonly"
     v-model="fieldValue"
     :options="options"/>
 
@@ -81,7 +81,7 @@
     :id="field.name"
     :label="field.label"
     :required="required"
-    :readonly="behavior=='Readonly'"
+    :readonly="isReadonly"
     v-model="fieldValue"
     :options="options"/>
 
@@ -91,21 +91,21 @@
     <q-input  type="text"
       :label="this.$t('Street')"
       :id="field.name + 'Street' "
-      :readonly="behavior=='Readonly'"
+      :readonly="isReadonly"
       v-model="fieldValue.street"/>
 
     <!-- Zip Code -->
     <q-input  type="text"
       :label="this.$t('Postal Code')"
       :id="field.name + 'PostalCode' "
-      :readonly="behavior=='Readonly'"
+      :readonly="isReadonly"
       v-model="fieldValue.postalCode"/>
 
     <!-- City -->
     <q-input  type="text"
       :label="this.$t('City')"
       :id="field.name + 'City' "
-      :readonly="behavior=='Readonly'"
+      :readonly="isReadonly"
       v-model="fieldValue.city"/>
   </div>
 
@@ -115,7 +115,7 @@
     :label="field.label"
     :required="required"
     :type="inputType"
-    :readonly="behavior=='Readonly'"
+    :readonly="isReadonly"
     v-model="fieldValue"
     :rules="validationRules"/>
  </template>
@@ -144,7 +144,7 @@ const fieldInputMap = {
 
 export default {
   name: 'RecordField',
-  props: ['metadata', 'record', 'fieldName', 'behavior'],
+  props: ['metadata', 'record', 'fieldName', 'behavior', 'mode'],
   data () {
     return {
       field: null,
@@ -177,12 +177,15 @@ export default {
       } else {
         this.fieldValue = value
       }
-      console.log('end')
     }
   },
   computed: {
     required () {
       return this.field.behavior === 'Required'
+    },
+    isReadonly () {
+      return this.mode === 'view' ||
+             this.field.behavior === 'Readonly'
     },
     isDate () {
       return this.fieldType === 'DATE'

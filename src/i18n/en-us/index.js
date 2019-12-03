@@ -26,7 +26,9 @@ export default {
     close: 'Close',
     next: 'Next',
     previous: 'Previous',
-    save: 'Save'
+    save: 'Save',
+    update: 'Update',
+    password: 'Password'
   },
   headers: {
     login: 'Wellcome on KISTAFF',
