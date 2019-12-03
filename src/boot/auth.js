@@ -37,8 +37,8 @@ export default ({ app, router, store, Vue }) => {
     }
   }
 
-  // Auth from JWT stored in browser before loading the app.
-  auth.login('jwt', true)
+  // Auth from JWT
+  auth.login()
 
   // Add API to Vue
   Vue.prototype.$auth = auth
