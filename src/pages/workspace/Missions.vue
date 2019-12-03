@@ -18,7 +18,7 @@
                     v-for="mission in historyMissions"
                     :key="mission.Id"
                     :mission="mission"
-                    class="mission-item"/>
+                    class="list-item"/>
             </q-list>
           </q-tab-panel>
         </q-tab-panels>
@@ -93,11 +93,4 @@ export default {
 </script>
 
 <style>
-.mission-item {
-  border-bottom: 1px solid rgba(0,0,0,0.12);
-}
-
-.q-tab-panel {
-  padding: 0px;
-}
 </style>

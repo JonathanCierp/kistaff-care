@@ -2,44 +2,56 @@
   <q-card flat v-if="ready"
     name="record-details"
     @submit="onSubmit"
-    @reset="onReset"
-    class="q-gutter-md">
-    <q-card-section
-      v-for="section in availableSections"
-      :key="section.secRank">
-      <p>{{ section.label }}</p>
-      <div
-        v-for="layoutColumn in section.layoutColumns"
-        :key="layoutColumn.colRank">
-        <div
-          v-for="layoutItem in layoutColumn.layoutItems"
-          :key="layoutItem.field">
-          <record-field v-if="!isContactName(metadata, layoutItem.field)"
-            :record="record"
-            :metadata="metadata"
-            :fieldName="layoutItem.field"
-            :behavior="layoutItem.behavior"/>
-          <div v-else>
-            <record-field :record="record"
-                      :metadata="metadata"
-                      fieldName="Salutation"/>
+    @reset="onReset">
+    <div class="content-wrapper">
+      <div class="main-content">
+        <q-card-section
+          v-for="section in availableSections"
+          :key="section.secRank">
+          <p>{{ section.label }}</p>
+          <div
+            v-for="layoutColumn in section.layoutColumns"
+            :key="layoutColumn.colRank">
+            <div
+              v-for="layoutItem in layoutColumn.layoutItems"
+              :key="layoutItem.field">
+              <record-field v-if="!isContactName(metadata, layoutItem.field)"
+                :record="record"
+                :metadata="metadata"
+                :fieldName="layoutItem.field"
+                :behavior="layoutItem.behavior"/>
+              <div v-else>
+                <record-field :record="record"
+                          :metadata="metadata"
+                          fieldName="Salutation"/>
 
-            <record-field :record="record"
-                      :metadata="metadata"
-                      fieldName="FirstName"/>
+                <record-field :record="record"
+                          :metadata="metadata"
+                          fieldName="FirstName"/>
 
-            <record-field :record="record"
-                      :metadata="metadata"
-                      fieldName="LastName"/>
+                <record-field :record="record"
+                          :metadata="metadata"
+                          fieldName="LastName"/>
+              </div>
+            </div>
           </div>
-        </div>
+        </q-card-section>
       </div>
-    </q-card-section>
 
-    <q-btn-group spread class="fixed-bottom full-width q-pa-xs">
-      <q-btn :label="this.$t('buttons.save')" type="submit" color="primary" class="q-pa-sm"/>
-      <q-btn :label="this.$t('buttons.cancel')" type="reset" color="grey-2" text-color="primary" class="q-pa-sm"/>
-    </q-btn-group>
+      <div class="toolbar">
+        <q-btn-group spread flat class="full-width q-pa-xs">
+          <q-btn :label="this.$t('buttons.save')"
+            type="submit"
+            color="primary"
+            class="q-pa-sm"/>
+          <q-btn :label="this.$t('buttons.cancel')"
+            type="reset"
+            color="grey-2"
+            text-color="primary"
+            class="q-pa-sm"/>
+        </q-btn-group>
+      </div>
+    </div>
   </q-card>
 </template>
 

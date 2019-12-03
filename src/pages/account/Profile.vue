@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page>
     <record-details v-if="loggedUser"
       serviceName="contacts"
       sobjectName="Contact"

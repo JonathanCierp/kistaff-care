@@ -1,31 +1,36 @@
 <template>
   <q-page>
     <q-card flat>
-      <q-list>
-        <q-item v-for="org in organizations" :key="org.Id"
-          class="organization-item" v-ripple>
-          <q-item-section>
-            <q-item-label>{{org.label}}</q-item-label>
-          </q-item-section>
-          <q-item-section side >
-            <q-toggle v-model="org.xStatus__c"
-              @input="notifyToggle(org.xStatus__c)"
-              :color="org.color"
-              checked-icon="check"
-              unchecked-icon="clear"
-              false-value="Suspended"
-              true-value="Accepted"/>
-          </q-item-section>
-        </q-item>
-      </q-list>
-
-      <div class="fixed-bottom full-width">
-        <q-btn :label="this.$t('buttons.save')"
-          :disable="!changed"
-          @click="submit"
-          color="blue-6"
-          size="1rem"
-          class="full-width"/>
+      <div class="content-wrapper">
+        <div class="main-content">
+          <q-list>
+            <q-item v-for="org in organizations" :key="org.Id"
+              class="list-item" v-ripple>
+              <q-item-section>
+                <q-item-label>{{org.label}}</q-item-label>
+              </q-item-section>
+              <q-item-section side >
+                <q-toggle v-model="org.xStatus__c"
+                  @input="notifyToggle(org.xStatus__c)"
+                  :color="org.color"
+                  checked-icon="check"
+                  unchecked-icon="clear"
+                  false-value="Suspended"
+                  true-value="Accepted"/>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </div>
+        <div class="toolbar">
+          <div class="q-pa-xs full-width">
+            <q-btn :label="this.$t('buttons.save')"
+              :disable="!changed"
+              @click="submit"
+              color="blue-6"
+              size="1rem"
+              class="full-width"/>
+          </div>
+        </div>
       </div>
     </q-card>
   </q-page>
@@ -80,7 +85,4 @@ export default {
 </script>
 
 <style>
-.organization-item {
-  border-bottom: 1px solid rgba(0,0,0,0.12);
-}
 </style>

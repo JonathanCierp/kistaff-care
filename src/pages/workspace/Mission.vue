@@ -1,63 +1,65 @@
 
 <template>
   <q-page>
-    <q-card flat
-      class="mission">
-      <q-card-section class="q-pa-sm">
-        <div class="row">
-          <div class="text-blue-grey-10 col">
-            <span class="text-h7"><b>{{ mission.label }}</b></span>
+    <q-card flat>
+      <div class="content-wrapper">
+        <div class="main-content">
+          <q-card-section class="q-pa-sm">
+            <div class="row">
+              <div class="text-blue-grey-10 col">
+                <span class="text-h7"><b>{{ mission.label }}</b></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="text-grey col text-left">
+                <q-icon name="event"
+                  class="text-h7"/>
+                <span class="text-h7">{{ mission.fromDate }} </span>
+              </div>
+              <div class="text-grey col text-right">
+                <q-icon name="timer"
+                  class="text-h7"/>
+                <span class="text-h7">{{ mission.xDuration__c }}h</span>
+              </div>
+            </div>
+          </q-card-section>
+
+          <q-separator inset
+            class="separator"/>
+
+          <q-card-section class="q-pa-sm">
+            <div class="row">
+              {{mission.message}}
+            </div>
+          </q-card-section>
+
+          <q-separator inset
+            class="separator"/>
+
+          <q-card-section
+            class="q-pa-sm"
+            v-if="mission.xAddress__c">
+            <a :href="mission.geoLink"
+              class="text-blue-grey-14">
+              <span>
+                <b>{{ this.$t('workspace.mission_address') }}</b>{{mission.xAddress__c}}
+              </span>
+              <img alt="Geo Location"
+                :src="mission.geoImage"
+                class="image-map">
+            </a>
+          </q-card-section>
+        </div>
+
+        <div class="toolbar">
+          <div class="full-width q-pa-xs">
+            <q-btn :label="this.$t('workspace.add_to_calendar')"
+              @click="addToCalendar"
+              color="blue-6"
+              size="1rem"
+              class="full-width"/>
           </div>
         </div>
-        <div class="row">
-          <div class="text-grey col text-left">
-            <q-icon name="event"
-              class="text-h7"/>
-            <span class="text-h7">{{ mission.fromDate }} </span>
-          </div>
-          <div class="text-grey col text-right">
-            <q-icon name="timer"
-              class="text-h7"/>
-            <span class="text-h7">{{ mission.xDuration__c }}h</span>
-          </div>
-        </div>
-      </q-card-section>
-
-      <q-separator inset
-        class="separator"/>
-
-      <q-card-section class="q-pa-sm">
-        <div class="row">
-          {{mission.message}}
-        </div>
-      </q-card-section>
-
-      <q-separator inset
-        class="separator"/>
-
-      <q-card-section
-        class="q-pa-sm"
-        v-if="mission.xAddress__c">
-        <a :href="mission.geoLink"
-          class="text-blue-grey-14">
-          <span>
-            <b>{{ this.$t('workspace.mission_address') }}</b>{{mission.xAddress__c}}
-          </span>
-          <img alt="Geo Location"
-            :src="mission.geoImage"
-            class="image-map">
-        </a>
-      </q-card-section>
-
-      <q-separator inset
-        class="separator"/>
-
-      <div class="fixed-bottom full-width q-pa-xs">
-        <q-btn :label="this.$t('workspace.add_to_calendar')"
-          @click="addToCalendar"
-          color="blue-6"
-          size="1rem"
-          class="full-width"/>
       </div>
     </q-card>
   </q-page>

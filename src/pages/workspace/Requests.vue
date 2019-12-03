@@ -8,7 +8,7 @@
                   v-for="request in newRequests"
                   :key="request.Id"
                   :request="request"
-                  class="request-item"/>
+                  class="list-item"/>
             </q-list>
           </q-tab-panel>
           <q-tab-panel name="assignments">
@@ -83,11 +83,4 @@ export default {
 </script>
 
 <style>
-.request-item {
-  border-bottom: 1px solid rgba(0,0,0,0.12);
-}
-
-.q-tab-panel {
-  padding: 0px;
-}
 </style>
