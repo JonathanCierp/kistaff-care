@@ -11,7 +11,7 @@ export default ({ app, router, store, Vue }) => {
           router.push('/home')
 
           Vue.prototype.$q.notify({
-            message: "Right on, let's do this!",
+            message: Vue.prototype.$i18n.t('notification.loginOK'),
             type: 'info'
           })
         })
@@ -19,7 +19,7 @@ export default ({ app, router, store, Vue }) => {
           if (!quiet) {
             console.log(err)
             Vue.prototype.$q.notify({
-              message: 'There was a problem logging you in.',
+              message: Vue.prototype.$i18n.t('notification.loginKO'),
               type: 'error'
             })
           }
@@ -29,7 +29,7 @@ export default ({ app, router, store, Vue }) => {
       return store.dispatch('auth/logout').then(() => {
         if (!quiet) {
           Vue.prototype.$q.notify({
-            message: "You've been logged out.",
+            message: Vue.prototype.$i18n.t('notification.logoutOK'),
             type: 'info'
           })
         }

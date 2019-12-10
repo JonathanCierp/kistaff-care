@@ -75,5 +75,11 @@ export default {
     requests: 'Demandes',
     organizations: 'Etablissements',
     logout: 'Se déconnecter'
+  },
+  notification: {
+    loginOK: 'Bienvenue sur Kistaff!',
+    loginKO: 'Impossible de vous connecter.',
+    logoutOK: 'Vous avez été déconnecté.',
+    recordSaved: 'Enregistrement effectué avec succès'
   }
 }

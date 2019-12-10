@@ -81,7 +81,7 @@ module.exports = function (ctx) {
 
       config: {
         notify: {
-          color: 'blue'
+          color: 'primary'
         }
       },
       lang: 'en-us'

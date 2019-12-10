@@ -75,5 +75,11 @@ export default {
     requests: 'Requests',
     organizations: 'Organizations',
     logout: 'Logout'
+  },
+  notification: {
+    loginOK: 'Welcome to Kistaff!',
+    loginKO: 'There was a problem logging you in.',
+    logoutOK: 'You\'ve been logged out.',
+    recordSaved: 'Record saved successfully'
   }
 }

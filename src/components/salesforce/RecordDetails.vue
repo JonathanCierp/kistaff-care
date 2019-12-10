@@ -62,9 +62,7 @@
             @click="toggleEditMode"
             color="primary"
             class="q-pa-sm"/>
-          <q-btn :label="this.$t('buttons.password')"
-            color="dark"
-            class="q-pa-sm"/>
+          <slot name="actions"/>
         </q-btn-group>
       </div>
     </div>
@@ -168,7 +166,7 @@ export default {
         color: 'light-green',
         textColor: 'white',
         icon: 'fas fa-check-circle',
-        message: 'Submitted'
+        message: this.$i18n.t('notification.recordSaved')
       })
     },
     toggleEditMode () {
