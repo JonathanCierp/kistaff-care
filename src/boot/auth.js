@@ -11,7 +11,7 @@ export default ({ app, router, store, Vue }) => {
           router.push('/home')
 
           Vue.prototype.$q.notify({
-            message: Vue.prototype.$i18n.t('notification.loginOK'),
+            message: Vue.prototype.$auth.i18n.t('notification.loginOK'),
             type: 'info'
           })
         })
@@ -19,7 +19,7 @@ export default ({ app, router, store, Vue }) => {
           if (!quiet) {
             console.log(err)
             Vue.prototype.$q.notify({
-              message: Vue.prototype.$i18n.t('notification.loginKO'),
+              message: Vue.prototype.$auth.i18n.t('notification.loginKO'),
               type: 'error'
             })
           }
@@ -29,7 +29,7 @@ export default ({ app, router, store, Vue }) => {
       return store.dispatch('auth/logout').then(() => {
         if (!quiet) {
           Vue.prototype.$q.notify({
-            message: Vue.prototype.$i18n.t('notification.logoutOK'),
+            message: Vue.prototype.$auth.i18n.t('notification.logoutOK'),
             type: 'info'
           })
         }
@@ -38,6 +38,7 @@ export default ({ app, router, store, Vue }) => {
   }
 
   // Auth from JWT
+  auth.i18n = app.i18n
   auth.login()
 
   // Add API to Vue
