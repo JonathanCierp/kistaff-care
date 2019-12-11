@@ -28,7 +28,7 @@ export default {
     previous: 'Précédent',
     save: 'Enregistrer',
     update: 'Mettre à jour',
-    password: 'Mot de passe'
+    password: 'Changer mon mot de passe'
   },
   headers: {
     login: 'Bienvenue sur KISTAFF',
@@ -46,6 +46,7 @@ export default {
     email: 'Email',
     name: 'Nom',
     password: 'Mot de passe',
+    old_password: 'Ancien mot de passe',
     repeat_password: 'Confimer le mot de passe',
     remember_me: 'Se souvenir de moi',
     password_forgot: 'Mot de passe oublié?',
@@ -80,6 +81,7 @@ export default {
     loginOK: 'Bienvenue sur Kistaff!',
     loginKO: 'Impossible de vous connecter.',
     logoutOK: 'Vous avez été déconnecté.',
-    recordSaved: 'Enregistrement effectué avec succès'
+    recordSaved: 'Enregistrement effectué avec succès',
+    passwordChanged: 'Mot de passe enregistré avec succès'
   }
 }

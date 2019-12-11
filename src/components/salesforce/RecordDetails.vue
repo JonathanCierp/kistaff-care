@@ -38,6 +38,10 @@
             </div>
           </div>
         </q-card-section>
+
+        <q-card-section v-if="mode=='view'">
+          <slot name="actions"/>
+        </q-card-section>
       </div>
 
       <div class="toolbar">
@@ -62,7 +66,6 @@
             @click="toggleEditMode"
             color="primary"
             class="q-pa-sm"/>
-          <slot name="actions"/>
         </q-btn-group>
       </div>
     </div>
@@ -163,9 +166,9 @@ export default {
     },
     saveRecord () {
       this.$q.notify({
-        color: 'light-green',
+        color: 'positive',
         textColor: 'white',
-        icon: 'fas fa-check-circle',
+        icon: 'check_circle_outline',
         message: this.$i18n.t('notification.recordSaved')
       })
     },

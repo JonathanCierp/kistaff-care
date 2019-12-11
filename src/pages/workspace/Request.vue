@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { makeGetMixin } from 'feathers-vuex'
 
 export default {
@@ -86,11 +87,10 @@ export default {
   },
   methods: {
     accept: function () {
+      this.$q.loading.show()
+
       const { Request } = this.$FeathersVuex.api
-      let req = new Request({
-        Id: this.request.Id,
-        xService_Staff__c: this.request.xService_Staff__c
-      })
+      let req = new Request({ Id: this.request.Id })
 
       if (this.request.xStatus__c === 'Requested') {
         req = Object.assign(req, {
@@ -104,10 +104,15 @@ export default {
       }
 
       req.save().then(req => {
+        this.$q.loading.hide()
         this.$router.push('/requests')
+      }).catch(err => {
+        Vue.config.errorHandler(err)
       })
     },
     decline: function () {
+      this.$q.loading.show()
+
       const { Request } = this.$FeathersVuex.api
       let req = new Request({ id: this.request.Id })
 
@@ -123,7 +128,10 @@ export default {
       }
 
       req.save().then(req => {
+        this.$q.loading.hide()
         this.$router.push('/requests')
+      }).catch(err => {
+        Vue.config.errorHandler(err)
       })
     }
   }

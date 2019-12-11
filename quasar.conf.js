@@ -9,6 +9,7 @@ module.exports = function (ctx) {
 
       // Added by HEL
       'auth',
+      'error',
       'vuelidate',
       'fcm'
     ],
@@ -76,7 +77,8 @@ module.exports = function (ctx) {
         'Notify',
         'Dialog',
         'LocalStorage',
-        'SessionStorage'
+        'SessionStorage',
+        'Loading'
       ],
 
       config: {

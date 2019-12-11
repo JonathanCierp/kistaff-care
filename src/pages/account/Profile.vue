@@ -4,8 +4,13 @@
       serviceName="contacts"
       sobjectName="Contact"
       layoutName="Employee Layout (App)"
-      :sobjectId="loggedUser.ContactId"
-      mode="view"/>
+      :sobjectId="loggedUser.ContactId">
+      <template v-slot:actions>
+        <router-link to="/profile/password">
+          <a>{{ passwordLabel }}</a>
+        </router-link>
+      </template>
+    </record-details>
   </q-page>
 </template>
 
@@ -26,6 +31,9 @@ export default {
       }
 
       return null
+    },
+    passwordLabel () {
+      return this.$t('buttons.password')
     }
   }
 }

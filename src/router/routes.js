@@ -12,6 +12,8 @@ const routes = [
       { path: '/missions/:id', component: () => import('pages/workspace/Mission.vue'), meta: { auth: true } },
       { path: '/organizations', component: () => import('pages/workspace/Organizations.vue'), meta: { auth: true } },
       { path: '/profile', component: () => import('pages/account/Profile.vue'), meta: { auth: true } },
+      { path: '/profile/password', component: () => import('pages/account/Password.vue'), meta: { auth: true } },
+      { path: '/profile/leave', component: () => import('pages/workspace/Leave.vue'), meta: { auth: true } },
       { path: '/logout', component: () => import('pages/account/Logout.vue'), meta: { auth: true } }
     ]
   },

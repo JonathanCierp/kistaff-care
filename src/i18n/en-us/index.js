@@ -46,6 +46,7 @@ export default {
     email: 'Email',
     name: 'Name',
     password: 'Password',
+    old_password: 'Old Password',
     repeat_password: 'Repeat password',
     remember_me: 'Remember me',
     password_forgot: 'Forgot your password?',
@@ -80,6 +81,7 @@ export default {
     loginOK: 'Welcome to Kistaff!',
     loginKO: 'There was a problem logging you in.',
     logoutOK: 'You\'ve been logged out.',
-    recordSaved: 'Record saved successfully'
+    recordSaved: 'Record saved successfully',
+    passwordChanged: 'Password changed successfully'
   }
 }

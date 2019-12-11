@@ -1,3 +1,5 @@
+import { i18nInstance } from './i18n'
+
 export default ({ app, router, store, Vue }) => {
   const auth = {
     currentUser (prop) {
@@ -11,16 +13,14 @@ export default ({ app, router, store, Vue }) => {
           router.push('/home')
 
           Vue.prototype.$q.notify({
-            message: Vue.prototype.$auth.i18n.t('notification.loginOK'),
-            type: 'info'
+            message: i18nInstance.t('notification.loginOK')
           })
         })
         .catch(err => {
           if (!quiet) {
             console.log(err)
             Vue.prototype.$q.notify({
-              message: Vue.prototype.$auth.i18n.t('notification.loginKO'),
-              type: 'error'
+              message: i18nInstance.t('notification.loginKO')
             })
           }
         })
@@ -29,8 +29,7 @@ export default ({ app, router, store, Vue }) => {
       return store.dispatch('auth/logout').then(() => {
         if (!quiet) {
           Vue.prototype.$q.notify({
-            message: Vue.prototype.$auth.i18n.t('notification.logoutOK'),
-            type: 'info'
+            message: i18nInstance.t('notification.logoutOK')
           })
         }
       })
@@ -38,7 +37,6 @@ export default ({ app, router, store, Vue }) => {
   }
 
   // Auth from JWT
-  auth.i18n = app.i18n
   auth.login()
 
   // Add API to Vue

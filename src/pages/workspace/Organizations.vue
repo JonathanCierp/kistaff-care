@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { makeFindMixin } from 'feathers-vuex'
 
 export default {
@@ -61,6 +62,8 @@ export default {
   },
   methods: {
     saveRecords: function () {
+      this.$q.loading.show()
+
       const { Organization } = this.$FeathersVuex.api
 
       this.organizations.forEach(org => {
@@ -69,10 +72,16 @@ export default {
           xStatus__c: org.xStatus__c
         })
 
-        newOrg.save()
+        newOrg.save().catch(err => {
+          Vue.config.errorHandler(err)
+        })
       })
 
-      this.changed = false
+      this.timer = setTimeout(() => {
+        this.$q.loading.hide()
+        this.changed = false
+        this.timer = void 0
+      }, 500)
     },
     notifyToggle: function (value) {
       this.changed = true

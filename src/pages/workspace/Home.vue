@@ -123,7 +123,8 @@
         <div class="q-pa-xs full-width">
           <q-btn class="full-width"
             color="primary"
-            label="Déclarer une absence" />
+            label="Déclarer une absence"
+            to="/profile/leave" />
         </div>
       </div>
     </div>
