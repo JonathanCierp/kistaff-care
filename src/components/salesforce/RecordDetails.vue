@@ -6,7 +6,7 @@
         <q-card-section
           v-for="section in availableSections"
           :key="section.secRank">
-          <p>{{ section.label }}</p>
+          <span class="text-subtitle2">{{ section.label }}</span>
           <div
             v-for="layoutColumn in section.layoutColumns"
             :key="layoutColumn.colRank">
@@ -14,23 +14,27 @@
               v-for="layoutItem in layoutColumn.layoutItems"
               :key="layoutItem.field">
               <record-field v-if="!isContactName(metadata, layoutItem.field)"
+                @valueChanged="handleValueChanged"
                 :record="record"
                 :metadata="metadata"
                 :fieldName="layoutItem.field"
                 :behavior="layoutItem.behavior"
                 :mode="mode"/>
               <div v-else>
-                <record-field :record="record"
+                <record-field @valueChanged="handleValueChanged"
+                          :record="record"
                           :metadata="metadata"
                           fieldName="Salutation"
                           :mode="mode"/>
 
-                <record-field :record="record"
+                <record-field @valueChanged="handleValueChanged"
+                          :record="record"
                           :metadata="metadata"
                           fieldName="FirstName"
                           :mode="mode"/>
 
-                <record-field :record="record"
+                <record-field @valueChanged="handleValueChanged"
+                          :record="record"
                           :metadata="metadata"
                           fieldName="LastName"
                           :mode="mode"/>
@@ -73,48 +77,38 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import RecordField from './RecordField'
-
-import { makeGetMixin } from 'feathers-vuex'
 
 export default {
   name: 'RecordDetails',
   props: ['serviceName', 'sobjectId', 'sobjectName', 'layoutName'],
   data () {
     return {
+      updatedFields: new Set([]),
       metadata: null,
       layout: null,
+      object: null,
       mode: 'view'
     }
   },
   components: {
     'record-field': RecordField
   },
-  mixins: [
-    makeGetMixin({
-      name: 'records',
-      service () {
-        return this.serviceName
-      }
-    })
-  ],
   computed: {
     ready () {
       return this.layout != null &&
              this.metadata != null &&
              this.record != null
     },
-    recordId () {
-      return this.sobjectId
-    },
-    recordServiceName () {
-      return this.serviceName
-    },
     availableSections () {
       if (this.layout) {
         return this.layout.Metadata.layoutSections.filter(
           (section) => {
-            return section.label !== 'Custom Links'
+            let result = section.label !== 'Custom Links'
+            result = result && section.label !== 'Contact Information'
+
+            return result
           })
       }
 
@@ -127,6 +121,12 @@ export default {
     const { LayoutInfo } = this.$FeathersVuex.api
     const sobjectName = this.sobjectName
     const layoutName = this.layoutName
+
+    // Get the record
+    let servicePath = this.serviceName + '/get'
+    this.$store.dispatch(servicePath, this.sobjectId).then(record => {
+      this.record = record
+    })
 
     // Get the object metadata
     SObject.get(this.sobjectName).then(metadata => {
@@ -165,15 +165,51 @@ export default {
              fieldName === 'Name'
     },
     saveRecord () {
-      this.$q.notify({
-        color: 'positive',
-        textColor: 'white',
-        icon: 'check_circle_outline',
-        message: this.$i18n.t('notification.recordSaved')
+      this.$q.loading.show()
+
+      let servicePath = this.serviceName + '/update'
+      const updatedRecord = Object.keys(this.record)
+        .filter(key => this.updatedFields.has(key))
+        .reduce((obj, key) => {
+          obj[key] = this.record[key]
+          return obj
+        }, {})
+
+      this.$store.dispatch(servicePath, [this.record.Id, updatedRecord]).then(res => {
+        this.$q.loading.hide()
+
+        this.$q.notify({
+          color: 'positive',
+          textColor: 'white',
+          icon: 'check_circle_outline',
+          message: this.$i18n.t('notification.recordSaved')
+        })
+
+        this.updatedFields = new Set([])
+        this.mode = 'view'
+      }).catch(err => {
+        this.$q.loading.hide()
+        Vue.config.errorHandler(err)
       })
     },
     toggleEditMode () {
+      this.updatedFields = new Set([])
       this.mode = (this.mode === 'view') ? 'edit' : 'view'
+    },
+    handleValueChanged (e) {
+      let value = e.value
+
+      // PickList value
+      if (e.fieldType === 'PICKLIST' && value) {
+        value = value.value
+      }
+      // MultiPickList value
+      if (e.fieldType === 'MULTIPICKLIST' && value) {
+        value = value.map((x) => { return x.value }).join(';')
+      }
+
+      this.record[e.fieldName] = value
+      this.updatedFields.add(e.fieldName)
     }
   }
 }

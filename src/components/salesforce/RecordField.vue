@@ -116,8 +116,7 @@
     :required="required"
     :type="inputType"
     :readonly="isReadonly"
-    v-model="fieldValue"
-    :rules="validationRules"/>
+    v-model="fieldValue"/>
  </template>
 
 <script>
@@ -150,7 +149,8 @@ export default {
       field: null,
       fieldType: null,
       inputType: null,
-      fieldValue: null
+      fieldValue: null,
+      initialized: false
     }
   },
   created: function () {
@@ -210,15 +210,19 @@ export default {
     },
     options () {
       return this.field.picklistValues
-    },
-    validationRules () {
-      let rules = []
-
-      if (this.required) {
-        rules.push(val => !!val || `${this.field.label} is required`)
+    }
+  },
+  watch: {
+    fieldValue: function (newValue, oldValue) {
+      if (this.initialized) {
+        this.$emit('valueChanged', {
+          fieldName: this.field.name,
+          fieldType: this.fieldType,
+          value: this.fieldValue
+        })
+      } else {
+        this.initialized = true
       }
-
-      return rules
     }
   }
 }
