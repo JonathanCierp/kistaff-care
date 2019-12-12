@@ -37,8 +37,7 @@
           <q-btn
             class="full-width"
             color="primary"
-            @click="updatePassword"
-          >
+            @click="updatePassword">
             {{ $t('buttons.submit') }}
           </q-btn>
         </div>
@@ -74,9 +73,11 @@ export default {
         const { Password } = this.$FeathersVuex.api
         let passoword = new Password({
           oldPassword: this.oldPassword,
-          password: this.password })
+          password: this.password,
+          action: 'change'
+        })
 
-        passoword.save().then(req => {
+        passoword.save().then(res => {
           this.$q.loading.hide()
 
           this.$q.notify({
@@ -88,6 +89,7 @@ export default {
 
           this.$router.push('/home')
         }).catch(err => {
+          this.$q.loading.hide()
           Vue.config.errorHandler(err)
         })
       }

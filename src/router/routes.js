@@ -22,7 +22,6 @@ const routes = [
     component: () => import('layouts/GuestLayout.vue'),
     children: [
       { path: '', component: () => import('pages/account/Login.vue') },
-      { path: '/verify', component: () => import('pages/account/Verification.vue') },
       {
         path: '/password',
         component: { render: h => h('router-view') },
@@ -33,10 +32,6 @@ const routes = [
     ]
   }
 ]
-
-//
-/* { path: '/posts', component: () => import('pages/community/Posts.vue'), meta: { auth: true } },
-      { path: '/posts/:id', component: () => import('pages/community/Post.vue'), meta: { auth: true } }, */
 
 // Always leave this as last one
 if (process.env.MODE !== 'ssr') {

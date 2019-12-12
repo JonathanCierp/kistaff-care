@@ -3,8 +3,7 @@
     <q-card
       square
       class="login-card"
-      style="width: 400px; padding:10px"
-    >
+      style="width: 400px; padding:10px">
       <q-card-section>
         <div class="absolute-center">
             <img src="/statics/images/app-logo.png" class="app-logo"/>
@@ -20,12 +19,12 @@
       <q-card-section>
         <q-input
           id="email"
-          v-model.trim="data.email"
           type="text"
+          v-model.trim="email"
           :label="this.$t('labels.email')"
           required
           autofocus
-          :error="$v.data.email.$error"
+          :error="$v.email.$error"
         />
       </q-card-section>
 
@@ -33,9 +32,7 @@
         <q-btn
           class="fit"
           color="primary"
-          :loading="loading"
-          @click="submit"
-        >
+          @click="resetPassword">
           {{ $t('buttons.submit') }}
         </q-btn>
       </q-card-actions>
@@ -44,50 +41,51 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { email, required } from 'vuelidate/lib/validators'
+
 export default {
-  name: 'PasswordForgot',
+  name: 'ForgotPassword',
   data () {
     return {
-      data: {
-        email: ''
-      },
-      loading: false
-    }
-  },
-  mounted () {
-    if (this.$auth.check()) {
-      this.$router.push('/account')
+      email: ''
     }
   },
   methods: {
-    submit () {
-      this.$v.data.$touch()
-      if (!this.$v.data.$error) {
-        this.loading = true
-        this.$auth.passwordForgot(this.data).then((response) => {
-          this.$q.dialog({
-            message: this.$t('messages.password_forgot')
-          }).onOk(() => {
-            this.$router.push('/login')
+    resetPassword () {
+      this.$v.email.$touch()
+
+      if (!this.$v.email.$error) {
+        this.$q.loading.show()
+
+        const { Password } = this.$FeathersVuex.api
+        let passoword = new Password({
+          email: this.email,
+          action: 'reset'
+        })
+
+        passoword.save().then(res => {
+          this.$q.loading.hide()
+
+          this.$q.notify({
+            color: 'positive',
+            textColor: 'white',
+            icon: 'check_circle_outline',
+            message: this.$i18n.t('notification.passwordReset')
           })
-        }).catch((error) => {
-          this.$q.dialog({
-            message: this.$t('errors.general_error')
-          })
-          console.log(error)
-        }).finally(() => {
-          this.loading = false
+
+          this.$router.push('/login')
+        }).catch(err => {
+          this.$q.loading.hide()
+          Vue.config.errorHandler(err)
         })
       }
     }
   },
   validations: {
-    data: {
-      email: {
-        required,
-        email
-      }
+    email: {
+      required,
+      email
     }
   }
 }

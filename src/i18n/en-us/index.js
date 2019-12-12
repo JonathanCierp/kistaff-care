@@ -51,6 +51,8 @@ export default {
     remember_me: 'Remember me',
     password_forgot: 'Forgot your password?',
     signup_member: 'Not a member?',
+    leave_from_date: 'Leave from',
+    leave_to_date: 'Leave to',
     home: 'Home'
   },
   error_labels: {
@@ -82,6 +84,8 @@ export default {
     loginKO: 'There was a problem logging you in.',
     logoutOK: 'You\'ve been logged out.',
     recordSaved: 'Record saved successfully',
-    passwordChanged: 'Password changed successfully'
+    passwordChanged: 'Password changed successfully',
+    passwordReset: 'Password reset successfully. Check your mailbox',
+    leaveSaved: 'Leave saved successfully'
   }
 }

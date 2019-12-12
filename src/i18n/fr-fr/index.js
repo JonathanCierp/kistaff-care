@@ -51,6 +51,8 @@ export default {
     remember_me: 'Se souvenir de moi',
     password_forgot: 'Mot de passe oublié?',
     signup_member: 'Pas un membre?',
+    leave_from_date: 'Date de début d\'absence',
+    leave_to_date: 'Date de fin d\'absence',
     home: 'Accueil'
   },
   error_labels: {
@@ -82,6 +84,8 @@ export default {
     loginKO: 'Impossible de vous connecter.',
     logoutOK: 'Vous avez été déconnecté.',
     recordSaved: 'Enregistrement effectué avec succès',
-    passwordChanged: 'Mot de passe enregistré avec succès'
+    passwordChanged: 'Mot de passe enregistré avec succès',
+    passwordReset: 'Mot de passe reinitialisé avec succès. Vérifier votre courriel',
+    leaveSaved: 'Absence enregistrée avec succès'
   }
 }
