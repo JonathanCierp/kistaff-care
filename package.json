@@ -43,5 +43,7 @@
   },
   "browserslist": [
     "last 1 version, not dead, ie >= 11"
-  ]
+  ],
+  "build": "quasar build",
+  "start": "node server.js"
 }
