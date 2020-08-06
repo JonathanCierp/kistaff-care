@@ -15,7 +15,7 @@ class Request extends BaseModel {
   static modelName = 'Request'
 
   get apiKey () {
-    return 'AIzaSyC4i-pG8Fws9BIp5ZFlqMNF7Il28yuK8I0'
+    return 'AIzaSyCjtHK1cIgw5-pdQxPJos96lPH3V6uXSA4'
   }
 
   get fromDate () {
