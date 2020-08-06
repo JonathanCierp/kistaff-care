@@ -32,7 +32,6 @@ export default function (/* { store, ssrContext } */) {
         if ('auth' in record.meta) {
           if (record.meta.auth) {
             if (!loggedUser) {
-              console.log('Not authorized')
               authorized = false
               next('login')
             }

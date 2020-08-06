@@ -83,12 +83,9 @@ export default {
   },
   methods: {
     addToCalendar: function () {
-      console.log(this.mission.xICal_Event__c)
       let event = JSON.parse(this.mission.xICal_Event__c)
       createEvent(event, (error, value) => {
-        if (error) {
-          console.log(error)
-        } else {
+        if (!error) {
           let hiddenElement = document.createElement('a')
           hiddenElement.href = 'data:text/plain;charset=utf-8,' + encodeURI(value)
           hiddenElement.download = this.mission.Name + '_calendar.ics'

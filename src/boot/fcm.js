@@ -2,6 +2,7 @@ import { Plugins } from '@capacitor/core'
 
 const { PushNotifications } = Plugins
 
+/* eslint-disable no-console */
 export default ({ app, router, store, Vue }) => {
   PushNotifications.register()
 

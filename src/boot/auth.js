@@ -1,5 +1,6 @@
 import { i18nInstance } from './i18n'
 
+/* eslint-disable no-console */
 export default ({ app, router, store, Vue }) => {
   const auth = {
     currentUser (prop) {
