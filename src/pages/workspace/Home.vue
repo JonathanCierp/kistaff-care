@@ -187,12 +187,12 @@ export default {
     },
     newRequests: function () {
       return this.requests.filter(function (x) {
-        return x.xStatus__c === 'Requested'
+        return x.xStatus__c === 'Requested' && x.upcoming
       })
     },
     assignedRequests: function () {
       return this.requests.filter(function (x) {
-        return x.xStatus__c !== 'Requested'
+        return x.xStatus__c !== 'Requested' && x.upcoming
       })
     },
     upcomingMissions: function () {
