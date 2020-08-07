@@ -92,6 +92,9 @@ class Request extends BaseModel {
       return 'Êtes-vous toujours disponible?'
     }
   }
+  get upcoming () {
+    return new Date(this.xService_Request__r.xFromDate__c) >= new Date()
+  }
 }
 
 const servicePath = 'requests'
