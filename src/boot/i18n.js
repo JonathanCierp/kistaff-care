@@ -18,8 +18,9 @@ export { i18nInstance }
 
 export const setLocale = (locale) => {
   i18nInstance.locale = locale
+  let langModule = `quasar/lang/${locale}`
 
-  import(`quasar/lang/${locale}`).then(lang => {
+  import(langModule).then(lang => {
     Quasar.lang.set(lang.default)
   })
 }
