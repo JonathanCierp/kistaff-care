@@ -49,7 +49,7 @@ export default {
     old_password: 'Ancien mot de passe',
     repeat_password: 'Confimer le mot de passe',
     remember_me: 'Se souvenir de moi',
-    password_forgot: 'Mot de passe oublié?',
+    password_forgot: 'Mot de passe oublié ou 1ère connexion?',
     signup_member: 'Pas un membre?',
     leave_from_date: 'Date de début d\'absence',
     leave_to_date: 'Date de fin d\'absence',
@@ -87,5 +87,10 @@ export default {
     passwordChanged: 'Mot de passe enregistré avec succès',
     passwordReset: 'Mot de passe reinitialisé avec succès. Vérifier votre courriel',
     leaveSaved: 'Absence enregistrée avec succès'
+  },
+  Address: {
+    Street: 'Rue',
+    PostalCode: 'Code postal',
+    City: 'Ville'
   }
 }

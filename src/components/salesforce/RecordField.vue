@@ -89,21 +89,21 @@
   <div v-else-if="isAddress">
     <!-- Street -->
     <q-input  type="text"
-      :label="this.$t('Street')"
+      :label="this.$t('Address.Street')"
       :id="field.name + 'Street' "
       :readonly="isReadonly"
       v-model="fieldValue.street"/>
 
     <!-- Zip Code -->
     <q-input  type="text"
-      :label="this.$t('Postal Code')"
+      :label="this.$t('Address.PostalCode')"
       :id="field.name + 'PostalCode' "
       :readonly="isReadonly"
       v-model="fieldValue.postalCode"/>
 
     <!-- City -->
     <q-input  type="text"
-      :label="this.$t('City')"
+      :label="this.$t('Address.City')"
       :id="field.name + 'City' "
       :readonly="isReadonly"
       v-model="fieldValue.city"/>

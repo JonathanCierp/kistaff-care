@@ -87,5 +87,10 @@ export default {
     passwordChanged: 'Password changed successfully',
     passwordReset: 'Password reset successfully. Check your mailbox',
     leaveSaved: 'Leave saved successfully'
+  },
+  Address: {
+    Street: 'Street',
+    PostalCode: 'Postal Code',
+    City: 'City'
   }
 }
