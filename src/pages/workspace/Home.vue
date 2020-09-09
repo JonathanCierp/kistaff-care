@@ -180,7 +180,8 @@ export default {
               'Accepted',
               'Suspended'
             ]
-          }
+          },
+          xActiveOrg__c: true
         },
         paginate: false
       }
