@@ -22,6 +22,11 @@ class Organization extends BaseModel {
     }
     return 'grey-5'
   }
+
+  get geoLink () {
+    let orgAddress = `${this.Account.BillingStreet} ${this.BillingCity} ${this.BillingPostalCode}`
+    return `http://maps.google.com/maps?q=${orgAddress}`
+  }
 }
 
 const servicePath = 'organizations'

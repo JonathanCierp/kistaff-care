@@ -6,6 +6,9 @@
           <q-list>
             <q-item v-for="org in organizations" :key="org.Id"
               class="list-item" v-ripple>
+              <q-item-section avatar top>
+                <q-btn round color="teal" icon="map" type="a" href="{{org.geoLink}}"/>
+              </q-item-section>
               <q-item-section>
                 <q-item-label>{{org.label}}</q-item-label>
               </q-item-section>
@@ -54,7 +57,8 @@ export default {
               'Accepted',
               'Suspended'
             ]
-          }
+          },
+          xActiveOrg__c: true
         },
         paginate: false
       }
