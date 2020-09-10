@@ -59,7 +59,7 @@
               class="q-pa-sm"/>
             <q-btn :label="this.$t('workspace.decline')"
               @click="decline"
-              color="warning"
+              color="deep-orange"
               text-color="white"
               class="q-pa-sm"/>
           </q-btn-group>

@@ -7,8 +7,8 @@
             <q-item v-for="org in organizations" :key="org.Id"
               class="list-item" v-ripple>
               <q-item-section avatar top>
-                <q-btn round color="teal"
-                  icon="map"
+                <q-btn round color="info"
+                  icon="place"
                   type="a"
                   target="_blank"
                   :href="org.geoLink"/>
