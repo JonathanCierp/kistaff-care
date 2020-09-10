@@ -56,13 +56,13 @@ export default {
     organizationsParams () {
       return {
         query: {
+          xActiveOrg__c: true,
           xStatus__c: {
             $in: [
               'Accepted',
               'Suspended'
             ]
-          },
-          xActiveOrg__c: true
+          }
         },
         paginate: false
       }
