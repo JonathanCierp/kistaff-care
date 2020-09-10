@@ -78,6 +78,9 @@ export default {
     return {
       tab: 'newjobs'
     }
+  },
+  mounted: function () {
+    this.tab = this.$route.query.tab
   }
 }
 </script>

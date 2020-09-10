@@ -55,7 +55,7 @@
                   color="primary"
                   class="full-width"
                   size="sm"
-                  to="/requests">Voir tout</q-btn>
+                  to="/requests?tab=assignments">Voir tout</q-btn>
               </q-card-actions>
             </q-card>
           </div>
@@ -84,7 +84,7 @@
                   color="primary"
                   class="full-width"
                   size="sm"
-                  to="/requests">Voir tout</q-btn>
+                  to="/requests?tab=newjobs">Voir tout</q-btn>
               </q-card-actions>
             </q-card>
           </div>
