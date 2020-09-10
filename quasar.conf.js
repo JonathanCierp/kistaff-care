@@ -86,7 +86,7 @@ module.exports = function (ctx) {
           color: 'primary'
         }
       },
-      lang: 'en-us'
+      lang: 'fr'
     },
 
     supportIE: false,

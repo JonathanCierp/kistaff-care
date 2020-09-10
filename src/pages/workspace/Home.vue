@@ -102,7 +102,7 @@
                 </div>
                 <div class="float-left q-ml-md">
                   <span class="text-h4">{{activeOrganizations.length}}</span> <br/>
-                  <span class="text-subtitle2">Etablissemnts actifs</span>
+                  <span class="text-subtitle2">Etablissements actifs</span>
                 </div>
               </q-card-section>
 
