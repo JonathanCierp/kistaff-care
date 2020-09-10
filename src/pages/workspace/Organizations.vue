@@ -7,7 +7,11 @@
             <q-item v-for="org in organizations" :key="org.Id"
               class="list-item" v-ripple>
               <q-item-section avatar top>
-                <q-btn round color="teal" icon="map" type="a" href="{{org.geoLink}}"/>
+                <q-btn round color="teal"
+                  icon="map"
+                  type="a"
+                  target="_blank"
+                  :href="org.geoLink"/>
               </q-item-section>
               <q-item-section>
                 <q-item-label>{{org.label}}</q-item-label>
