@@ -91,6 +91,7 @@ export default {
 
       const { Request } = this.$FeathersVuex.api
       let req = new Request({ Id: this.request.Id })
+      let tab = 'newjobs'
 
       if (this.request.xStatus__c === 'Requested') {
         req = Object.assign(req, {
@@ -98,6 +99,7 @@ export default {
           xStatus__c: 'Submitted'
         })
       } else {
+        tab = 'assignments'
         req = Object.assign(req, {
           xStatus__c: 'Confirmed'
         })
@@ -105,7 +107,7 @@ export default {
 
       req.save().then(req => {
         this.$q.loading.hide()
-        this.$router.push('/requests')
+        this.$router.push(`/requests?tab=${tab}`)
       }).catch(err => {
         Vue.config.errorHandler(err)
       })
@@ -115,6 +117,7 @@ export default {
 
       const { Request } = this.$FeathersVuex.api
       let req = new Request({ id: this.request.Id })
+      let tab = 'newjobs'
 
       if (this.request.xStatus__c === 'Requested') {
         req = Object.assign(req, {
@@ -122,6 +125,7 @@ export default {
           xStatus__c: 'Submitted'
         })
       } else {
+        tab = 'assignments'
         req = Object.assign(req, {
           xStatus__c: 'Not Available'
         })
@@ -129,7 +133,7 @@ export default {
 
       req.save().then(req => {
         this.$q.loading.hide()
-        this.$router.push('/requests')
+        this.$router.push(`/requests?tab=${tab}`)
       }).catch(err => {
         Vue.config.errorHandler(err)
       })
