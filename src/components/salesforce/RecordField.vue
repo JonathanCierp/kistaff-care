@@ -1,10 +1,11 @@
 <template>
   <!-- Checkbox field -->
-  <q-checkbox v-if="isCheckbox"
+  <q-select v-if="isCheckbox"
     :id="field.name"
     :label="field.label"
     :readonly="isReadonly"
-    v-model="fieldValue"/>
+    v-model="fieldValue"
+    :options="options"/>
 
   <!-- Date field -->
   <q-input v-else-if="isDate"
@@ -171,8 +172,10 @@ export default {
           return op.value === value
         })
       } else if (this.fieldType === 'MULTIPICKLIST') {
+        let selectedOptions = (value || '').split(';')
+
         this.fieldValue = this.options.filter(op => {
-          return op.value === value
+          return selectedOptions.includes(op.value)
         })
       } else {
         this.fieldValue = value
@@ -209,6 +212,16 @@ export default {
       return this.fieldType === 'ADDRESS'
     },
     options () {
+      if (this.isCheckbox) {
+        return [{
+          value: true,
+          label: 'Oui'
+        },
+        {
+          value: false,
+          label: 'Non'
+        }]
+      }
       return this.field.picklistValues
     }
   },
