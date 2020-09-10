@@ -64,7 +64,7 @@ export default {
         },
         {
           label: this.$i18n.t('navigation.requests'),
-          to: '/requests',
+          to: '/requests?tabs=newjobs',
           icon: 'shop_two'
         },
         {
