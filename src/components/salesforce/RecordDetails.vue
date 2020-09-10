@@ -199,10 +199,16 @@ export default {
     handleValueChanged (e) {
       let value = e.value
 
+      // Boolean value
+      if (e.fieldType === 'BOOLEAN') {
+        value = value.value
+      }
+
       // PickList value
       if (e.fieldType === 'PICKLIST' && value) {
         value = value.value
       }
+
       // MultiPickList value
       if (e.fieldType === 'MULTIPICKLIST' && value) {
         value = value.map((x) => { return x.value }).join(';')

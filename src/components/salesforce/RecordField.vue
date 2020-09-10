@@ -167,7 +167,7 @@ export default {
 
       // set the value
       let value = this.record[this.fieldName]
-      if (this.fieldType === 'PICKLIST') {
+      if (this.fieldType === 'PICKLIST' || this.fieldType === 'BOOLEAN') {
         this.fieldValue = this.options.find(op => {
           return op.value === value
         })
