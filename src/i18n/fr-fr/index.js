@@ -31,7 +31,7 @@ export default {
     password: 'Changer mon mot de passe'
   },
   headers: {
-    login: 'Bienvenue sur KISTAFF',
+    login: 'Bienvenu(e) sur KISTAFF',
     register: 'S\'enregister',
     password_forgot: 'Veuillez entrer l\'adresse email que vous avez utilisée lors de la création de votre compte. Un email sera envoyé à cette adresse avec des instructions supplémentaires sur la façon de réinitialiser votre mot de passe.',
     password_recover: 'Reset du mot de passe',
@@ -80,7 +80,7 @@ export default {
     logout: 'Se déconnecter'
   },
   notification: {
-    loginOK: 'Bienvenue sur Kistaff!',
+    loginOK: 'Bienvenu(e) sur Kistaff!',
     loginKO: 'Impossible de vous connecter.',
     logoutOK: 'Vous avez été déconnecté.',
     recordSaved: 'Enregistrement effectué avec succès',
