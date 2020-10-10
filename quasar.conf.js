@@ -65,7 +65,10 @@ module.exports = function (ctx) {
         'QBtnGroup',
         'QToggle',
         'QFab',
-        'QFabAction'
+        'QFabAction',
+        'QUploader',
+        'QTable',
+        'QTd'
       ],
 
       directives: [

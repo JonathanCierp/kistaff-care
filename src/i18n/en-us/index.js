@@ -7,7 +7,8 @@ export default {
     password_recover_success: 'Your password has been reset. You can now login with the new password.',
     logout_confirmation: 'Are you sure you want to log out?',
     confirm: 'Confirm',
-    update_available: 'A new update is available. Click on ok to reload the page.'
+    update_available: 'A new update is available. Click on ok to reload the page.',
+    delete_confirmation: 'Are you sure you want to delete?'
   },
   errors: {
     general_error: 'An error occured. Please try again.',
@@ -53,7 +54,9 @@ export default {
     signup_member: 'Not a member?',
     leave_from_date: 'Leave from',
     leave_to_date: 'Leave to',
-    home: 'Home'
+    home: 'Home',
+    doc_type: 'Document Type',
+    uploaded_documents: 'Uploaded Documents'
   },
   error_labels: {
     password_length: 'The minimum length of the password is {length} characters.',
@@ -74,6 +77,7 @@ export default {
   navigation: {
     home: 'Home',
     account: 'Account',
+    documents: 'Documents',
     missions: 'Missions',
     requests: 'Requests',
     organizations: 'Organizations',
@@ -86,7 +90,8 @@ export default {
     recordSaved: 'Record saved successfully',
     passwordChanged: 'Password changed successfully',
     passwordReset: 'Password reset successfully. Check your mailbox',
-    leaveSaved: 'Leave saved successfully'
+    leaveSaved: 'Leave saved successfully',
+    documentSaved: 'Document saved successfully'
   },
   Address: {
     Street: 'Street',

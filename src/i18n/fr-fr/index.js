@@ -7,7 +7,8 @@ export default {
     password_recover_success: 'Votre mot de passe a été réinitialisé. Vous pouvez maintenant vous connecter avec le nouveau mot de passe.',
     logout_confirmation: 'Êtes-vous sûr de vouloir vous déconnecter?',
     confirm: 'Confirmer',
-    update_available: 'Une nouvelle mise à jour est disponible. Cliquez sur ok pour recharger la page.'
+    update_available: 'Une nouvelle mise à jour est disponible. Cliquez sur ok pour recharger la page.',
+    delete_confirmation: 'Êtes-vous sûr de vouloir supprimer?'
   },
   errors: {
     general_error: 'Une erreur s\'est produite. Veuillez réessayer.',
@@ -53,7 +54,9 @@ export default {
     signup_member: 'Pas un membre?',
     leave_from_date: 'Date de début d\'absence',
     leave_to_date: 'Date de fin d\'absence',
-    home: 'Accueil'
+    home: 'Accueil',
+    doc_type: 'Type de document',
+    uploaded_documents: 'Documents transmis'
   },
   error_labels: {
     password_length: 'La longueur minimale du mot de passe est de {length} caractères.',
@@ -74,6 +77,7 @@ export default {
   navigation: {
     home: 'Accueil',
     account: 'Mon compte',
+    documents: 'Documents',
     missions: 'Missions',
     requests: 'Demandes',
     organizations: 'Etablissements',
@@ -86,7 +90,8 @@ export default {
     recordSaved: 'Enregistrement effectué avec succès',
     passwordChanged: 'Mot de passe enregistré avec succès',
     passwordReset: 'Mot de passe reinitialisé avec succès. Vérifier votre courriel',
-    leaveSaved: 'Absence enregistrée avec succès'
+    leaveSaved: 'Absence enregistrée avec succès',
+    documentSaved: 'Document enregistré avec succès'
   },
   Address: {
     Street: 'Rue',

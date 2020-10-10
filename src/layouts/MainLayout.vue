@@ -58,6 +58,11 @@ export default {
           icon: 'home'
         },
         {
+          label: this.$i18n.t('navigation.documents'),
+          to: '/documents',
+          icon: 'source'
+        },
+        {
           label: this.$i18n.t('navigation.missions'),
           to: '/missions',
           icon: 'event'

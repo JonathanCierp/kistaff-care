@@ -11,7 +11,12 @@ export default ({ app, router, store, Vue }) => {
     login (payload, quiet) {
       return store.dispatch('auth/authenticate', payload)
         .then(() => {
-          router.push('/home')
+          let u = store.state.auth.user
+          if (u.Contact.xDocuments_Received__c) {
+            router.push('/home')
+          } else {
+            router.push('/documents')
+          }
 
           Vue.prototype.$q.notify({
             message: i18nInstance.t('notification.loginOK')
