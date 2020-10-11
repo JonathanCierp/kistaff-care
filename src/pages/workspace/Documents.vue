@@ -100,10 +100,10 @@ export default {
         let loggedUser = this.$store.state.auth.user
         const { Document } = this.$FeathersVuex.api
         let newDocument = new Document({
-          Name: files[0].name,
-          Description: this.docType,
+          Name: this.docType + '-' + files[0].name,
           ParentId: loggedUser.ContactId,
           ContentType: files[0].type,
+          Description: this.docType,
           Body: reader.result.replace(/^data:.+;base64,/, '')
         })
 
@@ -178,8 +178,8 @@ export default {
       ],
       docColumns: [
         {
-          name: 'title',
-          field: 'title',
+          name: 'Name',
+          field: 'Name',
           label: 'Nom du document',
           align: 'left',
           sortable: true

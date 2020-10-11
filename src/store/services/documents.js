@@ -11,15 +11,6 @@ class Document extends BaseModel {
   }
 
   static modelName = 'Document'
-
-  get title () {
-    let result = this.Name
-    if (this.Description) {
-      result += ' - ' + this.Description
-    }
-
-    return result
-  }
 }
 
 const servicePath = 'documents'
