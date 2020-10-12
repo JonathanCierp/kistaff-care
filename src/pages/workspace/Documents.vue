@@ -5,7 +5,7 @@
         <div class="main-content">
           <q-card-section>
             <p>
-              👋 Afin de finaliser votre dossier et faire partie de officiellement de nos effectifs,
+              👋 Afin de finaliser votre dossier et faire partie officiellement de nos effectifs,
               merci de nous transmettre vos documents👇
             </p>
             <q-select v-if="documentsSize < 30"
@@ -173,7 +173,7 @@ export default {
         'CV',
         'Diplôme',
         'Attestation ADELI',
-        'Carte professionnelle',
+        'Carte professionnelle ONI',
         'Attestation AFGSU'
       ],
       docColumns: [
