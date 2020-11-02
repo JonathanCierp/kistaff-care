@@ -11,6 +11,7 @@ module.exports = function (ctx) {
       'auth',
       'error',
       'vuelidate',
+      'analytics',
       'fcm'
     ],
 
