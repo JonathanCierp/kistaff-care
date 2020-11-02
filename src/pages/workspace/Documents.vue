@@ -59,6 +59,7 @@
 <script>
 import Vue from 'vue'
 import { makeFindMixin } from 'feathers-vuex'
+import ga from '../../components/analytics/ga'
 
 export default {
   name: 'Documents',
@@ -117,6 +118,8 @@ export default {
             icon: 'check_circle_outline',
             message: this.$i18n.t('notification.documentSaved')
           })
+
+          ga.logEvent('documents', 'uploadEvent')
         }).catch(err => {
           this.docType = null
           this.$q.loading.hide()

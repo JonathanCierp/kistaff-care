@@ -72,6 +72,7 @@
 <script>
 import Vue from 'vue'
 import { makeGetMixin } from 'feathers-vuex'
+import ga from '../../components/analytics/ga'
 
 export default {
   name: 'Request',
@@ -108,6 +109,8 @@ export default {
       req.save().then(req => {
         this.$q.loading.hide()
         this.$router.push(`/requests?tab=${tab}`)
+
+        ga.logEvent('requests', 'acceptEvent')
       }).catch(err => {
         Vue.config.errorHandler(err)
       })
@@ -134,6 +137,8 @@ export default {
       req.save().then(req => {
         this.$q.loading.hide()
         this.$router.push(`/requests?tab=${tab}`)
+
+        ga.logEvent('requests', 'declineEvent')
       }).catch(err => {
         Vue.config.errorHandler(err)
       })

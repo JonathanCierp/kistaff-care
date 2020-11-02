@@ -46,6 +46,7 @@
 <script>
 import Vue from 'vue'
 import { makeFindMixin } from 'feathers-vuex'
+import ga from '../../components/analytics/ga'
 
 export default {
   name: 'Organizations',
@@ -84,6 +85,8 @@ export default {
           Vue.config.errorHandler(err)
         })
       })
+
+      ga.logEvent('organizations', 'updateEvent')
 
       this.timer = setTimeout(() => {
         this.$q.loading.hide()

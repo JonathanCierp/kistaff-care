@@ -66,8 +66,9 @@
 </template>
 
 <script>
-import { makeGetMixin } from 'feathers-vuex'
 import { createEvent } from 'ics'
+import { makeGetMixin } from 'feathers-vuex'
+import ga from '../../components/analytics/ga'
 
 export default {
   name: 'mission',
@@ -91,6 +92,8 @@ export default {
           hiddenElement.download = this.mission.Name + '_calendar.ics'
           hiddenElement.target = '_self'
           hiddenElement.click()
+
+          ga.logEvent('missions', 'addToCalendarEvent')
         }
       })
     }
