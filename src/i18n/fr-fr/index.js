@@ -77,10 +77,10 @@ export default {
   navigation: {
     home: 'Accueil',
     account: 'Mon compte',
-    documents: 'Documents',
-    missions: 'Missions',
-    requests: 'Demandes',
-    organizations: 'Etablissements',
+    documents: 'Mes documents',
+    missions: 'Mes missions',
+    requests: 'Missions à pourvoir',
+    organizations: 'Mes établissements',
     logout: 'Se déconnecter'
   },
   notification: {
