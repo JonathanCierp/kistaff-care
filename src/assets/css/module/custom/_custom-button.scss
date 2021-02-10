@@ -1,0 +1,10 @@
+.custom-button {
+  position: relative;
+  cursor: pointer;
+  transition: opacity .2s, background-color .3s, color .3s;
+
+  & .custom-button__content {
+    display: flex;
+    align-items: center;
+  }
+}

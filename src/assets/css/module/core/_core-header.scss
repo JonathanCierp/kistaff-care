@@ -1,0 +1,50 @@
+@import "src/assets/css/tools/layout";
+
+.core-header {
+  @extend %container;
+  height: 60px;
+  background-color: var(--color-background-lighter);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+
+  & ul {
+    display: flex;
+    align-items: center;
+
+    & li {
+      cursor: pointer;
+
+      &:hover {
+        color: var(--color-blue-primary)
+      }
+    }
+  }
+
+  & .core-header__nav{
+    flex: 1;
+    margin-left: 2rem;
+
+    & li {
+      margin: 0 1rem;
+    }
+  }
+
+  & .core-header__side {
+    & li {
+      display: flex;
+      align-items: center;
+      margin-left: 1.5rem;
+
+      & svg {
+        height: 1.5rem;
+      }
+
+      &.core-header__user svg {
+        margin-left: .5rem;
+        height: 1rem;
+      }
+    }
+  }
+}

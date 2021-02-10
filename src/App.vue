@@ -1,11 +1,16 @@
 <template>
+	<core-header />
 	<router-view />
 </template>
 
-<script lang="ts">
+<script>
 	import { defineComponent } from "vue"
+	import CoreHeader from "./components/core/CoreHeader.vue"
 
 	export default defineComponent({
-		name: "App"
+		name: "App",
+		components: {
+			CoreHeader
+		}
 	})
 </script>
