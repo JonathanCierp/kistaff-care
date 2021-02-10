@@ -1,7 +1,5 @@
 <template>
-	<div>
-		zad
-	</div>
+	<router-view />
 </template>
 
 <script lang="ts">
