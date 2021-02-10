@@ -1,0 +1,10 @@
+@import "mixins";
+
+// Variables
+// ==================
+$font: "Rubik", sans-serif;
+$font-alt: "Rubik", sans-serif;
+
+// Font face
+// ==================
+@include font-face("Rubik", "/fonts/Rubik", 400 500 700, null, ttf);

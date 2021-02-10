@@ -1,0 +1,81 @@
+// Variables
+// ==================
+:root {
+  --color-background: #F9FAFC;
+  --color-background-lighter: #FFFFFF;
+  --color-text: #121C42;
+  --color-border: #D5E3EC;
+  --color-blue-primary: #3E66FB;
+  --color-blue-lighter: #9EB3FD;
+  --color-blue-darker: #2E4CBC;
+  --color-blue-hover-lighter: rgba(158, 179, 253, .1);
+  --color-blue-hover-darker: rgba(158, 179, 253, .3);
+  --color-green-primary: #3CC13B;
+  --color-green-lighter: #9DE09D;
+  --color-green-darker: #2D912C;
+  --color-green-hover-lighter: rgba(60, 193, 59, .1);
+  --color-green-hover-darker: rgba(60, 193, 59, .3);
+  --color-red-primary: #F03738;
+  --color-red-lighter: #F89B9B;
+  --color-red-darker: #B4292A;
+  --color-red-hover-lighter: rgba(240, 55, 56, .1);
+  --color-red-hover-darker: rgba(240, 55, 56, .3);
+  --color-orange-primary: #F3BB1C;
+  --color-orange-lighter: #F9DD8D;
+  --color-orange-darker: #B68C15;
+  --color-orange-hover-lighter: rgba(243, 187, 28, .1);
+  --color-orange-hover-darker: rgba(243, 187, 28, .3);
+  --color-gray-primary: #F3BB1C;
+  --color-gray-lighter-1: #F9DD8D;
+  --color-gray-lighter-2: #F9DD8D;
+  --color-gray-lighter-3: #F9DD8D;
+  --color-gray-darker-1: #B68C15;
+  --color-gray-darker-2: #B68C15;
+  --color-black-primary: #000000;
+  --color-black-overlay: rgba(0, 0, 0, .7);
+  --color-white-primary: #FFFFFF;
+}
+
+// Outils
+// ==================
+@import "tools/reset";
+@import "tools/functions";
+@import "tools/mixins";
+@import "tools/layout";
+@import "tools/typography";
+@import "tools/animations";
+
+
+// Dark mode
+// =============
+@include dark {
+  --color-background: #171933;
+  --color-background-lighter: #1B1E3D;
+  --color-text: #D4DCFF;
+  --color-border: #2A2E5E;
+}
+
+// Generic
+// ==================
+body {
+  font-family: $font;
+  font-size: 16px;
+  color: var(--color-text);
+  line-height: 1.6;
+  background: var(--color-background);
+  scroll-margin: 100px 0 0 0;
+  word-break: break-word;
+}
+
+::selection {
+  background: var(--color-blue-primary);
+  color: #FFFFFF;
+}
+
+// Modules
+// ==================
+@import "module/core-header";
+
+// Pages
+// ==================
+@import "page/missions";
