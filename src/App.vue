@@ -1,16 +1,19 @@
 <template>
-	<core-header />
-	<router-view />
+	<CoreHeader />
+	<RouterView />
+	<CoreFooter />
 </template>
 
 <script>
 	import { defineComponent } from "vue"
 	import CoreHeader from "./components/core/CoreHeader.vue"
+	import CoreFooter from "./components/core/CoreFooter.vue"
 
 	export default defineComponent({
 		name: "App",
 		components: {
-			CoreHeader
+			CoreHeader,
+			CoreFooter
 		}
 	})
 </script>

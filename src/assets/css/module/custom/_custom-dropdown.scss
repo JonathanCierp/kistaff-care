@@ -9,7 +9,7 @@
   & .custom-dropdown__popover {
     position: absolute;
     background-color: var(--color-white-primary);
-    box-shadow: var(--shadow-elevation-3);
+    box-shadow: 0 2px 4px var(--shadow);
     transform: translateX(-100%);
   }
 }

@@ -1,7 +1,7 @@
 <template>
-  <div class="missions">
+  <main class="missions">
     missions
-  </div>
+  </main>
 </template>
 
 <script>
