@@ -2,7 +2,7 @@
   <div class="core-notification">
 		<div class="core-notification__header">
 			<h2 class="text-h5 font-medium">Notification</h2>
-			<CustomLink to="/settings" @click="onChangeRoute">
+			<CustomLink to="/settings#preferences" @click="onChangeRoute">
 				<IconFilledCog />
 			</CustomLink>
 		</div>

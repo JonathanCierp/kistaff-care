@@ -1,6 +1,6 @@
 <template>
-  <div class="missions">
-    missions
+  <div class="missions-single">
+  
   </div>
 </template>
 
@@ -8,6 +8,6 @@
   import { defineComponent } from "vue"
 
 	export default defineComponent({
-    name: "Missions"
+    name: "MissionsSingle"
   })
 </script>
