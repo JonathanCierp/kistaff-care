@@ -1,0 +1,39 @@
+<template>
+	<li>
+		<CustomLink class="core-notification-item" :to="notification.to">
+			<h2 class="font-regular">{{ notification.title }}</h2>
+			<span class="font-medium">{{ notification.timeLabel }}</span>
+		</CustomLink>
+	</li>
+</template>
+
+<script>
+  import { defineComponent } from "vue"
+  import CustomLink from "../custom/CustomLink.vue"
+  import IconFilledCog from "../icons/IconFilledCog.vue"
+
+	export default defineComponent({
+    name: "CoreNotification",
+		components: {
+			CustomLink,
+			IconFilledCog
+		},
+		props: {
+    	notification: {
+    		type: Object,
+		    required: true
+	    }
+		},
+		setup: (props, { emit }) => {
+			/* Methods */
+			const onChangeRoute = () => {
+				emit("change-route")
+			}
+
+			return {
+				/* Methods */
+				onChangeRoute
+			}
+		}
+  })
+</script>

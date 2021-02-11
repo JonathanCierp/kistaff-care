@@ -1,4 +1,4 @@
-import Missions from "../page/Missions.vue"
+import Missions from "../page/missions.vue"
 
 export default [
   { path: "/", component: Missions }

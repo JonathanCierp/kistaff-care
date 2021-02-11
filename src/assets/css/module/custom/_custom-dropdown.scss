@@ -1,6 +1,15 @@
 .custom-dropdown {
+  position: relative;
+
   & .custom-dropdown__title {
     display: flex;
     align-items: center;
+  }
+
+  & .custom-dropdown__popover {
+    position: absolute;
+    background-color: var(--color-white-primary);
+    box-shadow: var(--shadow-elevation-3);
+    transform: translateX(-100%);
   }
 }

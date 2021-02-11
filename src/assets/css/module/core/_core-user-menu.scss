@@ -1,0 +1,32 @@
+.core-user-menu {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+
+  & li {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    cursor: pointer;
+
+    &:hover, &.core-user-menu__link--active {
+      background-color: var(--color-blue-hover-lighter);
+      color: var(--color-blue-primary);
+    }
+
+    & a, & button {
+      padding: 1rem .5rem;
+    }
+
+    & a {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    & svg {
+      height: 1.2rem !important;
+      margin-right: .5rem;
+    }
+  }
+}
