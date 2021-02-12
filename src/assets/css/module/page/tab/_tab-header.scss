@@ -1,0 +1,11 @@
+.tabs-header {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 500;
+
+  & svg {
+    height: 22px;
+    margin-right: .5rem;
+  }
+}

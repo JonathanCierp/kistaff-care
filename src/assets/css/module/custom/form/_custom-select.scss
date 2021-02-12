@@ -1,0 +1,21 @@
+.custom-input {
+  display: flex;
+  flex-direction: column;
+
+  & label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: .5rem;
+  }
+
+  & input {
+    border-radius: 6px;
+    padding: .75rem .5rem;
+    border: 2px solid var(--color-border);
+    max-width: 300px;
+
+    &:focus {
+      border-color: var(--color-blue-primary);
+    }
+  }
+}
