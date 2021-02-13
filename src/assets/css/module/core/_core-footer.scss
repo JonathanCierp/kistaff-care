@@ -10,6 +10,10 @@
   font-weight: 500;
   font-size: .875rem;
 
+  & p {
+    text-align: center;
+  }
+  
   & .core-footer__links a {
     color: var(--color-blue-primary);
 
@@ -27,6 +31,26 @@
 
     & p {
       margin: .2rem 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .core-footer {
+    transition: opacity .3s;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+
+    .core-header.core-header--mobile ~ & {
+      display: inline-flex;
+      opacity: 1;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      visibility: visible;
+      z-index: 20;
     }
   }
 }

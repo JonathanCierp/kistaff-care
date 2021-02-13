@@ -1,17 +1,22 @@
 <template>
-	<button :class="[typeClass, sizeClass, roundedClass, roundedClass, outlinedClass, flatClass, blockClass, iconClass]"
+	<button :class="[typeClass, sizeClass, roundedClass, roundedClass, outlinedClass, flatClass, blockClass, iconClass, textClass]"
 	        :disabled="disabled" :type="nativeType" class="custom-button" role="button">
      <span class="custom-button__content">
       <slot />
     </span>
+		<component v-if="iconLeft" :is="iconLeft" />
 	</button>
 </template>
 
 <script>
 	import { defineComponent, computed } from "vue"
+	import IconChevronDown from "../icons/IconChevronDown.vue"
 
 	export default defineComponent({
 		name: "CustomButton",
+		components: {
+			IconChevronDown
+		},
 		props: {
 			type: {
 				type: String,
@@ -23,7 +28,7 @@
 			},
 			rounded: {
 				type: String,
-				default: "md"
+				default: ""
 			},
 			outlined: {
 				type: Boolean,
@@ -52,6 +57,14 @@
 			icon: {
 				type: Boolean,
 				default: false
+			},
+			text: {
+				type: Boolean,
+				default: false
+			},
+			iconLeft: {
+				type: String,
+				default: ""
 			}
 		},
 		setup(props) {
@@ -63,6 +76,7 @@
 			const flatClass = computed(() => props.flat ? "custom-button--flat" : "")
 			const blockClass = computed(() => props.block ? "custom-button--block" : "")
 			const iconClass = computed(() => props.icon ? "custom-button--icon" : "")
+			const textClass = computed(() => props.text ? "custom-button--text" : "")
 			const hideContentIfLoadingClass = computed(() => props.loading ? "custom-button__content--hidden" : "")
 
 			return {
@@ -74,6 +88,7 @@
 				flatClass,
 				blockClass,
 				iconClass,
+				textClass,
 				hideContentIfLoadingClass
 			}
 		}

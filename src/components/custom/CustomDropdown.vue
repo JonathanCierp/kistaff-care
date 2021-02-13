@@ -1,10 +1,10 @@
 <template>
 	<div ref="root" class="custom-dropdown" :data-uid="uid">
-		<custom-button class="custom-dropdown__title" :icon="icon" @click="onOpen">
+		<custom-button v-if="$slots.title" class="custom-dropdown__title" :icon="icon" :text="text" @click="onOpen" block :icon-left="iconLeft">
 			<slot name="title"></slot>
 		</custom-button>
 		<transition name="fade">
-			<div class="custom-dropdown__popover" v-if="open" :style="[popoverLeftStyle]">
+			<div class="custom-dropdown__popover" v-if="open" :style="[popoverStyle]">
 				<slot name="popover"></slot>
 			</div>
 		</transition>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-	import { computed, defineComponent, ref, onMounted } from "vue"
+	import { computed, defineComponent, ref } from "vue"
 	import { getUid } from "../../utils"
 	import CustomButton from "./CustomButton.vue"
 
@@ -22,14 +22,29 @@
 			CustomButton
 		},
 		props: {
+			text: {
+				type: Boolean,
+				default: false
+			},
 			icon: {
 				type: Boolean,
 				default: false
+			},
+			iconLeft: {
+				type: String,
+				default: ""
+			},
+			offset: {
+				type: [Number, String],
+				default: 8
+			},
+			popoverWidth: {
+				type: String,
+				default: ""
 			}
 		},
-		setup: () => {
+		setup: (props) => {
 			/* Constants */
-			const popoverLeft = ref(0)
 			const popoverTop = ref(0)
 
 			/* Datas */
@@ -39,7 +54,6 @@
 
 			/* Methods */
 			const onOpen = () => {
-				popoverLeft.value = root.value.offsetWidth
 				popoverTop.value = root.value.offsetHeight
 				open.value = !open.value
 
@@ -56,11 +70,16 @@
 			}
 
 			/* Computed */
-			const popoverLeftStyle = computed(() => {
-				return {
-					left: popoverLeft.value + "px",
-					top: (popoverTop.value + 8) + "px"
+			const popoverStyle = computed(() => {
+				let styles = {
+					top: (popoverTop.value + parseInt(props.offset)) + "px"
 				}
+
+				if(props.popoverWidth) {
+					styles = {...styles, width: props.popoverWidth}
+				}
+
+				return styles
 			})
 
 			return {
@@ -72,7 +91,7 @@
 				onOpen,
 				closeDropdown,
 				/* Computed */
-				popoverLeftStyle
+				popoverStyle
 			}
 		}
 	})

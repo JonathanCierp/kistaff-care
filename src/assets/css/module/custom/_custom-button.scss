@@ -1,4 +1,7 @@
 .custom-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: relative;
   cursor: pointer;
   transition: opacity .2s, background-color .3s, color .3s;
@@ -16,12 +19,6 @@
     border: 1px solid var(--color-gray-lighter-2) !important;
     color: var(--color-gray-lighter-3) !important;
     cursor: not-allowed !important;
-  }
-
-  &.custom-button--icon {
-    color: currentColor !important;
-    border-color: transparent !important;
-    background-color: transparent !important;
   }
 
   &.custom-button--success {
@@ -212,7 +209,7 @@
       }
     }
   }
-  
+
   &.custom-button--rounded-sm {
     border-radius: 2px;
   }
@@ -231,6 +228,58 @@
 
   &.custom-button--block {
     width: 100%;
+
+    & .custom-button__content {
+      justify-content: center;
+    }
+  }
+
+  &.custom-button--icon {
+    color: currentColor;
+    border-color: transparent;
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &.custom-button--text {
+    border-color: transparent;
+    background-color: transparent;
+
+    &.custom-button--success {
+      color: var(--color-green-primary);
+
+      &:hover {
+        background-color: var(--color-green-hover-lighter);
+      }
+    }
+
+    &.custom-button--warning {
+      color: var(--color-orange-primary);
+
+      &:hover {
+        background-color: var(--color-orange-hover-lighter);
+      }
+    }
+
+    &.custom-button--error {
+      color: var(--color-red-primary);
+
+      &:hover {
+        background-color: var(--color-red-hover-lighter);
+      }
+    }
+
+    &.custom-button--info {
+      color: var(--color-blue-primary);
+
+      &:hover {
+        background-color: var(--color-blue-hover-lighter);
+      }
+    }
+
   }
 
   & .custom-button__content {

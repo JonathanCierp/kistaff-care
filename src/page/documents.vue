@@ -1,13 +1,17 @@
 <template>
-  <div class="documents">
-	  documents
-  </div>
+  <main class="documents">
+	  <PageHeader label="Mes documents" />
+  </main>
 </template>
 
 <script>
   import { defineComponent } from "vue"
+  import PageHeader from "../components/page/PageHeader.vue"
 
 	export default defineComponent({
-    name: "Documents"
+    name: "Documents",
+		components: {
+			PageHeader
+		}
   })
 </script>

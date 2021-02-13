@@ -1,29 +1,35 @@
 <template>
-	<h2 class="tabs-header">
-		<component :is="icon"></component>
-		{{ title }}
-	</h2>
+  <div class="custom-tab" :data-uid="uid">
+	  <component :is="icon" />
+    <slot></slot>
+  </div>
 </template>
 
 <script>
-  import { defineComponent } from "vue"
+	import { defineComponent, ref } from "vue"
+	import { getUid } from "../../../utils"
   import IconFilledCog from "../../icons/IconFilledCog.vue"
   import IconCircleOutlineUser from "../../icons/IconCircleOutlineUser.vue"
 
 	export default defineComponent({
-    name: "TabsHeader",
+    name: "CustomTab",
 		components: {
 			IconFilledCog,
 			IconCircleOutlineUser
 		},
 		props: {
-			title: {
-				type: String,
-				required: true
-			},
 			icon: {
 				type: String,
 				default: ""
+			}
+		},
+		setup: () => {
+			/* Datas */
+			const uid = ref(getUid())
+
+			return {
+				/* Datas */
+				uid
 			}
 		}
   })

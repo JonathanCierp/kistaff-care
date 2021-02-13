@@ -1,7 +1,9 @@
 <template>
-  <div class="list-item">
-    <slot />
-  </div>
+  <article class="list-item">
+    <div class="list-item__body">
+	    <slot />
+    </div>
+  </article>
 </template>
 
 <script>

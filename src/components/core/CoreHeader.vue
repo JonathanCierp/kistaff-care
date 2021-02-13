@@ -5,7 +5,7 @@
 		</ul>
 		<ul class="core-header__nav">
 			<li v-for="link of links" :key="link.key" :class="[$route.path === link.to ? 'core-header__nav__link--active' : '']"
-			    class="core-header__nav__link">
+			    class="core-header__nav__link" @click="onChangeRoute">
 				<CustomLink :to="link.to">{{ link.label }}</CustomLink>
 			</li>
 		</ul>
@@ -94,11 +94,14 @@
 			/* Methods */
 			const toggleMobileMenu = () => {
 				mobileMenuIsOpen.value = !mobileMenuIsOpen.value
+				document.body.style.overflow = mobileMenuIsOpen.value ? "hidden" : "visible"
 			}
 			
 			const onChangeRoute = () => {
 				notificationDropdown.value.closeDropdown()
 				userDropdown.value.closeDropdown()
+				mobileMenuIsOpen.value = false
+				document.body.style.overflow = "visible"
 			}
 
 			/* Computed */

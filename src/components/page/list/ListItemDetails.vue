@@ -1,5 +1,5 @@
 <template>
-	<div class="list-item-confirm__meta">
+	<div class="list-item-details__meta">
 		<h2>IDE - Gériatire</h2>
 		<p>{{ previewPlace }}</p>
 		<div>
@@ -7,9 +7,8 @@
 			<p>8h - 20h</p>
 		</div>
 	</div>
-	<div class="list-item-confirm__actions">
-		<CustomButton text type="success" block>Accepter</CustomButton>
-		<CustomButton text type="error" block>Refuser</CustomButton>
+	<div class="list-item-details__actions">
+		<CustomButton text type="info" block>Details</CustomButton>
 	</div>
 </template>
 
@@ -18,7 +17,7 @@
   import CustomButton from "../../custom/CustomButton.vue"
 
 	export default defineComponent({
-    name: "ListItemConfirm",
+    name: "ListItemDetails",
 		components: {
 			CustomButton
 		},

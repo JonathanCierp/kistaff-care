@@ -1,4 +1,7 @@
-.custom-tab-items {
+.custom-tab-item {
+  display: none;
 
-
+  &.custom-tab-item--active {
+    display: block;
+  }
 }

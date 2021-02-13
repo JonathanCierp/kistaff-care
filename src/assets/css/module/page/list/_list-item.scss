@@ -1,0 +1,118 @@
+.list-item {
+  width: 50%;
+  cursor: pointer;
+
+  &.list-item-confirm, &.list-item-details {
+    padding: .5rem;
+
+    & .list-item__body {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      height: 100px;
+
+      & .list-item-confirm__meta, & .list-item-details__meta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+        padding-left: 1rem;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+        height: 100%;
+
+        &:hover {
+          background-color: var(--color-blue-hover-lighter);
+        }
+
+        & h2 {
+          font-weight: 700;
+          margin-top: .25rem;
+        }
+
+        & p {
+          font-weight: 500;
+          margin-top: .3rem;
+          font-size: .9rem;
+        }
+
+        & > div {
+          display: flex;
+
+          & p:nth-child(2) {
+            margin-left: 2rem;
+            color: var(--color-gray-darker-1);
+          }
+        }
+      }
+
+      & .list-item-confirm__actions, & .list-item-details__actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        font-weight: 500;
+
+        & button {
+          height: 50%;
+          font-size: .9rem;
+        }
+      }
+
+      & .list-item-details__actions button {
+        height: 100%;
+      }
+    }
+  }
+
+  &.list-item-details .list-item__body:hover .list-item-details__meta, &.list-item-details .list-item__body:hover .list-item-details__actions {
+    background-color: var(--color-blue-hover-lighter);
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .list-item {
+    width: 100%;
+
+    &.list-item-confirm, &.list-item-details {
+      & .list-item__body {
+        & .list-item-confirm__meta, & .list-item-details__meta {
+          & h2 {
+            font-size: .9rem;
+          }
+
+          & p {
+            font-size: .8rem;
+          }
+        }
+
+        & .list-item-confirm__actions, & .list-item-details__actions {
+          & button {
+            font-size: .8rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .list-item {
+    &.list-item-confirm, &.list-item-details {
+      & .list-item__body {
+        & .list-item-confirm__meta, & .list-item-details__meta {
+          & > div {
+            display: flex;
+            flex-direction: column;
+
+            & p:nth-child(2) {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

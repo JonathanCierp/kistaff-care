@@ -1,0 +1,60 @@
+.settings {
+  & .settings__body {
+    & .settings__form {
+      padding-left: 1rem;
+
+      & .settings__form__row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: .5rem;
+
+        & > div {
+          margin-top: 1rem;
+        }
+
+        & .custom-select, & .custom-input {
+          margin-right: 1rem;
+        }
+
+        & .settings__form__planning {
+          display: flex;
+          font-weight: 500;
+          padding-top: 1rem;
+
+          & button {
+            display: flex;
+            align-items: center;
+            border: 2px solid var(--color-border);
+
+            &.settings__planning--active {
+              background-color: var(--color-blue-hover-darker);
+            }
+
+            & svg {
+              margin-right: .5rem;
+
+              &  path {
+                fill: var(--color-gray-darker-1);
+              }
+            }
+
+            &:nth-child(1) {
+              border-right-width: 0;
+
+              & svg path {
+                fill: var(--color-orange-primary);
+              }
+            }
+          }
+        }
+      }
+
+      & h2 {
+        margin-top: 1.5rem;
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
