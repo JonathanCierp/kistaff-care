@@ -14,13 +14,9 @@
 <script>
 	import { computed, defineComponent, ref } from "vue"
 	import { getUid } from "../../utils"
-	import CustomButton from "./CustomButton.vue"
 
 	export default defineComponent({
 		name: "CustomDropdown",
-		components: {
-			CustomButton
-		},
 		props: {
 			text: {
 				type: Boolean,

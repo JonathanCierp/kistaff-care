@@ -20,15 +20,9 @@
 
 <script>
 	import { defineComponent, computed, ref } from "vue"
-	import CustomDropdown from "../CustomDropdown.vue"
-	import IconCheck from "../../icons/IconCheck.vue"
 
 	export default defineComponent({
 		name: "CustomSelect",
-		components: {
-			CustomDropdown,
-			IconCheck
-		},
 		props: {
 			nativeType: {
 				type: String,

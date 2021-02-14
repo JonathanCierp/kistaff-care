@@ -9,15 +9,9 @@
 
 <script>
   import { defineComponent } from "vue"
-  import CustomLink from "../custom/CustomLink.vue"
-  import IconFilledCog from "../icons/IconFilledCog.vue"
 
 	export default defineComponent({
     name: "CoreNotification",
-		components: {
-			CustomLink,
-			IconFilledCog
-		},
 		props: {
     	notification: {
     		type: Object,

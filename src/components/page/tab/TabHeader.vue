@@ -7,15 +7,9 @@
 
 <script>
   import { defineComponent } from "vue"
-  import IconFilledCog from "../../icons/IconFilledCog.vue"
-  import IconCircleOutlineUser from "../../icons/IconCircleOutlineUser.vue"
 
 	export default defineComponent({
     name: "TabsHeader",
-		components: {
-			IconFilledCog,
-			IconCircleOutlineUser
-		},
 		props: {
 			title: {
 				type: String,

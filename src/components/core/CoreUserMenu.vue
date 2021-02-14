@@ -8,15 +8,9 @@
 
 <script>
 	import { defineComponent } from "vue"
-	import CoreUserMenuItem from "./CoreUserMenuItem.vue"
-	import CustomLink from "../custom/CustomLink.vue"
 
 	export default defineComponent({
 		name: "CoreUserMenu",
-		components: {
-			CoreUserMenuItem,
-			CustomLink
-		},
 		setup: (props, { emit }) => {
 			/* Datas */
 			const links = [

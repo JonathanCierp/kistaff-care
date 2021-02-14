@@ -1,3 +1,4 @@
+
 <template>
 	<li v-if="link.to">
 		<CustomLink :to="link.to">
@@ -15,21 +16,9 @@
 
 <script>
 	import { defineComponent } from "vue"
-	import CustomLink from "../custom/CustomLink.vue"
-	import CustomButton from "../custom/CustomButton.vue"
-	import IconCircleOutlineUser from "../icons/IconCircleOutlineUser.vue"
-	import IconOutlinedDocument from "../icons/IconOutlinedDocument.vue"
-	import IconOutlinedLogout from "../icons/IconOutlinedLogout.vue"
 
 	export default defineComponent({
 		name: "CoreUserMenuItem",
-		components: {
-			CustomLink,
-			CustomButton,
-			IconCircleOutlineUser,
-			IconOutlinedDocument,
-			IconOutlinedLogout
-		},
 		props: {
 			link: {
 				type: Object,

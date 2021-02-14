@@ -17,17 +17,9 @@
 
 <script>
   import { defineComponent } from "vue"
-  import CoreNotificationItem from "./CoreNotificationItem.vue"
-  import CustomLink from "../custom/CustomLink.vue"
-  import IconFilledCog from "../icons/IconFilledCog.vue"
 
 	export default defineComponent({
     name: "CoreNotification",
-		components: {
-			CoreNotificationItem,
-			CustomLink,
-			IconFilledCog
-		},
 		setup: (props, { emit }) => {
     	/* Datas */
 			const notifications = [

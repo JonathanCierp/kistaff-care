@@ -15,13 +15,9 @@
 
 <script>
   import { defineComponent, computed } from "vue"
-  import CustomButton from "../../custom/CustomButton.vue"
 
 	export default defineComponent({
     name: "ListItemConfirm",
-		components: {
-			CustomButton
-		},
 		setup: () => {
     	/* Computed */
 			const previewPlace = computed(() => window.innerWidth >= 1100 ||  window.innerWidth <= 500 ? "EHPAD La Maison Saint Charles Charles".substr(0, 20) + "..." : "EHPAD La Maison Saint Charles Charles")

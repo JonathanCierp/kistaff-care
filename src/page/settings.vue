@@ -4,7 +4,6 @@
 	  <div class="settings__body">
 		  <CustomTabs v-model="tab">
 			  <CustomTab icon="IconCircleOutlineUser">Mes informations</CustomTab>
-<!--			  <CustomTab icon="IconFilledCog">Mes préférences</CustomTab>-->
 		  </CustomTabs>
 		  <CustomTabItems v-model="tab">
 			  <CustomTabItem>
@@ -44,9 +43,6 @@
 					  </div>
 				  </form>
 			  </CustomTabItem>
-<!--			  <CustomTabItem>
-				  <TabHeader icon="IconFilledCog" title="Mes préférences" />
-			  </CustomTabItem>-->
 		  </CustomTabItems>
 	  </div>
   </main>
@@ -54,33 +50,9 @@
 
 <script>
 	import { defineComponent, ref } from "vue"
-  import PageHeader from "../components/page/PageHeader.vue"
-  import CustomTabs from "../components/custom/tabs/CustomTabs.vue"
-  import CustomTab from "../components/custom/tabs/CustomTab.vue"
-  import CustomTabItems from "../components/custom/tabs/CustomTabItems.vue"
-  import CustomTabItem from "../components/custom/tabs/CustomTabItem.vue"
-	import CustomInput from "../components/custom/form/CustomInput.vue"
-	import CustomSelect from "../components/custom/form/CustomSelect.vue"
-	import CustomButton from "../components/custom/CustomButton.vue"
-	import TabHeader from "../components/page/tab/TabHeader.vue"
-	import IconSun from "../components/icons/IconSun.vue"
-	import IconMoon from "../components/icons/IconMoon.vue"
 
 	export default defineComponent({
     name: "Settings",
-		components: {
-			PageHeader,
-			CustomTabs,
-			CustomTab,
-			CustomTabItems,
-			CustomTabItem,
-			CustomInput,
-			CustomSelect,
-			CustomButton,
-			TabHeader,
-			IconMoon,
-			IconSun
-		},
 		setup: () => {
 			/* Datas */
 			const tab = ref(0)

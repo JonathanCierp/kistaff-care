@@ -8,15 +8,9 @@
 <script>
 	import { defineComponent, ref } from "vue"
 	import { getUid } from "../../../utils"
-  import IconFilledCog from "../../icons/IconFilledCog.vue"
-  import IconCircleOutlineUser from "../../icons/IconCircleOutlineUser.vue"
 
 	export default defineComponent({
     name: "CustomTab",
-		components: {
-			IconFilledCog,
-			IconCircleOutlineUser
-		},
 		props: {
 			icon: {
 				type: String,

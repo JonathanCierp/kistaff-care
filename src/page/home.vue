@@ -84,31 +84,9 @@
 
 <script>
 	import { defineComponent, ref } from "vue"
-	import PageHeader from "../components/page/PageHeader.vue"
-	import CustomTabs from "../components/custom/tabs/CustomTabs.vue"
-	import CustomTab from "../components/custom/tabs/CustomTab.vue"
-	import CustomTabItems from "../components/custom/tabs/CustomTabItems.vue"
-	import CustomTabItem from "../components/custom/tabs/CustomTabItem.vue"
-	import TabHeader from "../components/page/tab/TabHeader.vue"
-	import ListItems from "../components/page/list/ListItems.vue"
-	import ListItem from "../components/page/list/ListItem.vue"
-	import ListItemConfirm from "../components/page/list/ListItemConfirm.vue"
-	import ListItemDetails from "../components/page/list/ListItemDetails.vue"
 
 	export default defineComponent({
 		name: "Home",
-		components: {
-			PageHeader,
-			CustomTabs,
-			CustomTab,
-			CustomTabItems,
-			CustomTabItem,
-			TabHeader,
-			ListItems,
-			ListItem,
-			ListItemConfirm,
-			ListItemDetails
-		},
 		setup: () => {
 			/* Datas */
 			const tab = ref(0)

@@ -10,13 +10,9 @@
 
 <script>
 	import { defineComponent, computed } from "vue"
-	import IconChevronDown from "../icons/IconChevronDown.vue"
 
 	export default defineComponent({
 		name: "CustomButton",
-		components: {
-			IconChevronDown
-		},
 		props: {
 			type: {
 				type: String,

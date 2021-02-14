@@ -47,27 +47,9 @@
 
 <script>
 	import { defineComponent, ref, computed } from "vue"
-	import CustomLink from "../custom/CustomLink.vue"
-	import CoreNotification from "../core/CoreNotification.vue"
-	import CoreUserMenu from "../core/CoreUserMenu.vue"
-	import CustomDropdown from "../custom/CustomDropdown.vue"
-	import CustomButton from "../custom/CustomButton.vue"
-	import IconOutlinedBell from "../icons/IconOutlinedBell.vue"
-	import IconOutlinedHelp from "../icons/IconOutlinedHelp.vue"
-	import IconChevronDown from "../icons/IconChevronDown.vue"
 
 	export default defineComponent({
 		name: "CoreHeader.vue",
-		components: {
-			CustomButton,
-			CustomLink,
-			CoreNotification,
-			CoreUserMenu,
-			CustomDropdown,
-			IconOutlinedBell,
-			IconOutlinedHelp,
-			IconChevronDown
-		},
 		setup: () => {
 			/* Datas */
 			const links = [
