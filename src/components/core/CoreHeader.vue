@@ -28,7 +28,8 @@
 			<li class="core-header__user">
 				<CustomDropdown ref="userDropdown" icon>
 					<template #title>
-						John DOE
+						<span class="hide-on-mobile">{{ fullName }}</span>
+						<span>{{ fullNameOnMobile }}</span>
 						<IconChevronDown />
 					</template>
 					<template #popover>
@@ -47,6 +48,7 @@
 
 <script>
 	import { defineComponent, ref, computed } from "vue"
+	import { useStore } from "vuex"
 
 	export default defineComponent({
 		name: "CoreHeader.vue",
@@ -72,13 +74,13 @@
 			const mobileMenuIsOpen = ref(false)
 			const notificationDropdown = ref(null)
 			const userDropdown = ref(null)
+			const store = useStore()
 
 			/* Methods */
 			const toggleMobileMenu = () => {
 				mobileMenuIsOpen.value = !mobileMenuIsOpen.value
 				document.body.style.overflow = mobileMenuIsOpen.value ? "hidden" : "visible"
 			}
-			
 			const onChangeRoute = () => {
 				notificationDropdown.value.closeDropdown()
 				userDropdown.value.closeDropdown()
@@ -88,17 +90,22 @@
 
 			/* Computed */
 			const mobileOpenClass = computed(() => mobileMenuIsOpen.value ? "core-header--mobile" : "")
+			const fullName = computed(() => store.state.user.FirstName + " " + store.state.user.LastName)
+			const fullNameOnMobile = computed(() => store.state.user.FirstName?.substr(0, 7) + " ...")
 
 			return {
 				/* Datas */
 				links,
 				notificationDropdown,
 				userDropdown,
+				store,
 				/* Methods */
 				toggleMobileMenu,
 				onChangeRoute,
 				/* Computed */
-				mobileOpenClass
+				mobileOpenClass,
+				fullName,
+				fullNameOnMobile
 			}
 		}
 	})

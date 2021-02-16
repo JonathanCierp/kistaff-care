@@ -1,13 +1,24 @@
 <template>
-	<CoreHeader />
+	<CoreHeader v-if="isDefaultLayout" />
 	<RouterView />
-	<CoreFooter />
+	<CoreFooter v-if="isDefaultLayout" />
 </template>
 
 <script>
-	import { defineComponent } from "vue"
+	import { defineComponent, computed } from "vue"
+	import { useRoute } from "vue-router"
 
 	export default defineComponent({
 		name: "App",
+		setup: () => {
+			const route = useRoute()
+			/* Computed */
+			const isDefaultLayout = computed(() => route.meta.layout === "default")
+
+			return {
+				/* Computed */
+				isDefaultLayout
+			}
+		}
 	})
 </script>

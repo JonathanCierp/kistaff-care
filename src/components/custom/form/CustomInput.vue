@@ -1,20 +1,29 @@
 <template>
-  <div :style="[widthStyle]" class="custom-input">
-	  <label :for="label.toLowerCase().replace(' ', '-')">{{ label }}</label>
-	  <input :id="label.toLowerCase().replace(' ', '-')" :type="nativeType" :placeholder="placeholder" />
-  </div>
+	<div :style="[widthStyle]" class="custom-input" :class="inputErrorClass">
+		<label :for="label.toLowerCase().replace(' ', '-')">{{ label }}</label>
+		<input :id="label.toLowerCase().replace(' ', '-')" :placeholder="placeholder" :type="nativeType"
+		       @input="onInput" />
+		<p v-if="inputError" class="custom-input__error-message">
+			<IconWarning />
+			{{ errorMessage }}
+		</p>
+	</div>
 </template>
 
 <script>
-	import { computed, defineComponent, ref } from "vue"
+	import { computed, defineComponent, ref, nextTick } from "vue"
 
 	export default defineComponent({
-    name: "CustomInput",
+		name: "CustomInput",
 		props: {
-    	nativeType: {
-    		type: String,
-		    default: "text"
-	    },
+			modelValue: {
+				type: String,
+				default: ""
+			},
+			nativeType: {
+				type: String,
+				default: "text"
+			},
 			width: {
 				type: String,
 				default: ""
@@ -26,18 +35,68 @@
 			label: {
 				type: String,
 				default: ""
+			},
+			required: {
+				type: Boolean,
+				default: false
+			},
+			rules: {
+				type: Array,
+				default: () => []
 			}
 		},
-		setup: (props) => {
+		setup: (props , { emit }) => {
+			/* Datas */
+			const errorMessage = ref("")
+			const inputError = ref(false)
+			const inputValue = ref("")
+
+			/* Methods */
+			const onInput = async (e) => {
+				const v = e.target.value
+
+				emit("update:modelValue", v)
+				await nextTick()
+				validate(v)
+			}
+
+			const validate = (v = null) => {
+				let value = v ? v : props.modelValue
+
+				if(props.required) {
+					for(let rule of props.rules) {
+						if(typeof rule(value) === "string") {
+							errorMessage.value = rule(value)
+							inputError.value = true
+							break
+						} else {
+							inputError.value = false
+						}
+					}
+				}
+
+				return !inputError.value
+			}
+
 			/* Computed */
 			const widthStyle = computed(() => {
 				return { width: props.width }
 			})
 
+			const inputErrorClass = computed(() => inputError.value ? "custom-input--error" : "")
+
 			return {
+				/* Datas */
+				errorMessage,
+				inputError,
+				inputValue,
+				/* Methods */
+				onInput,
+				validate,
 				/* Computed */
-				widthStyle
+				widthStyle,
+				inputErrorClass
 			}
 		}
-  })
+	})
 </script>

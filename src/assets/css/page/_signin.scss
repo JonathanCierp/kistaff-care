@@ -1,0 +1,52 @@
+.signin {
+  margin: auto;
+  width: 400px;
+  box-shadow: 0 2px 4px var(--shadow);
+  background-color: var(--color-background-lighter);
+  padding: 2rem;
+
+  & .signin__card {
+    & .signin__brand {
+      text-align: center;
+
+      & img {
+        border-radius: 99999px;
+      }
+    }
+
+    & .signin__title {
+      margin-top: 2rem;
+      text-align: center;
+      font-weight: 500;
+      font-size: 1.4rem;
+    }
+
+    & .signin__form {
+      margin-top: 2rem;
+
+      & .signin__form__row {
+        margin-bottom: 2rem;
+      }
+    }
+
+    & p {
+      text-align: center;
+      margin-top: 1.25rem;
+      
+      & a {
+        text-decoration: underline;
+
+        &:hover {
+          color: var(--color-blue-primary);
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .signin {
+    margin: 0;
+    width: auto;
+  }
+}
