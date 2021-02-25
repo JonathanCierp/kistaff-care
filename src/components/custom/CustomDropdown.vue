@@ -1,6 +1,6 @@
 <template>
 	<div ref="root" class="custom-dropdown" :data-uid="uid">
-		<custom-button v-if="$slots.title" class="custom-dropdown__title" :icon="icon" :text="text" @click="onOpen" block :icon-left="iconLeft">
+		<custom-button v-if="$slots.title" class="custom-dropdown__title" :icon="icon" :text="text" @click="onOpen" :center="center" block :icon-left="iconLeft">
 			<slot name="title"></slot>
 		</custom-button>
 		<transition name="fade">
@@ -37,6 +37,10 @@
 			popoverWidth: {
 				type: String,
 				default: ""
+			},
+			center: {
+				type: Boolean,
+				default: false
 			}
 		},
 		setup: (props) => {

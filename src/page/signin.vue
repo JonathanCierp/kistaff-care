@@ -18,7 +18,7 @@
 					]" label="Mot de passe" native-type="password" placeholder="Mot de passe" required />
 				</div>
 				<div class="signin__action">
-					<CustomButton @click="onSubmit" native-type="submit" block rounded="md">Se connecter</CustomButton>
+					<CustomButton @click="onSubmit" native-type="submit" block center rounded="md">Se connecter</CustomButton>
 				</div>
 			</CustomForm>
 			<p class="signin__reset-password">

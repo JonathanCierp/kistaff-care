@@ -2,7 +2,7 @@
 	<div :style="[widthStyle]" class="custom-input" :class="inputErrorClass">
 		<label :for="label.toLowerCase().replace(' ', '-')">{{ label }}</label>
 		<input :id="label.toLowerCase().replace(' ', '-')" :placeholder="placeholder" :type="nativeType"
-		       @input="onInput" />
+		       @input="onInput" :value="modelValue" />
 		<p v-if="inputError" class="custom-input__error-message">
 			<IconWarning />
 			{{ errorMessage }}

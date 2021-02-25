@@ -1,16 +1,18 @@
 <template>
 	<div :style="[widthStyle]" class="custom-select">
 		<label :for="label.toLowerCase().replace(' ', '-')">{{ label }}</label>
-		<CustomDropdown :id="label.toLowerCase().replace(' ', '-')" :popover-width="width" icon-left="IconChevronDown" offset="0" text>
+		<CustomDropdown :id="label.toLowerCase().replace(' ', '-')" :center="center" :popover-width="width"
+		                icon-left="IconChevronDown" offset="0" text>
 			<template #title>
-				<span v-if="optionTextSelected" class="custom-select__text">{{ optionTextSelected }}</span>
-				<span v-else>{{ placeholder }}</span>
+				<span v-if="modelValue" class="custom-select__text">{{ modelValue }}</span>
+				<span v-else>{{ modelValue }}</span>
 			</template>
 			<template #popover>
 				<ul ref="popoverItems" class="custom-select__popover">
-					<li v-for="i in 5" :key="i" class="custom-select__item" :class="i === optionSelected ? 'custom-select__item--active' : ''" @click="onSelectOption($event, i)">
+					<li v-for="item in items" :key="item" :class="item === modelValue ? 'custom-select__item--active' : ''"
+					    class="custom-select__item" @click="onSelectOption($event, item)">
 						<IconCheck />
-						Option {{ i }}
+						{{ item }}
 					</li>
 				</ul>
 			</template>
@@ -24,6 +26,10 @@
 	export default defineComponent({
 		name: "CustomSelect",
 		props: {
+			modelValue: {
+				type: String,
+				default: ""
+			},
 			nativeType: {
 				type: String,
 				default: "text"
@@ -39,21 +45,26 @@
 			label: {
 				type: String,
 				default: ""
+			},
+			center: {
+				type: Boolean,
+				default: false
+			},
+			items: {
+				type: Array,
+				default: []
 			}
 		},
-		setup: (props) => {
+		setup: (props, { emit }) => {
 			/* Datas */
 			const popoverItems = ref(null)
-			const optionSelected = ref(null)
-			const optionTextSelected = ref(null)
 
 			/* Methods */
-			const onSelectOption = (e, i) => {
+			const onSelectOption = (e, item) => {
 				const element = e.target.closest("li")
 				Array.from(popoverItems.value.children).forEach(item => item.classList.remove("custom-select__item--active"))
 				element.classList.add("custom-select__item--active")
-				optionTextSelected.value = element.innerText
-				optionSelected.value = i
+				emit("update:modelValue", item)
 			}
 
 			/* Computed */
@@ -64,8 +75,6 @@
 			return {
 				/* Datas */
 				popoverItems,
-				optionSelected,
-				optionTextSelected,
 				/* Methods */
 				onSelectOption,
 				/* Computed */

@@ -231,7 +231,6 @@
 
     & .custom-button__content {
       width: 100%;
-      justify-content: center;
     }
   }
 
@@ -286,5 +285,10 @@
   & .custom-button__content {
     display: flex;
     align-items: center;
+  }
+
+  &.custom-button--center .custom-button__content{
+    justify-content: center;
+    text-align: center;
   }
 }

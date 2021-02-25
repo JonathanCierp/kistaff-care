@@ -29,7 +29,7 @@
 				<CustomDropdown ref="userDropdown" icon>
 					<template #title>
 						<span class="hide-on-mobile">{{ fullName }}</span>
-						<span>{{ fullNameOnMobile }}</span>
+						<span class="hide-on-desktop">{{ fullNameOnMobile }}</span>
 						<IconChevronDown />
 					</template>
 					<template #popover>

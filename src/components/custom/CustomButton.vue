@@ -1,5 +1,5 @@
 <template>
-	<button :class="[typeClass, sizeClass, roundedClass, roundedClass, outlinedClass, flatClass, blockClass, iconClass, textClass]"
+	<button :class="[typeClass, sizeClass, roundedClass, roundedClass, outlinedClass, flatClass, blockClass, iconClass, textClass, centerClass]"
 	        :disabled="disabled" :type="nativeType" class="custom-button" role="button">
      <span class="custom-button__content">
       <slot />
@@ -61,6 +61,10 @@
 			iconLeft: {
 				type: String,
 				default: ""
+			},
+			center: {
+				type: Boolean,
+				default: false
 			}
 		},
 		setup(props) {
@@ -73,6 +77,7 @@
 			const blockClass = computed(() => props.block ? "custom-button--block" : "")
 			const iconClass = computed(() => props.icon ? "custom-button--icon" : "")
 			const textClass = computed(() => props.text ? "custom-button--text" : "")
+			const centerClass = computed(() => props.center ? "custom-button--center" : "")
 			const hideContentIfLoadingClass = computed(() => props.loading ? "custom-button__content--hidden" : "")
 
 			return {
@@ -85,6 +90,7 @@
 				blockClass,
 				iconClass,
 				textClass,
+				centerClass,
 				hideContentIfLoadingClass
 			}
 		}
