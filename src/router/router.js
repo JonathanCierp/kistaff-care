@@ -8,16 +8,16 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from) => {
-	const isAuthenticated = await useAuth({ to, from })
+	const isAuthenticated = await useAuth()
 	const isSigninPath = to.name === "Signin"
 
-	/*if (!isAuthenticated && !isSigninPath)  {
+	if (!isAuthenticated && !isSigninPath)  {
 		return "/auth/signin"
 	}
 
 	if(isAuthenticated && isSigninPath) {
 		return "/"
-	}*/
+	}
 })
 
 export default router

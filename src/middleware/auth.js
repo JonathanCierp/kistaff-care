@@ -1,15 +1,18 @@
-import { useAxiosAuthInstance, useAxiosInstance } from "../plugins/axios"
+import store from "../store/store"
+import { useAxiosAuthInstance } from "../plugins/axios"
 
-const useAuth = async ({ to, from }) => {
+
+const useAuth = async () => {
 	try {
-		const { data } = await useAxiosInstance.post("/authentication", {
-			"strategy": "local",
-		})
+		const { data } = await useAxiosAuthInstance().get("/contacts")
 
-		localStorage.setItem("jwt", data.accessToken)
+		store.commit("setUser", data[0])
+		store.commit("setIsLogged", true)
 	} catch(e) {
 		return false
 	}
+	
+	return true
 }
 
 export {

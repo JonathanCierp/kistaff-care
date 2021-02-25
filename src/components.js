@@ -27,6 +27,7 @@ import IconCircleOutlineUser from "./components/icons/IconCircleOutlineUser.vue"
 import IconFilledCog from "./components/icons/IconFilledCog.vue"
 import IconFilledWarning from "./components/icons/IconFilledWarning.vue"
 import IconMoon from "./components/icons/IconMoon.vue"
+import IconNotFound from "./components/icons/IconNotFound.vue"
 import IconOutlinedBell from "./components/icons/IconOutlinedBell.vue"
 import IconOutlinedDocument from "./components/icons/IconOutlinedDocument.vue"
 import IconOutlinedHelp from "./components/icons/IconOutlinedHelp.vue"
@@ -69,6 +70,7 @@ const useComponents = (app) => {
 	app.component("IconFilledCog", IconFilledCog)
 	app.component("IconFilledWarning", IconFilledWarning)
 	app.component("IconMoon", IconMoon)
+	app.component("IconNotFound", IconNotFound)
 	app.component("IconOutlinedBell", IconOutlinedBell)
 	app.component("IconOutlinedDocument", IconOutlinedDocument)
 	app.component("IconOutlinedHelp", IconOutlinedHelp)
