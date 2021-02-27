@@ -15,10 +15,10 @@
 			/* Datas */
 			const links = [
 				{
-					key: "mes-parametres",
-					label: "Mes paramètres",
+					key: "mon-profil",
+					label: "Mon profil",
 					icon: "IconCircleOutlineUser",
-					to: "/settings"
+					to: "/profiles"
 				},
 				{
 					key: "mes-documents",
