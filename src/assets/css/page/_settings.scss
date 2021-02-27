@@ -5,7 +5,7 @@
 
       & .settings__form__row {
         display: flex;
-        align-items: center;
+        align-items: cent+er;
         flex-wrap: wrap;
         margin-top: .5rem;
 
@@ -16,6 +16,9 @@
         & .custom-select, & .custom-input {
           margin-right: 1rem;
         }
+      }
+
+      & .settings__form__action {
 
         & .settings__form__planning {
           display: flex;

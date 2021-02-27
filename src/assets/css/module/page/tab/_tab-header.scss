@@ -1,13 +1,19 @@
 .tabs-header {
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
-  font-weight: 500;
   padding-left: 1rem;
   margin-bottom: 2rem;
 
-  & svg {
-    height: 27px;
-    margin-right: .5rem;
+  & .tabs-header__title {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    font-size: 1.5rem;
+    font-weight: 500;
+
+    & svg {
+      height: 27px;
+      margin-right: .5rem;
+    }
   }
 }
