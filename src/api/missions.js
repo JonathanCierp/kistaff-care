@@ -41,10 +41,10 @@ const normalizeMission = (mission) => {
 			name: mission.xOrganization__r ? mission.xOrganization__r.Name : mission.xService_Request__r.xOrganization__r.Name
 		},
 		job: {
-			name: mission.xSubject__c ? mission.xSubject__c.Name : mission.xService_Request__r.xSubject__c,
-			duration: mission.xDuration__c ? mission.xDuration__c.Name : mission.xService_Request__r.xDuration__c,
-			start_date: mission.xFromDate__c ? mission.xFromDate__c.Name : mission.xService_Request__r.xFromDate__c,
-			end_date: mission.xToDate__c ? mission.xToDate__c.Name : mission.xService_Request__r.xToDate__c
+			name: mission.xSubject__c ? mission.xSubject__c : mission.xService_Request__r.xSubject__c,
+			duration: mission.xDuration__c ? mission.xDuration__c : mission.xService_Request__r.xDuration__c,
+			start_date: mission.xFromDate__c ? mission.xFromDate__c : mission.xService_Request__r.xFromDate__c,
+			end_date: mission.xToDate__c ? mission.xToDate__c : mission.xService_Request__r.xToDate__c
 		}
 	}
 }

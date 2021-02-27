@@ -1,69 +1,48 @@
 <template>
 	<main class="missions">
 		<PageHeader label="Mes missions" />
-		<div class="missions__body">
+		<div v-if="show" class="missions__body">
 			<CustomTabs v-model="tab">
-				<CustomTab icon="IconFilledCog">A pourvoir&nbsp;<sub class="hide-on-mobile text-caption">({{
-						newMissionLength
-					}})</sub></CustomTab>
-				<CustomTab icon="IconFilledCog">En cours&nbsp;<sub class="hide-on-mobile text-caption">({{
-						upcomingMissionLength
-					}})</sub></CustomTab>
-				<CustomTab icon="IconFilledCog">En attente&nbsp;<sub
-						class="hide-on-mobile text-caption">({{ pendingMissionLength }})</sub></CustomTab>
-				<CustomTab icon="IconFilledCog">Passées&nbsp;<sub class="hide-on-mobile text-caption">({{
-						passedMissionsLength
-					}})</sub></CustomTab>
+				<CustomTab icon="IconFilledCog">
+					A pourvoir&nbsp;<sub class="hide-on-mobile text-caption">({{ newMissions.value.length }})</sub>
+				</CustomTab>
+				<CustomTab icon="IconFilledCog">
+					En cours&nbsp;<sub class="hide-on-mobile text-caption">({{ upcomingMissions.value.length }})</sub>
+				</CustomTab>
+				<CustomTab icon="IconFilledCog">
+					En attente&nbsp;<sub class="hide-on-mobile text-caption">({{ pendingMissions.value.length }})</sub>
+				</CustomTab>
+				<CustomTab icon="IconFilledCog">
+					Passées&nbsp;<sub class="hide-on-mobile text-caption">({{ passedMissions.value.length }})</sub>
+				</CustomTab>
 			</CustomTabs>
 			<CustomTabItems v-model="tab">
 				<CustomTabItem>
 					<TabHeader icon="IconFilledCog" title="Missions à pourvoir" />
 					<ListItems>
-						<ListItem v-for="newMission in newMissions.value" :key="newMission.id" class="list-item-confirm">
-							<ListItemConfirm :mission="newMission" />
-						</ListItem>
+						<ListItem v-for="mission in newMissions.value.missions" :key="mission.id" :mission="mission"
+						          class="list-item-confirm" confirm />
 					</ListItems>
 				</CustomTabItem>
 				<CustomTabItem>
 					<TabHeader icon="IconFilledCog" title="Missions en cours" />
-					<!--					<ListItems>
-											<ListItem class="list-item-details" >
-												<ListItemDetails />
-											</ListItem>
-											<ListItem class="list-item-details" >
-												<ListItemDetails />
-											</ListItem>
-											<ListItem class="list-item-details" >
-												<ListItemDetails />
-											</ListItem>
-											<ListItem class="list-item-details" >
-												<ListItemDetails />
-											</ListItem>
-										</ListItems>-->
+					<ListItems>
+						<ListItem v-for="mission in upcomingMissions.value.missions" :key="mission.id" :mission="mission"
+						          class="list-item-details" details />
+					</ListItems>
 				</CustomTabItem>
 				<CustomTabItem>
 					<TabHeader icon="IconFilledCog" title="Missions en attente" />
-					<!--					<ListItems>
-											<ListItem class="list-item-confirm" >
-												<ListItemConfirm />
-											</ListItem>
-											<ListItem class="list-item-confirm" >
-												<ListItemConfirm />
-											</ListItem>
-											<ListItem class="list-item-confirm" >
-												<ListItemConfirm />
-											</ListItem>
-											<ListItem class="list-item-confirm" >
-												<ListItemConfirm />
-											</ListItem>
-										</ListItems>-->
+					<ListItems>
+						<ListItem v-for="mission in pendingMissions.value.missions" :key="mission.id" :mission="mission"
+						          class="list-item-details" details />
+					</ListItems>
 				</CustomTabItem>
 				<CustomTabItem>
 					<TabHeader icon="IconFilledCog" title="Missions passées" />
 					<ListItems>
-						<ListItem v-for="newMission in passedMissions.value" :key="newMission.id" class="list-item-details">
-							<ListItemDetails :mission="newMission" />
-						</ListItem>
+						<ListItem v-for="mission in passedMissions.value.missions" :key="mission.id" :mission="mission"
+						          class="list-item-details" details />
 					</ListItems>
 				</CustomTabItem>
 			</CustomTabItems>
@@ -73,44 +52,37 @@
 
 <script>
 	import { defineComponent, onMounted, reactive, ref, computed } from "vue"
-	import { MISSIONS_TYPE, findMissionsForUserConnected } from "../api/missions"
+	import { findMissionsForUserConnectedFilteredByStatus } from "../api/missions"
 
 	export default defineComponent({
 		name: "Home",
 		setup: () => {
 			/* Datas */
+			const show = ref(false)
 			const tab = ref(0)
-			const newMissions = reactive([{}])
-			const upcomingMissions = reactive([{}])
-			const pendingMissions = reactive([{}])
-			const passedMissions = reactive([{}])
-
-			/* Computed */
-			const newMissionLength = computed(() => newMissions.value ? newMissions.value.length : 0)
-			const upcomingMissionLength = computed(() => upcomingMissions.value ? upcomingMissions.value.length : 0)
-			const pendingMissionLength = computed(() => pendingMissions.value ? pendingMissions.value.length : 0)
-			const passedMissionsLength = computed(() => passedMissions.value ? passedMissions.value.length : 0)
+			let newMissions = reactive([{}])
+			let upcomingMissions = reactive([{}])
+			let pendingMissions = reactive([{}])
+			let passedMissions = reactive([{}])
 
 			/* Lifecycle hooks*/
 			onMounted(async () => {
-				newMissions.value = await findMissionsForUserConnected(MISSIONS_TYPE.NEW)
-				upcomingMissions.value = []//await findMissionsForUserConnected(MISSIONS_TYPE.UPCOMMING)
-				pendingMissions.value = []//await findMissionsForUserConnected(MISSIONS_TYPE.PENDING)
-				passedMissions.value = await findMissionsForUserConnected(MISSIONS_TYPE.PASSED)
+				newMissions.value = await findMissionsForUserConnectedFilteredByStatus("NEW")
+				upcomingMissions.value = await findMissionsForUserConnectedFilteredByStatus("UPCOMING")
+				pendingMissions.value = await findMissionsForUserConnectedFilteredByStatus("PENDING")
+				passedMissions.value = await findMissionsForUserConnectedFilteredByStatus("PASSED")
+
+				show.value = true
 			})
 
 			return {
 				/* Datas */
+				show,
 				tab,
 				newMissions,
 				upcomingMissions,
 				pendingMissions,
-				passedMissions,
-				/* Computed */
-				newMissionLength,
-				upcomingMissionLength,
-				pendingMissionLength,
-				passedMissionsLength
+				passedMissions
 			}
 		}
 	})

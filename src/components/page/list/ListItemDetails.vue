@@ -1,10 +1,10 @@
 <template>
 	<div class="list-item-details__meta">
-		<h2>IDE - Gériatire</h2>
+		<h2>{{ mission.job.name }}</h2>
 		<p>{{ previewPlace }}</p>
 		<div>
-			<p>Dimanche 7 février</p>
-			<p>8h - 20h</p>
+			<p>{{ missionDate }}</p>
+			<p>{{ missionHours }}</p>
 		</div>
 	</div>
 	<div class="list-item-details__actions">
@@ -14,17 +14,37 @@
 
 <script>
   import { defineComponent, computed } from "vue"
+  import { ucFirst } from "../../../utils"
 
 	export default defineComponent({
     name: "ListItemDetails",
-		setup: () => {
-    	/* Computed */
-			const previewPlace = computed(() => window.innerWidth >= 1100 ||  window.innerWidth <= 500 ? "EHPAD La Maison Saint Charles Charles".substr(0, 20) + "..." : "EHPAD La Maison Saint Charles Charles")
+		props: {
+			mission: {
+				type: Object,
+				required: true
+			}
+		},
+		setup: (props) => {
+			const startDate = new Date(props.mission.job.start_date)
+			const endDate = new Date(props.mission.job.end_date)
+			const startDateFrFormat = startDate.toLocaleDateString("fr-FR", {
+				weekday: "long",
+				day: "numeric",
+				month: "long"
+			})
+			const startHours = startDate.toLocaleTimeString().substr(0, 5);
+			const endHours = endDate.toLocaleTimeString().substr(0, 5);
+
+			/* Computed */
+			const previewPlace = computed(() => window.innerWidth >= 1100 ||  window.innerWidth <= 500 ? props.mission.organization.name.substr(0, 20) + "..." : "EHPAD La Maison Saint Charles Charles")
+			const missionDate = computed(() => ucFirst(startDateFrFormat))
+			const missionHours = computed(() => `${startHours} - ${endHours}`)
 
 			return {
-
 				/* Computed */
-				previewPlace
+				previewPlace,
+				missionDate,
+				missionHours
 			}
 		}
   })
