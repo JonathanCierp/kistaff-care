@@ -1,5 +1,5 @@
 <template>
-  <div class="page-header">
+  <div class="page-header hide-on-mobile">
 		<h1 class="text-h3 font-bold">{{ label }}</h1>
   </div>
 </template>
