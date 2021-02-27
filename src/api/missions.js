@@ -12,27 +12,34 @@ const MISSIONS_STATUS = {
 	PENDING: "Selected",
 	PASSED: "Closed"
 }
+let requests = []
 let missions = []
 
-const findMissionsForUserConnected = async (endPoint) => {
+const findItemsForUserConnected = async (endPoint) => {
 	const { data } = await useAxiosAuthInstance().get(endPoint)
 
 	return data.map(mission => normalizeMission(mission))
 }
-const findMissionsForUserConnectedFilteredByStatus = async (type) => {
-	// Pour pas dupliquer les requêtes tous en ayant 1 fonction de recupération
-	if(!missions[MISSIONS_ENDPOINT[type]] || !missions[MISSIONS_ENDPOINT[type]].length) {
-		missions[MISSIONS_ENDPOINT[type]] = (await findMissionsForUserConnected(MISSIONS_ENDPOINT[type]))
-	}
+const findMissionsForUserConnected = async () => {
+	missions = await findItemsForUserConnected("/missions")
+}
+const findRequestsForUserConnected = async () => {
+	requests = await findItemsForUserConnected("/requests")
+}
+const findMissionsForUserConnectedFilteredByStatus = async (status) => {
+	let missionFiltered = []
 
-	const missionFiltered = missions[MISSIONS_ENDPOINT[type]].filter(mission => mission.status === MISSIONS_STATUS[type])
+	if(status === MISSIONS_STATUS.UPCOMING || status === MISSIONS_STATUS.PASSED) {
+		missionFiltered = missions.filter(mission => mission.status === status)
+	}else if(status === MISSIONS_STATUS.NEW || status === MISSIONS_STATUS.PENDING) {
+		missionFiltered = requests.filter(requests => requests.status === status)
+	}
 
 	return {
 		missions: missionFiltered,
 		length: missionFiltered.length
 	}
 }
-
 const normalizeMission = (mission) => {
 	return {
 		id: mission.Id,
@@ -52,6 +59,9 @@ const normalizeMission = (mission) => {
 export {
 	MISSIONS_ENDPOINT,
 	MISSIONS_STATUS,
+	findItemsForUserConnected,
 	findMissionsForUserConnected,
-	findMissionsForUserConnectedFilteredByStatus
+	findRequestsForUserConnected,
+	findMissionsForUserConnectedFilteredByStatus,
+	normalizeMission
 }

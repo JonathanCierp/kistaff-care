@@ -52,7 +52,12 @@
 
 <script>
 	import { defineComponent, onMounted, reactive, ref, computed } from "vue"
-	import { findMissionsForUserConnectedFilteredByStatus } from "../api/missions"
+	import {
+		MISSIONS_STATUS,
+		findMissionsForUserConnected,
+		findRequestsForUserConnected,
+		findMissionsForUserConnectedFilteredByStatus
+	} from "../api/missions"
 
 	export default defineComponent({
 		name: "Home",
@@ -67,10 +72,13 @@
 
 			/* Lifecycle hooks*/
 			onMounted(async () => {
-				newMissions.value = await findMissionsForUserConnectedFilteredByStatus("NEW")
-				upcomingMissions.value = await findMissionsForUserConnectedFilteredByStatus("UPCOMING")
-				pendingMissions.value = await findMissionsForUserConnectedFilteredByStatus("PENDING")
-				passedMissions.value = await findMissionsForUserConnectedFilteredByStatus("PASSED")
+				await findMissionsForUserConnected()
+				await findRequestsForUserConnected()
+
+				newMissions.value = await findMissionsForUserConnectedFilteredByStatus(MISSIONS_STATUS.NEW)
+				upcomingMissions.value = await findMissionsForUserConnectedFilteredByStatus(MISSIONS_STATUS.UPCOMING)
+				pendingMissions.value = await findMissionsForUserConnectedFilteredByStatus(MISSIONS_STATUS.PENDING)
+				passedMissions.value = await findMissionsForUserConnectedFilteredByStatus(MISSIONS_STATUS.PASSED)
 
 				show.value = true
 			})
