@@ -1,21 +1,42 @@
 import { useAxiosAuthInstance } from "../plugins/axios"
 
-const MISSIONS_TYPE = {
-	NEW: "/requests", // A pourvoir
-	UPCOMMING: "/", // En cours
-	PENDING: "/", // En attentes
-	PASSED: "/missions" // Passées
+const MISSIONS_ENDPOINT = {
+	NEW: "/requests",
+	UPCOMING: "/missions",
+	PENDING: "/requests",
+	PASSED: "/missions"
 }
+const MISSIONS_STATUS = {
+	NEW: "Requested",
+	UPCOMING: "Assigned",
+	PENDING: "Selected",
+	PASSED: "Closed"
+}
+let missions = []
 
 const findMissionsForUserConnected = async (endPoint) => {
 	const { data } = await useAxiosAuthInstance().get(endPoint)
 
 	return data.map(mission => normalizeMission(mission))
 }
+const findMissionsForUserConnectedFilteredByStatus = async (type) => {
+	// Pour pas dupliquer les requêtes tous en ayant 1 fonction de recupération
+	if(!missions[MISSIONS_ENDPOINT[type]] || !missions[MISSIONS_ENDPOINT[type]].length) {
+		missions[MISSIONS_ENDPOINT[type]] = (await findMissionsForUserConnected(MISSIONS_ENDPOINT[type]))
+	}
+
+	const missionFiltered = missions[MISSIONS_ENDPOINT[type]].filter(mission => mission.status === MISSIONS_STATUS[type])
+
+	return {
+		missions: missionFiltered,
+		length: missionFiltered.length
+	}
+}
 
 const normalizeMission = (mission) => {
 	return {
 		id: mission.Id,
+		status: mission.xStatus__c,
 		organization: {
 			name: mission.xOrganization__r ? mission.xOrganization__r.Name : mission.xService_Request__r.xOrganization__r.Name
 		},
@@ -28,8 +49,9 @@ const normalizeMission = (mission) => {
 	}
 }
 
-
 export {
-	MISSIONS_TYPE,
-	findMissionsForUserConnected
+	MISSIONS_ENDPOINT,
+	MISSIONS_STATUS,
+	findMissionsForUserConnected,
+	findMissionsForUserConnectedFilteredByStatus
 }
