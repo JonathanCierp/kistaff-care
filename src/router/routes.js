@@ -1,7 +1,7 @@
 import Home from "../page/home.vue"
 import Offers from "../page/offers.vue"
 import Organizations from "../page/organizations.vue"
-import Settings from "../page/settings.vue"
+import Profiles from "../page/profiles.vue"
 import Documents from "../page/documents.vue"
 import MissionsSingle from "../page/missions-single.vue"
 import Signin from "../page/signin.vue"
@@ -29,8 +29,8 @@ export default [
 	  }
   },
   {
-  	path: "/settings",
-	  component: Settings,
+  	path: "/profiles",
+	  component: Profiles,
 	  meta: {
   		layout: "default"
 	  }
