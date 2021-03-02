@@ -1,11 +1,11 @@
-.settings {
-  & .settings__body {
-    & .settings__form {
+.profiles {
+  & .profiles__body {
+    & .profiles__form {
       padding-left: 1rem;
 
-      & .settings__form__row {
+      & .profiles__form__row {
         display: flex;
-        align-items: cent+er;
+        align-items: center;
         flex-wrap: wrap;
         margin-top: .5rem;
 
@@ -18,19 +18,25 @@
         }
       }
 
-      & .settings__form__action {
+      & .profiles__form__action {
+        margin-right: 1rem;
+        margin-top: 1rem;
 
-        & .settings__form__planning {
+        & > label {
+          font-weight: 500;
+        }
+
+        & .profiles__form__planning {
           display: flex;
           font-weight: 500;
-          padding-top: 1rem;
+          padding-top: .5rem;
 
           & button {
             display: flex;
             align-items: center;
             border: 2px solid var(--color-border);
 
-            &.settings__planning--active {
+            &.profiles__planning--active {
               background-color: var(--color-blue-hover-darker);
             }
 

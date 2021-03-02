@@ -1,35 +1,36 @@
 <template>
-	<main class="settings">
+	<main class="profiles">
 		<PageHeader label="Mon profil" />
-		<div class="settings__body">
+		<div class="profiles__body">
 			<CustomTabs v-model="tab">
 				<CustomTab icon="IconCircleOutlineUser">Mes informations</CustomTab>
-				<CustomTab icon="IconCircleOutlineUser">Mes préférences</CustomTab>
+				<CustomTab icon="IconFilledCog">Mes préférences</CustomTab>
 			</CustomTabs>
 			<CustomTabItems v-model="tab">
 				<CustomTabItem>
-					<TabHeader button-label="Enregistrer" icon="IconCircleOutlineUser" title="Mes informations"
-					           @callback="saveInformations" />
-					<form class="settings__form">
-						<div class="settings__form__row">
-							<CustomSelect v-model="user.civility" :items="civility" label="Civilité" placeholder="Civilité"
+					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer"
+					           icon="IconCircleOutlineUser"
+					           title="Mes informations" @callback="saveInformations" />
+					<form class="profiles__form">
+						<div class="profiles__form__row">
+							<CustomSelect v-model="user.civility" :items="civility.value" label="Civilité" placeholder="Civilité"
 							              width="300px" />
 						</div>
-						<div class="settings__form__row">
+						<div class="profiles__form__row">
 							<CustomInput v-model="user.firstName" label="Nom" placeholder="Nom" width="300px" />
 							<CustomInput v-model="user.lastName" label="Prénom" placeholder="Prénom" width="300px" />
 						</div>
-						<div class="settings__form__row">
+						<div class="profiles__form__row">
 							<CustomInput v-model="user.phone" label="Téléphone" mobile placeholder="Téléphone mobile" width="300px" />
 							<CustomInput v-model="user.email" label="Adresse e-mail" mail placeholder="Adresse mail" width="300px" />
 						</div>
-						<div class="settings__form__row">
+						<div class="profiles__form__row">
 							<CustomInput v-model="user.phone" label="N° sécurité sociale" mobile placeholder="N° sécurité sociale"
 							             width="300px" />
 							<CustomInput v-model="user.email" label="N° adéli" mail placeholder="N° adéli" width="300px" />
 						</div>
 						<h2>Adresse</h2>
-						<div class="settings__form__row">
+						<div class="profiles__form__row">
 							<CustomInput v-model="user.street" label="Rue" placeholder="Rue" width="300px" />
 							<CustomInput v-model="user.postalCode" label="Code" placeholder="Code postal" postal width="300px" />
 							<CustomInput v-model="user.city" label="Ville" placeholder="Ville" width="300px" />
@@ -37,23 +38,24 @@
 					</form>
 				</CustomTabItem>
 				<CustomTabItem>
-					<TabHeader button-label="Enregistrer" icon="IconCircleOutlineUser" title="Mes préférences"
-					           @callback="savePreference" />
-					<form class="settings__form">
-						<div class="settings__form__row">
-							<CustomSelect v-model="user.fonction" :items="fonction" label="Fonction" placeholder="Fonction"
+					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer" icon="IconFilledCog"
+					           title="Mes préférences" @callback="savePreference" />
+					<form class="profiles__form">
+						<div class="profiles__form__row">
+							<CustomSelect v-model="user.fonction" :items="fonction.value" label="Fonction" placeholder="Fonction"
 							              width="300px" />
-							<CustomSelect v-model="user.pole" :items="pole" label="Pôle" multiple placeholder="Pôle" width="450px" />
+							<CustomSelect v-model="user.pole" :items="pole.value" label="Pôle" multiple placeholder="Pôle"
+							              width="450px" />
 						</div>
-						<div class="settings__form__action">
-							<label for="">Type de planning</label>
-							<div class="settings__form__planning">
-								<CustomButton :class="scheduleDay ? 'settings__planning--active' : ''" text
+						<div class="profiles__form__action">
+							<label>Type de planning</label>
+							<div class="profiles__form__planning">
+								<CustomButton :class="scheduleDay ? 'profiles__planning--active' : ''" text
 								              @click="onChangeSchedule('Day')">
 									<IconSun />
 									Jour
 								</CustomButton>
-								<CustomButton :class="scheduleNight ? 'settings__planning--active' : ''" text
+								<CustomButton :class="scheduleNight ? 'profiles__planning--active' : ''" text
 								              @click="onChangeSchedule('Night')">
 									<IconMoon />
 									Nuit
@@ -68,60 +70,24 @@
 </template>
 
 <script>
-	import { defineComponent, reactive, ref } from "vue"
+	import { defineComponent, onMounted, reactive, ref } from "vue"
 	import { useStore } from "vuex"
+	import {
+		findSobjectsForUserConnected,
+		findSobjectsForUserConnectedFilteredByField,
+		SOBJECTS_FIELD
+	} from "../api/sobjects"
 
 	export default defineComponent({
 		name: "Profiles",
 		setup: () => {
 			const store = useStore()
-			const civility = ["Mr.", "Ms.", "Mrs.", "Dr.", "Prof."]
-			const fonction = [
-				{
-					key: "Nurse",
-					value: "IDE"
-				},
-				{
-					key: "Caregiver",
-					value: "Aide soignante"
-				},
-				{
-					key: "Auxiliaire de vie",
-					value: "Auxiliaire de vie"
-				},
-				{
-					key: "Operating Room Nurse",
-					value: "IBODE"
-				},
-				{
-					key: "Sage-femme",
-					value: "Sage-femme"
-				}
-			]
-			const pole = [
-				{
-					key: "Emergency",
-					value: "Urgence"
-				},
-				{
-					key: "Geriatric",
-					value: "Gériatrie"
-				},
-				{
-					key: "Intensive Care",
-					value: "Soins intensifs"
-				},
-				{
-					key: "Medicine",
-					value: "Medicine"
-				},
-				{
-					key: "Paediatric",
-					value: "Pédiatrie"
-				}
-			]
+
 			/* Datas */
 			const tab = ref(0)
+			const civility = reactive({})
+			const fonction = reactive({})
+			const pole = reactive({})
 			const user = reactive({
 				civility: store.state.user.Salutation,
 				firstName: store.state.user.FirstName,
@@ -135,8 +101,9 @@
 				pole: "Emergency;Paediatric;Intensive Care",
 				schedule: store.state.user.xType_of_Schedule__c
 			})
-			const scheduleDay = ref(user.schedule === "Day")
-			const scheduleNight = ref(user.schedule === "Night")
+			const scheduleDay = ref(user.schedule === "Day" || user.schedule === "All")
+			const scheduleNight = ref(user.schedule === "Night" || user.schedule === "All")
+			const loading = ref(false)
 
 			/* Methods */
 			const onChangeSchedule = (type) => {
@@ -156,44 +123,64 @@
 					user.schedule = "All"
 				}
 			}
-			const saveInformations = () => {
-				console.log("save information")
-				console.log(user.schedule)
-				store.dispatch("saveUser", {
-					id: store.state.user.Id,
-					test: {
-						Salutation: user.civility,
-						FirstName: user.firstName,
-						LastName: user.lastName,
-						MobilePhone: user.phone,
-						Email: user.email,
-						//"Email": user.email, Securité sociale
-						//"Email": user.email, Adéli
-						MailingStreet: user.street,
-						MailingPostalCode: user.postalCode,
-						MailingCity: user.city
-					}
-				})
+			const saveInformations = async () => {
+				try {
+					loading.value = true
+					await store.dispatch("editUser", {
+						id: store.state.user.Id,
+						user: {
+							Salutation: user.civility,
+							FirstName: user.firstName,
+							LastName: user.lastName,
+							MobilePhone: user.phone,
+							Email: user.email,
+							// Securité sociale
+							// Adéli
+							MailingStreet: user.street,
+							MailingPostalCode: user.postalCode,
+							MailingCity: user.city
+						}
+					})
+				} catch(e) {
+				}
+				loading.value = false
 			}
-			const savePreference = () => {
-				console.log("save preference")
-				console.log(user.schedule)
-				/*store.dispatch("saveUser", {
-					"xType_of_service__c": user.fonction,
-					"xServices__c": user.pole,
-					"xType_of_Schedule__c": user.schedule
-				})*/
+			const savePreference = async () => {
+				try {
+					loading.value = true
+					await store.dispatch("editUser", {
+						id: store.state.user.Id,
+						user: {
+							xType_of_service__c: user.fonction,
+							xServices__c: user.pole,
+							xType_of_Schedule__c: user.schedule
+						}
+					})
+				} catch(e) {
+				}
+
+				loading.value = false
 			}
 
+			/* Lifecycle Hooks */
+			onMounted(async () => {
+				await findSobjectsForUserConnected()
+
+				civility.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.CIVILITY)
+				fonction.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.FONCTION)
+				pole.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.POLE)
+			})
+
 			return {
+				/* Datas */
+				tab,
 				civility,
 				fonction,
 				pole,
-				/* Datas */
-				tab,
 				user,
 				scheduleDay,
 				scheduleNight,
+				loading,
 				/* Methods */
 				onChangeSchedule,
 				saveInformations,
