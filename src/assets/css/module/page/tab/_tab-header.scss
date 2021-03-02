@@ -17,3 +17,10 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .tabs-header button {
+    width: 48px !important;
+    min-width: 48px !important;
+  }
+}
