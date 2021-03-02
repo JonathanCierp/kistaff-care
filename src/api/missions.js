@@ -40,6 +40,9 @@ const findMissionsForUserConnectedFilteredByStatus = async (status) => {
 		length: missionFiltered.length
 	}
 }
+const acceptMission = async () => {
+
+}
 const normalizeMission = (mission) => {
 	return {
 		id: mission.Id,
