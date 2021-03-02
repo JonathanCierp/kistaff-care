@@ -10,6 +10,7 @@ import CoreUserMenuItem from "./components/core/CoreUserMenuItem.vue"
 import CustomButton from "./components/custom/CustomButton.vue"
 import CustomDropdown from "./components/custom/CustomDropdown.vue"
 import CustomLink from "./components/custom/CustomLink.vue"
+import CustomProgressCircle from "./components/custom/CustomProgressCircle.vue"
 import CustomForm from "./components/custom/form/CustomForm.vue"
 import CustomInput from "./components/custom/form/CustomInput.vue"
 import CustomSelect from "./components/custom/form/CustomSelect.vue"
@@ -17,12 +18,17 @@ import CustomTabs from "./components/custom/tabs/CustomTabs.vue"
 import CustomTab from "./components/custom/tabs/CustomTab.vue"
 import CustomTabItems from "./components/custom/tabs/CustomTabItems.vue"
 import CustomTabItem from "./components/custom/tabs/CustomTabItem.vue"
+import CustomTransition from "./components/custom/CustomTransition.vue"
 
 /* Icons components */
 import IconBurger from "./components/icons/IconBurger.vue"
 import IconCheck from "./components/icons/IconCheck.vue"
 import IconChevronDown from "./components/icons/IconChevronDown.vue"
+import IconCircleFilledCheck from "./components/icons/IconCircleFilledCheck.vue"
+import IconCircleFilledClose from "./components/icons/IconCircleFilledClose.vue"
+import IconCircleFilledInfo from "./components/icons/IconCircleFilledInfo.vue"
 import IconCircleFilledPlus from "./components/icons/IconCircleFilledPlus.vue"
+import IconCircleFilledWarning from "./components/icons/IconCircleFilledWarning.vue"
 import IconCircleOutlineUser from "./components/icons/IconCircleOutlineUser.vue"
 import IconFilledCog from "./components/icons/IconFilledCog.vue"
 import IconFilledWarning from "./components/icons/IconFilledWarning.vue"
@@ -32,6 +38,7 @@ import IconOutlinedBell from "./components/icons/IconOutlinedBell.vue"
 import IconOutlinedDocument from "./components/icons/IconOutlinedDocument.vue"
 import IconOutlinedHelp from "./components/icons/IconOutlinedHelp.vue"
 import IconOutlinedLogout from "./components/icons/IconOutlinedLogout.vue"
+import IconSave from "./components/icons/IconSave.vue"
 import IconSun from "./components/icons/IconSun.vue"
 import IconWarning from "./components/icons/IconWarning.vue"
 
@@ -54,6 +61,7 @@ const useComponents = (app) => {
 	app.component("CustomButton", CustomButton)
 	app.component("CustomDropdown", CustomDropdown)
 	app.component("CustomLink", CustomLink)
+	app.component("CustomProgressCircle", CustomProgressCircle)
 	app.component("CustomForm", CustomForm)
 	app.component("CustomInput", CustomInput)
 	app.component("CustomSelect", CustomSelect)
@@ -61,11 +69,16 @@ const useComponents = (app) => {
 	app.component("CustomTab", CustomTab)
 	app.component("CustomTabItems", CustomTabItems)
 	app.component("CustomTabItem", CustomTabItem)
+	app.component("CustomTransition", CustomTransition)
 
 	app.component("IconBurger", IconBurger)
 	app.component("IconCheck", IconCheck)
 	app.component("IconChevronDown", IconChevronDown)
+	app.component("IconCircleFilledCheck", IconCircleFilledCheck)
+	app.component("IconCircleFilledClose", IconCircleFilledClose)
+	app.component("IconCircleFilledInfo", IconCircleFilledInfo)
 	app.component("IconCircleFilledPlus", IconCircleFilledPlus)
+	app.component("IconCircleFilledWarning", IconCircleFilledWarning)
 	app.component("IconCircleOutlineUser", IconCircleOutlineUser)
 	app.component("IconFilledCog", IconFilledCog)
 	app.component("IconFilledWarning", IconFilledWarning)
@@ -75,6 +88,7 @@ const useComponents = (app) => {
 	app.component("IconOutlinedDocument", IconOutlinedDocument)
 	app.component("IconOutlinedHelp", IconOutlinedHelp)
 	app.component("IconOutlinedLogout", IconOutlinedLogout)
+	app.component("IconSave", IconSave)
 	app.component("IconSun", IconSun)
 	app.component("IconWarning", IconWarning)
 
