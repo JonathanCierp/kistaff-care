@@ -11,7 +11,7 @@
 					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer"
 					           icon="IconCircleOutlineUser"
 					           title="Mes informations" @callback="saveInformations" />
-					<form class="profiles__form">
+					<CustomForm class="profiles__form">
 						<div class="profiles__form__row">
 							<CustomSelect v-model="user.civility" :items="civility.value" label="Civilité" placeholder="Civilité"
 							              width="300px" />
@@ -35,7 +35,7 @@
 							<CustomInput v-model="user.postalCode" label="Code" placeholder="Code postal" postal width="300px" />
 							<CustomInput v-model="user.city" label="Ville" placeholder="Ville" width="300px" />
 						</div>
-					</form>
+					</CustomForm>
 				</CustomTabItem>
 				<CustomTabItem>
 					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer" icon="IconFilledCog"
