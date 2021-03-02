@@ -65,10 +65,10 @@
 			/* Datas */
 			const show = ref(false)
 			const tab = ref(0)
-			let newMissions = reactive([{}])
-			let upcomingMissions = reactive([{}])
-			let pendingMissions = reactive([{}])
-			let passedMissions = reactive([{}])
+			let newMissions = reactive({})
+			let upcomingMissions = reactive({})
+			let pendingMissions = reactive({})
+			let passedMissions = reactive({})
 
 			/* Lifecycle hooks*/
 			onMounted(async () => {

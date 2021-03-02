@@ -50,7 +50,7 @@
 			const endHours = endDate.toLocaleTimeString().substr(0, 5);
 
 			/* Computed */
-			const previewPlace = computed(() => window.innerWidth >= 1100 ||  window.innerWidth <= 500 ? props.mission.organization.name.substr(0, 20) + "..." : "EHPAD La Maison Saint Charles Charles")
+			const previewPlace = computed(() => window.innerWidth >= 1100 ||  window.innerWidth <= 500 ? props.mission.organization.name.substr(0, 20) + "..." : props.mission.organization.name)
 			const missionDate = computed(() => ucFirst(startDateFrFormat))
 			const missionHours = computed(() => `${startHours} - ${endHours}`)
 

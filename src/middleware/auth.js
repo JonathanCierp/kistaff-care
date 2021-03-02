@@ -6,7 +6,7 @@ const useAuth = async () => {
 	try {
 		const { data } = await useAxiosAuthInstance().get("/contacts")
 
-		store.commit("setUser", data[0])
+		store.commit("setUser", { user: data[0], isNew: true })
 		store.commit("setIsLogged", true)
 	} catch(e) {
 		return false

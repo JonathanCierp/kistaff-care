@@ -19,17 +19,31 @@
 </template>
 
 <script>
-	import { defineComponent, ref } from "vue"
+	import { defineComponent, onMounted, reactive, ref } from "vue"
+	import {
+		findSobjectsForUserConnected,
+		findSobjectsForUserConnectedFilteredByField,
+		SOBJECTS_FIELD
+	} from "../api/sobjects"
 
 	export default defineComponent({
     name: "Documents",
 		setup: () => {
 			/* Datas */
 			const tab = ref(0)
+			const requiredDocuments = reactive({})
+
+			/* Lifecycle Hooks */
+			onMounted(async () => {
+				await findSobjectsForUserConnected()
+
+				requiredDocuments.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.DOCUMENT)
+			})
 
 			return {
 				/* Datas */
-				tab
+				tab,
+				requiredDocuments
 			}
 		}
   })
