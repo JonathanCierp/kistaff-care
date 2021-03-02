@@ -54,55 +54,55 @@
 }
 
 /* FADE TRANSITION */
-.fade-enter-active {
-  animation: fade .3s;
+.custom-transition--fade-enter-active {
+  animation: fade .5s;
 }
 
-.fade-leave-active {
-  animation: fade .3s reverse;
+.custom-transition--fade-leave-active {
+  animation: fade .5s reverse;
 }
 
 /* SCALE TRANSITION*/
-.scale-enter-active {
-  animation: scale .3s;
+.custom-transition--scale-enter-active {
+  animation: scale .5s;
 }
 
-.scale-leave-active {
-  animation: scale .3s reverse;
+.custom-transition--scale-leave-active {
+  animation: scale .5s reverse;
 }
 
 /* SLIDE UP */
-.slide-up-enter-active {
-  animation: slide-up .3s;
+.custom-transition--slide-up-enter-active {
+  animation: slide-up .5s;
 }
 
-.slide-up-leave-active {
-  animation: slide-up .3s reverse;
+.custom-transition--slide-up-leave-active {
+  animation: slide-up .5s reverse;
 }
 
 /* SLIDE LEFT */
-.slide-left-enter-active {
-  animation: slide-left .3s;
+.custom-transition--slide-left-enter-active {
+  animation: slide-left .5s;
 }
 
-.slide-left-leave-active {
-  animation: slide-left .3s reverse;
+.custom-transition--slide-left-leave-active {
+  animation: slide-left .5s reverse;
 }
 
 /* SLIDE DOWN */
-.slide-down-enter-active {
-  animation: slide-down .3s;
+.custom-transition--slide-down-enter-active {
+  animation: slide-down .5s;
 }
 
-.slide-down-leave-active {
-  animation: slide-down .3s reverse;
+.custom-transition--slide-down-leave-active {
+  animation: slide-down .5s reverse;
 }
 
 /* SLIDE RIGHT */
-.slide-right-enter-active {
-  animation: slide-right .3s;
+.custom-transition--slide-right-enter-active {
+  animation: slide-right .5s;
 }
 
-.slide-right-leave-active {
-  animation: slide-right .3s reverse;
+.custom-transition--slide-right-leave-active {
+  animation: slide-right .5s reverse;
 }

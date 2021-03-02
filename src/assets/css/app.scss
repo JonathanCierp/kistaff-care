@@ -88,14 +88,16 @@ svg {
 @import "module/core/core-header";
 @import "module/core/core-notification";
 @import "module/core/core-user-menu";
-@import "module/custom/custom-dropdown";
-@import "module/custom/custom-button";
+@import "module/custom/form/custom-input";
+@import "module/custom/form/custom-select";
+@import "module/custom/notification/custom-notification";
 @import "module/custom/tabs/custom-tabs";
 @import "module/custom/tabs/custom-tab";
 @import "module/custom/tabs/custom-tab-items";
 @import "module/custom/tabs/custom-tab-item";
-@import "module/custom/form/custom-input";
-@import "module/custom/form/custom-select";
+@import "module/custom/custom-dropdown";
+@import "module/custom/custom-button";
+@import "module/custom/custom-progress-circular";
 @import "module/page/page-header";
 @import "module/page/tab/tab-header";
 @import "module/page/list/list-items";
@@ -103,5 +105,5 @@ svg {
 
 // Pages
 // ==================
-@import "page/settings";
+@import "page/profiles";
 @import "page/signin";

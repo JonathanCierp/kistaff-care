@@ -1,15 +1,19 @@
 <template>
-	<button :class="[typeClass, sizeClass, roundedClass, roundedClass, outlinedClass, flatClass, blockClass, iconClass, textClass, centerClass]"
-	        :disabled="disabled" :type="nativeType" class="custom-button" role="button">
-     <span class="custom-button__content">
+	<button
+			:class="[typeClass, sizeClass, roundedClass, roundedClass, outlinedClass, flatClass, blockClass, iconClass,
+			textClass, centerClass, hideContentIfLoadingClass, hideOnMobileLabelClass]"
+			:disabled="disabled" :type="nativeType" class="custom-button" role="button">
+		<component :is="iconLeft" v-if="iconLeft" class="custom-button__icon-left" />
+		<span class="custom-button__content">
       <slot />
     </span>
-		<component v-if="iconLeft" :is="iconLeft" />
+		<component :is="iconRight" v-if="iconRight" class="custom-button__icon-right" />
+		<CustomProgressCircle v-if="loading" class="custom-button__loader" color="currentColor" indeterminate size="20" />
 	</button>
 </template>
 
 <script>
-	import { defineComponent, computed } from "vue"
+	import { computed, defineComponent } from "vue"
 
 	export default defineComponent({
 		name: "CustomButton",
@@ -62,7 +66,15 @@
 				type: String,
 				default: ""
 			},
+			iconRight: {
+				type: String,
+				default: ""
+			},
 			center: {
+				type: Boolean,
+				default: false
+			},
+			hideOnMobileLabel: {
 				type: Boolean,
 				default: false
 			}
@@ -79,6 +91,7 @@
 			const textClass = computed(() => props.text ? "custom-button--text" : "")
 			const centerClass = computed(() => props.center ? "custom-button--center" : "")
 			const hideContentIfLoadingClass = computed(() => props.loading ? "custom-button__content--hidden" : "")
+			const hideOnMobileLabelClass = computed(() => props.hideOnMobileLabel ? "custom-button--mobile-hidden" : "")
 
 			return {
 				/* Computed */
@@ -91,7 +104,8 @@
 				iconClass,
 				textClass,
 				centerClass,
-				hideContentIfLoadingClass
+				hideContentIfLoadingClass,
+				hideOnMobileLabelClass
 			}
 		}
 	})

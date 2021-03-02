@@ -10,13 +10,20 @@
 
   & .custom-dropdown {
     margin-top: .5rem;
+    position: relative;
+
+    & .custom-dropdown__popover{
+      top: auto !important;
+      right: 0 !important;
+      z-index: 10;
+    }
   }
 
   & .custom-button {
     border-radius: 6px;
     padding: .75rem .5rem !important;
     height: auto !important;
-    border: 2px solid var(--color-border);
+    border: 2px solid var(--color-border) !important;
 
     & span, & svg {
       color: var(--color-gray-darker-1);
@@ -33,6 +40,8 @@
 
   & .custom-select__popover {
     background-color: var(--color-background-lighter);
+    max-height: 250px;
+    overflow-y: auto;
 
     & li {
       display: flex;

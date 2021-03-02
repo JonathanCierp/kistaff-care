@@ -29,7 +29,7 @@
     @extend %container;
     padding: 4rem 0;
 
-    &.missions .missions__body, &.settings .settings__body, &.documents .documents__body {
+    &.missions .missions__body, &.profiles .profiles__body, &.documents .documents__body {
       background-color: var(--color-background-lighter);
       box-shadow: 0 2px 4px var(--shadow);
       display: flex;
@@ -63,7 +63,7 @@
 
 @media only screen and (max-width: 768px) {
   .hide-on-mobile {
-    display: none;
+    display: none !important;
   }
 }
 

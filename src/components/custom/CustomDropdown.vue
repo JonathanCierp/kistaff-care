@@ -1,6 +1,6 @@
 <template>
 	<div ref="root" class="custom-dropdown" :data-uid="uid">
-		<custom-button v-if="$slots.title" class="custom-dropdown__title" :icon="icon" :text="text" @click="onOpen" :center="center" block :icon-left="iconLeft">
+		<custom-button v-if="$slots.title" class="custom-dropdown__title" :icon="icon" :text="text" @click="onOpen" :center="center" block :icon-right="iconRight">
 			<slot name="title"></slot>
 		</custom-button>
 		<transition name="fade">
@@ -26,7 +26,7 @@
 				type: Boolean,
 				default: false
 			},
-			iconLeft: {
+			iconRight: {
 				type: String,
 				default: ""
 			},
@@ -72,7 +72,7 @@
 			/* Computed */
 			const popoverStyle = computed(() => {
 				let styles = {
-					top: (popoverTop.value + parseInt(props.offset)) + "px"
+					top: `calc(100% + ${parseInt(props.offset)}px)`
 				}
 
 				if(props.popoverWidth) {

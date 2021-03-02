@@ -1,12 +1,19 @@
 .custom-button {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   position: relative;
   cursor: pointer;
   transition: opacity .2s, background-color .3s, color .3s;
 
-  &:disabled {
+  & .custom-button__icon-left ~ .custom-button__content {
+    margin-left: .5rem;
+  }
+  & .custom-button__icon-right ~ .custom-button__content {
+    margin-right: .5rem;
+  }
+
+  &:not(.custom-button__content--hidden):disabled {
     background-color: var(--color-gray-lighter-2) !important;
     border: 1px solid var(--color-gray-lighter-2) !important;
     color: var(--color-gray-lighter-3) !important;
@@ -14,7 +21,7 @@
     box-shadow: none !important;
   }
 
-  &:hover:disabled {
+  &:not(.custom-button__content--hidden):hover:disabled {
     background-color: var(--color-gray-lighter-2) !important;
     border: 1px solid var(--color-gray-lighter-2) !important;
     color: var(--color-gray-lighter-3) !important;
@@ -282,6 +289,16 @@
 
   }
 
+  &.custom-button__content--hidden {
+    & .custom-button__content, & .custom-button__icon-left, & .custom-button__icon-right {
+      visibility: hidden;
+    }
+
+    & .custom-button__loader {
+      position: absolute;
+    }
+  }
+
   & .custom-button__content {
     display: flex;
     align-items: center;
@@ -290,5 +307,13 @@
   &.custom-button--center .custom-button__content{
     justify-content: center;
     text-align: center;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .custom-button {
+    &.custom-button--mobile-hidden .custom-button__content {
+      display: none;
+    }
   }
 }
