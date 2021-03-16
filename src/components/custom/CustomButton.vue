@@ -8,7 +8,7 @@
       <slot />
     </span>
 		<component :is="iconRight" v-if="iconRight" class="custom-button__icon-right" />
-		<CustomProgressCircle v-if="loading" class="custom-button__loader" color="currentColor" indeterminate size="20" />
+		<CustomProgressCircle v-if="loading" class="custom-button__loader" color="currentColor" indeterminate :size="progressElementSize" />
 	</button>
 </template>
 
@@ -92,6 +92,23 @@
 			const centerClass = computed(() => props.center ? "custom-button--center" : "")
 			const hideContentIfLoadingClass = computed(() => props.loading ? "custom-button__content--hidden" : "")
 			const hideOnMobileLabelClass = computed(() => props.hideOnMobileLabel ? "custom-button--mobile-hidden" : "")
+			const progressElementSize = computed(() => {
+				let size = 0
+
+				if(props.size === "xs") {
+					size = 12
+				}else if(props.size === "sm") {
+					size = 16
+				}else if(props.size === "md") {
+					size = 20
+				}else if(props.size === "lg") {
+					size = 24
+				}else if(props.size === "xl") {
+					size = 28
+				}
+
+				return size
+			})
 
 			return {
 				/* Computed */
@@ -105,7 +122,8 @@
 				textClass,
 				centerClass,
 				hideContentIfLoadingClass,
-				hideOnMobileLabelClass
+				hideOnMobileLabelClass,
+				progressElementSize
 			}
 		}
 	})

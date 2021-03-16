@@ -3,43 +3,48 @@
 		<PageHeader label="Mes missions" />
 		<div v-if="show" class="missions__body">
 			<CustomTabs v-model="tab">
-				<CustomTab icon="IconFilledCog">
-					A pourvoir&nbsp;<sub class="hide-on-mobile text-caption">({{ newMissions.value.length }})</sub>
+				<CustomTab icon="IconFilledCog" name="new">
+					A pourvoir&nbsp;<sub class="hide-on-mobile text-caption">({{ newMissions.value.missions.length }})</sub>
 				</CustomTab>
-				<CustomTab icon="IconFilledCog">
-					En cours&nbsp;<sub class="hide-on-mobile text-caption">({{ upcomingMissions.value.length }})</sub>
+				<CustomTab icon="IconFilledCog" name="upcoming">
+					En cours&nbsp;<sub class="hide-on-mobile text-caption">({{ upcomingMissions.value.missions.length }})</sub>
 				</CustomTab>
-				<CustomTab icon="IconFilledCog">
-					En attente&nbsp;<sub class="hide-on-mobile text-caption">({{ pendingMissions.value.length }})</sub>
+				<CustomTab icon="IconFilledCog" name="pending">
+					En attente&nbsp;<sub class="hide-on-mobile text-caption">({{ pendingMissions.value.missions.length }})</sub>
 				</CustomTab>
-				<CustomTab icon="IconFilledCog">
-					Passées&nbsp;<sub class="hide-on-mobile text-caption">({{ passedMissions.value.length }})</sub>
+				<CustomTab icon="IconFilledCog" name="passed">
+					Passées&nbsp;<sub class="hide-on-mobile text-caption">({{ passedMissions.value.missions.length }})</sub>
 				</CustomTab>
 			</CustomTabs>
 			<CustomTabItems v-model="tab">
-				<CustomTabItem>
-					<TabHeader icon="IconFilledCog" title="Missions à pourvoir" />
+				<CustomTabItem name="new">
+					<TabHeader v-model="searchNewMission" icon="IconFilledCog" searchable title="Missions à pourvoir"
+					           @update:modelValue="v => onSearch('new', v)" />
 					<ListItems>
 						<ListItem v-for="mission in newMissions.value.missions" :key="mission.id" :mission="mission"
-						          class="list-item-confirm" confirm />
+						          class="list-item-confirm" confirm @open-accept="openDialog('accept', mission)"
+						          @open-refuse="openDialog('refuse', mission)" />
 					</ListItems>
 				</CustomTabItem>
-				<CustomTabItem>
-					<TabHeader icon="IconFilledCog" title="Missions en cours" />
+				<CustomTabItem name="upcoming">
+					<TabHeader v-model="searchUpcomingMission" icon="IconFilledCog" searchable title="Missions en cours"
+					           @update:modelValue="v => onSearch('upcoming', v)" />
 					<ListItems>
 						<ListItem v-for="mission in upcomingMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-details" details />
 					</ListItems>
 				</CustomTabItem>
-				<CustomTabItem>
-					<TabHeader icon="IconFilledCog" title="Missions en attente" />
+				<CustomTabItem name="pending">
+					<TabHeader v-model="searchPendingMission" icon="IconFilledCog" searchable title="Missions en attente"
+					           @update:modelValue="v => onSearch('pending', v)" />
 					<ListItems>
 						<ListItem v-for="mission in pendingMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-details" details />
 					</ListItems>
 				</CustomTabItem>
-				<CustomTabItem>
-					<TabHeader icon="IconFilledCog" title="Missions passées" />
+				<CustomTabItem name="passed">
+					<TabHeader v-model="searchPassedMission" icon="IconFilledCog" searchable title="Missions passées"
+					           @update:modelValue="v => onSearch('passed', v)" />
 					<ListItems>
 						<ListItem v-for="mission in passedMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-details" details />
@@ -47,50 +52,93 @@
 				</CustomTabItem>
 			</CustomTabItems>
 		</div>
+		<AcceptMissionDialog v-model="acceptDialogOpen" :mission="currentMission" />
+		<RefuseMissionDialog v-model="refuseDialogOpen" :mission="currentMission" />
 	</main>
 </template>
 
 <script>
-	import { defineComponent, onMounted, reactive, ref, computed } from "vue"
-	import {
-		MISSIONS_STATUS,
-		findMissionsForUserConnected,
-		findRequestsForUserConnected,
-		findMissionsForUserConnectedFilteredByStatus
-	} from "../api/missions"
+	import { defineComponent, onMounted, reactive, ref } from "vue"
+	import { useStore } from "vuex"
 
 	export default defineComponent({
 		name: "Home",
 		setup: () => {
+			const store = useStore()
+
 			/* Datas */
 			const show = ref(false)
-			const tab = ref(0)
+			const acceptDialogOpen = ref(false)
+			const refuseDialogOpen = ref(false)
+			const tab = ref("new")
+			const searchNewMission = ref("")
+			const searchUpcomingMission = ref("")
+			const searchPendingMission = ref("")
+			const searchPassedMission = ref("")
 			let newMissions = reactive({})
 			let upcomingMissions = reactive({})
 			let pendingMissions = reactive({})
 			let passedMissions = reactive({})
+			let currentMission = ref({})
 
-			/* Lifecycle hooks*/
+			/* Methods */
+			const openDialog = (type, mission) => {
+				currentMission.value = mission
+
+				if(type === "accept") {
+					acceptDialogOpen.value = true
+				} else {
+					refuseDialogOpen.value = true
+				}
+			}
+			const onSearch = (type, v) => {
+				switch(type) {
+					case "new":
+						newMissions.value = store.getters.filterMissions("new", v)
+						break
+					case "upcoming":
+						upcomingMissions.value = store.getters.filterMissions("upcoming", v)
+						break
+					case "pending":
+						pendingMissions.value = store.getters.filterMissions("pending", v)
+						break
+					case "passed":
+						passedMissions.value = store.getters.filterMissions("passed", v)
+						break
+				}
+			}
+
+			/* Lifecycle hooks */
 			onMounted(async () => {
-				await findMissionsForUserConnected()
-				await findRequestsForUserConnected()
+				await store.dispatch("getMissions")
 
-				newMissions.value = await findMissionsForUserConnectedFilteredByStatus(MISSIONS_STATUS.NEW)
-				upcomingMissions.value = await findMissionsForUserConnectedFilteredByStatus(MISSIONS_STATUS.UPCOMING)
-				pendingMissions.value = await findMissionsForUserConnectedFilteredByStatus(MISSIONS_STATUS.PENDING)
-				passedMissions.value = await findMissionsForUserConnectedFilteredByStatus(MISSIONS_STATUS.PASSED)
+				newMissions.value = store.getters.filterMissions("new")
+				upcomingMissions.value = store.getters.filterMissions("upcoming")
+				pendingMissions.value = store.getters.filterMissions("pending")
+				passedMissions.value = store.getters.filterMissions("passed")
 
 				show.value = true
 			})
 
 			return {
+				store,
 				/* Datas */
 				show,
+				acceptDialogOpen,
+				refuseDialogOpen,
 				tab,
+				searchNewMission,
+				searchUpcomingMission,
+				searchPendingMission,
+				searchPassedMission,
 				newMissions,
 				upcomingMissions,
 				pendingMissions,
-				passedMissions
+				passedMissions,
+				currentMission,
+				/* Methods */
+				openDialog,
+				onSearch
 			}
 		}
 	})

@@ -1,6 +1,7 @@
 .list-item {
   width: 50%;
   cursor: pointer;
+  animation: fade .5s;
 
   &.list-item-details .list-item__body:hover .list-item__meta, &.list-item-details .list-item__body:hover .list-item__actions {
     background-color: var(--color-blue-hover-lighter);
@@ -74,6 +75,8 @@
     width: 100%;
 
     & .list-item__body {
+      margin: 0.5rem 0;
+
       & .list-item__meta {
         & h2 {
           font-size: .9rem;

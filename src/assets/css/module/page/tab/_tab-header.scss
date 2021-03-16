@@ -1,13 +1,13 @@
 .tabs-header {
   display: flex;
   align-items: center;
-  padding-left: 1rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
 
   & .tabs-header__title {
     display: flex;
     align-items: center;
-    flex: 1;
+    flex: 1 0 auto;
     font-size: 1.5rem;
     font-weight: 500;
 
@@ -19,8 +19,21 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .tabs-header button {
-    width: 48px !important;
-    min-width: 48px !important;
+  .tabs-header {
+    margin-bottom: 1rem;
+
+    & .tabs-header__title {
+      font-size: 1.3rem;
+    }
+
+    & button {
+      width: 48px !important;
+      min-width: 48px !important;
+    }
+
+    & .tabs-header__input {
+      margin-top: 1rem;
+      width: 100%;
+    }
   }
 }

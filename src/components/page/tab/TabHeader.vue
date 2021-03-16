@@ -4,9 +4,11 @@
 			<component :is="icon" />
 			{{ title }}
 		</h2>
-		<CustomButton v-if="buttonLabel" :icon-left="buttonIcon" class="tabs-header__action" :loading="loading" hide-on-mobile-label
-		              :disabled="loading" @click="buttonCallback">{{ buttonLabel }}
+		<CustomButton v-if="buttonLabel" :icon-left="buttonIcon" :loading="loading" class="tabs-header__button"
+		              hide-on-mobile-label @click="buttonCallback">{{ buttonLabel }}
 		</CustomButton>
+		<CustomInput v-if="searchable" class="tabs-header__input" placeholder="Rechercher ..."
+		             @update:modelValue="onSearch" />
 	</div>
 </template>
 
@@ -35,6 +37,10 @@
 			loading: {
 				type: Boolean,
 				default: false
+			},
+			searchable: {
+				type: Boolean,
+				default: false
 			}
 		},
 		setup(props, { emit }) {
@@ -42,9 +48,13 @@
 			const buttonCallback = (e) => {
 				emit("callback", e)
 			}
+			const onSearch = (v) => {
+				emit("update:modelValue", v)
+			}
 
 			return {
-				buttonCallback
+				buttonCallback,
+				onSearch
 			}
 		}
 	})

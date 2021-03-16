@@ -35,6 +35,10 @@
       display: flex;
     }
   }
+
+  & a:hover {
+    color: var(--color-blue-primary);
+  }
 }
 
 @media only screen and (max-width: 768px) {

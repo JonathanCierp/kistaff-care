@@ -12,7 +12,7 @@
   transition: opacity .5s, transform .5s, left .5s, right .5s, top .5s, bottom .5s;
   font-weight: 500;
   border-radius: 6px;
-  z-index: 100;
+  z-index: 9999999;
 
   &.custom-notification--top-right {
     right: 16px;

@@ -1,5 +1,5 @@
 <template>
-	<div ref="root" class="custom-dropdown" :data-uid="uid">
+	<div ref="root" class="custom-dropdown" :data-uid="uid" :class="[placementClass]">
 		<custom-button v-if="$slots.title" class="custom-dropdown__title" :icon="icon" :text="text" @click="onOpen" :center="center" block :icon-right="iconRight">
 			<slot name="title"></slot>
 		</custom-button>
@@ -41,6 +41,10 @@
 			center: {
 				type: Boolean,
 				default: false
+			},
+			placement: {
+				type: String,
+				default: "bottom"
 			}
 		},
 		setup: (props) => {
@@ -71,8 +75,16 @@
 
 			/* Computed */
 			const popoverStyle = computed(() => {
-				let styles = {
-					top: `calc(100% + ${parseInt(props.offset)}px)`
+				let styles = { }
+
+				if(props.placement === "top") {
+					styles = {
+						bottom: `calc(100% + ${parseInt(props.offset)}px)`
+					}
+				}else if(props.placement === "bottom") {
+					styles = {
+						top: `calc(100% + ${parseInt(props.offset)}px)`
+					}
 				}
 
 				if(props.popoverWidth) {
@@ -81,6 +93,7 @@
 
 				return styles
 			})
+			const placementClass = computed(() => `custom-dropdown--${props.placement}`)
 
 			return {
 				/* Datas */
@@ -91,7 +104,8 @@
 				onOpen,
 				closeDropdown,
 				/* Computed */
-				popoverStyle
+				popoverStyle,
+				placementClass
 			}
 		}
 	})

@@ -1,21 +1,8 @@
 .profiles {
   & .profiles__body {
     & .profiles__form {
-      padding-left: 1rem;
-
-      & .profiles__form__row {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        margin-top: .5rem;
-
-        & > div {
-          margin-top: 1rem;
-        }
-
-        & .custom-select, & .custom-input {
-          margin-right: 1rem;
-        }
+      & .custom-select, & .custom-input {
+        margin-right: 1rem;
       }
 
       & .profiles__form__action {

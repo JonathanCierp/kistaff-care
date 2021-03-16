@@ -34,7 +34,7 @@
   --color-black-primary: #000000;
   --color-black-overlay: rgba(0, 0, 0, .7);
   --color-white-primary: #FFFFFF;
-  --shadow: #d8e1e8;
+  --shadow: #D8E1E8;
   //--shadow-elevation-1:  0px 2px 2px rgba(152, 162, 179, 0.15), 0px 1px 5px rgba(152, 162, 179, 0.15);
   //--shadow-elevation-2: 0px 0px 12px rgba(152, 162, 179, 0.15), 0px 0px 4px rgba(152, 162, 179, 0.15), 0px 0px 2px rgba(152, 162, 179, 0.15);
   //--shadow-elevation-3: 0px 12px 24px rgba(65, 78, 101, 0.1), 0px 6px 12px rgba(65, 78, 101, 0.1), 0px 4px 4px rgba(65, 78, 101, 0.1), 0px 2px 2px rgba(65, 78, 101, 0.1);
@@ -88,22 +88,28 @@ svg {
 @import "module/core/core-header";
 @import "module/core/core-notification";
 @import "module/core/core-user-menu";
+@import "module/custom/form/custom-date-picker";
+@import "module/custom/form/custom-file-upload";
 @import "module/custom/form/custom-input";
 @import "module/custom/form/custom-select";
+@import "module/custom/layout/custom-row";
 @import "module/custom/notification/custom-notification";
 @import "module/custom/tabs/custom-tabs";
 @import "module/custom/tabs/custom-tab";
 @import "module/custom/tabs/custom-tab-items";
 @import "module/custom/tabs/custom-tab-item";
 @import "module/custom/custom-dropdown";
+@import "module/custom/custom-dialog";
 @import "module/custom/custom-button";
 @import "module/custom/custom-progress-circular";
 @import "module/page/page-header";
 @import "module/page/tab/tab-header";
 @import "module/page/list/list-items";
 @import "module/page/list/list-item";
+@import "module/page/documents/document-upload-item";
 
 // Pages
 // ==================
+@import "page/documents";
 @import "page/profiles";
 @import "page/signin";

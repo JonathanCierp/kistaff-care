@@ -10,9 +10,9 @@
 		    </div>
 	    </div>
 	    <div class="list-item__actions">
-		    <CustomButton v-if="details" text type="info" block>Details</CustomButton>
-		    <CustomButton v-if="confirm" text type="success" block>Accepter</CustomButton>
-		    <CustomButton v-if="confirm" text type="error" block>Refuser</CustomButton>
+<!--		    <CustomButton v-if="details" text type="info" block>Details</CustomButton>-->
+		    <CustomButton v-if="confirm" text type="success" block @click="$emit('openAccept')">Accepter</CustomButton>
+		    <CustomButton v-if="confirm" text type="error" block @click="$emit('openRefuse')">Refuser</CustomButton>
 	    </div>
     </div>
   </article>
@@ -50,7 +50,7 @@
 			const endHours = endDate.toLocaleTimeString().substr(0, 5);
 
 			/* Computed */
-			const previewPlace = computed(() => window.innerWidth >= 1100 ||  window.innerWidth <= 500 ? props.mission.organization.name.substr(0, 20) + "..." : props.mission.organization.name)
+			const previewPlace = computed(() => window.innerWidth >= 1100 && window.innerWidth <= 500 ? props.mission.organization.name.substr(0, 20) + "..." : props.mission.organization.name)
 			const missionDate = computed(() => ucFirst(startDateFrFormat))
 			const missionHours = computed(() => `${startHours} - ${endHours}`)
 

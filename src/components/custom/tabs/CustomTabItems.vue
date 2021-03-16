@@ -23,12 +23,20 @@
 			watch(() => props.modelValue, (newVal) => {
 				let tabs = Array.from(root.value.children)
 				tabs.forEach(tab => tab.classList.remove("custom-tab-item--active"))
-				root.value.children[newVal]?.classList.add("custom-tab-item--active")
+				if(typeof newVal === "number") {
+					root.value.children[newVal]?.classList.add("custom-tab-item--active")
+				}else {
+					[...root.value.children].find(child => child.getAttribute("data-tab") === newVal)?.classList.add("custom-tab-item--active")
+				}
 			})
 
 			/* Lifecycle hooks */
 			onMounted(() => {
-				root.value.children[props.modelValue].classList.add("custom-tab-item--active")
+				if(typeof props.modelValue === "number") {
+					root.value.children[props.modelValue]?.classList.add("custom-tab-item--active")
+				}else {
+					[...root.value.children].find(child => child.getAttribute("data-tab") === props.modelValue)?.classList.add("custom-tab-item--active")
+				}
 			})
 
 			return {

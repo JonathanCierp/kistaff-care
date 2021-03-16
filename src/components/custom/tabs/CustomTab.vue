@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-tab" :data-uid="uid">
+  <div class="custom-tab" :data-uid="uid" :data-tab="name">
 	  <component :is="icon" />
     <slot></slot>
   </div>
@@ -15,6 +15,10 @@
 			icon: {
 				type: String,
 				default: ""
+			},
+			name: {
+				type: [Number, String],
+				default: 0
 			}
 		},
 		setup: () => {

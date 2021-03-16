@@ -20,7 +20,7 @@
     position: initial;
 
     & .custom-dropdown__popover {
-      top: 52px;
+      top: 52px !important;
       right: 1rem;
     }
   }

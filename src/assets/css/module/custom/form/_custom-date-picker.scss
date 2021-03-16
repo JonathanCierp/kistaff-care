@@ -1,0 +1,107 @@
+.custom-date-picker {
+  position: relative;
+
+  & * {
+    user-select: none;
+  }
+
+  & label {
+    text-align: left;
+  }
+
+  & input {
+    &:focus {
+      outline: none;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      display: none;
+      -webkit-appearance: none;
+    }
+  }
+
+  & .custom-input {
+    margin-right: 0 !important;
+  }
+
+  & .custom-date-picker__container {
+    width: 300px;
+    //height: 300px;
+    background-color: var(--color-background-lighter);
+    border: 2px solid var(--color-border);
+    border-radius: 6px;
+    padding: .5rem 1rem;
+
+    & .custom-date-picker__years {
+      display: flex;
+      margin: .5rem 0;
+
+      & .custom-date-picker__years-text {
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+      }
+
+      & .custom-date-picker__arrow-left, & .custom-date-picker__arrow-right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        color: var(--color-gray-darker-1);
+
+        &:hover {
+          color: var(--color-text);
+        }
+      }
+    }
+
+    & .custom-date-picker__header, & .custom-date-picker__body {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+
+      & .custom-date-picker__header__day, & .custom-date-picker__body__day {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        width: 30px;
+        height: 30px;
+        margin: .24rem;
+        padding: .125rem;
+        font-size: .85rem;
+        border-radius: 50%;
+      }
+
+      & .custom-date-picker__body__day {
+        cursor: pointer;
+
+        &.custom-date-picker__body__day--current {
+          background-color: var(--color-blue-lighter) !important;
+          color: var(--color-background-lighter) !important;
+        }
+
+        &:hover, &.custom-date-picker__body__day--selected {
+          background-color: var(--color-blue-primary) !important;
+          color: var(--color-background-lighter) !important;
+        }
+      }
+
+      & .custom-date-picker__body__day {
+        color: var(--color-gray-darker-1);
+
+        &.custom-date-picker__body__day--disabled {
+          color: var(--color-gray-primary);
+        }
+      }
+    }
+
+    & .custom-date-picker__body {
+      margin-bottom: .5rem;
+    }
+  }
+}

@@ -8,10 +8,12 @@
 
 <script>
 	import { defineComponent } from "vue"
+	import { useRouter } from "vue-router"
 
 	export default defineComponent({
 		name: "CoreUserMenu",
 		setup: (props, { emit }) => {
+			const router = useRouter()
 			/* Datas */
 			const links = [
 				{
@@ -31,7 +33,8 @@
 					label: "Me déconnecter",
 					icon: "IconOutlinedLogout",
 					callback: () => {
-						console.log(1)
+						localStorage.removeItem("jwt")
+						router.go(0)
 					}
 				}
 			]

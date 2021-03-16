@@ -62,7 +62,7 @@
 			},
 			duration: {
 				type: [Number, String],
-				default: 2000
+				default: 3000
 			},
 			onClose: {
 				type: Function,

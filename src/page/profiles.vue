@@ -12,41 +12,46 @@
 					           icon="IconCircleOutlineUser"
 					           title="Mes informations" @callback="saveInformations" />
 					<CustomForm class="profiles__form">
-						<div class="profiles__form__row">
+						<CustomRow>
 							<CustomSelect v-model="user.civility" :items="civility.value" label="Civilité" placeholder="Civilité"
 							              width="300px" />
-						</div>
-						<div class="profiles__form__row">
+						</CustomRow>
+						<CustomRow>
 							<CustomInput v-model="user.firstName" label="Nom" placeholder="Nom" width="300px" />
 							<CustomInput v-model="user.lastName" label="Prénom" placeholder="Prénom" width="300px" />
-						</div>
-						<div class="profiles__form__row">
+						</CustomRow>
+						<CustomRow>
 							<CustomInput v-model="user.phone" label="Téléphone" mobile placeholder="Téléphone mobile" width="300px" />
 							<CustomInput v-model="user.email" label="Adresse e-mail" mail placeholder="Adresse mail" width="300px" />
-						</div>
-						<div class="profiles__form__row">
+						</CustomRow>
+						<CustomRow>
 							<CustomInput v-model="user.phone" label="N° sécurité sociale" mobile placeholder="N° sécurité sociale"
 							             width="300px" />
 							<CustomInput v-model="user.email" label="N° adéli" mail placeholder="N° adéli" width="300px" />
-						</div>
+						</CustomRow>
 						<h2>Adresse</h2>
-						<div class="profiles__form__row">
+						<CustomRow>
 							<CustomInput v-model="user.street" label="Rue" placeholder="Rue" width="300px" />
 							<CustomInput v-model="user.postalCode" label="Code" placeholder="Code postal" postal width="300px" />
 							<CustomInput v-model="user.city" label="Ville" placeholder="Ville" width="300px" />
-						</div>
+						</CustomRow>
+						<h2>Declarer une absence</h2>
+						<CustomRow>
+							<CustomDatePicker class="mr-4" v-model="user.absenceStartDate" label="Date de début" />
+							<CustomDatePicker v-model="user.absenceEndDate" label="Date de fin" />
+						</CustomRow>
 					</CustomForm>
 				</CustomTabItem>
 				<CustomTabItem>
 					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer" icon="IconFilledCog"
 					           title="Mes préférences" @callback="savePreference" />
 					<form class="profiles__form">
-						<div class="profiles__form__row">
+						<CustomRow>
 							<CustomSelect v-model="user.fonction" :items="fonction.value" label="Fonction" placeholder="Fonction"
 							              width="300px" />
 							<CustomSelect v-model="user.pole" :items="pole.value" label="Pôle" multiple placeholder="Pôle"
 							              width="450px" />
-						</div>
+						</CustomRow>
 						<div class="profiles__form__action">
 							<label>Type de planning</label>
 							<div class="profiles__form__planning">
@@ -99,7 +104,9 @@
 				city: store.state.user.MailingAddress.city,
 				fonction: "Nurse",
 				pole: "Emergency;Paediatric;Intensive Care",
-				schedule: store.state.user.xType_of_Schedule__c
+				schedule: store.state.user.xType_of_Schedule__c,
+				absenceStartDate: "2021-03-24",
+				absenceEndDate: "2021-03-28"
 			})
 			const scheduleDay = ref(user.schedule === "Day" || user.schedule === "All")
 			const scheduleNight = ref(user.schedule === "Night" || user.schedule === "All")

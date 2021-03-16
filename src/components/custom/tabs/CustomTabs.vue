@@ -28,13 +28,17 @@
 					tabs.forEach(tab => tab.classList.remove("custom-tab--active"))
 					element.classList.add("custom-tab--active")
 
-					emit("update:modelValue", tabs.indexOf(element))
+					emit("update:modelValue", element.getAttribute("data-tab") || tabs.indexOf(element))
 				}
 			}
 			
 			/* Lifecycle hooks */
 			onMounted(() => {
-				root.value.children[props.modelValue].classList.add("custom-tab--active")
+				if(typeof props.modelValue === "number") {
+					root.value.children[props.modelValue]?.classList.add("custom-tab--active")
+				}else {
+					[...root.value.children].find(child => child.getAttribute("data-tab") === props.modelValue)?.classList.add("custom-tab--active")
+				}
 			})
 
 			return {

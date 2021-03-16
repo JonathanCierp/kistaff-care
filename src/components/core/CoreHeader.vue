@@ -64,12 +64,12 @@
 					key: "offres-d-emplois",
 					to: "/offers",
 					label: "Offres d'emplois"
-				},
+				},*/
 				{
 					key: "etablissements",
 					to: "/organizations",
 					label: "Etablissements"
-				}*/
+				}
 			]
 			const mobileMenuIsOpen = ref(false)
 			const notificationDropdown = ref(null)

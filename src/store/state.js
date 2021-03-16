@@ -1,4 +1,11 @@
 export default () => ({
   user: {},
-  isLogged: false
+  isLogged: false,
+  missions: {
+    new: {},
+    upcoming: {},
+    pending: {},
+    passed: {}
+  },
+  userDocuments: []
 })

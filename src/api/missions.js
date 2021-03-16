@@ -31,7 +31,7 @@ const findMissionsForUserConnectedFilteredByStatus = async (status) => {
 
 	if(status === MISSIONS_STATUS.UPCOMING || status === MISSIONS_STATUS.PASSED) {
 		missionFiltered = missions.filter(mission => mission.status === status)
-	}else if(status === MISSIONS_STATUS.NEW || status === MISSIONS_STATUS.PENDING) {
+	} else if(status === MISSIONS_STATUS.NEW || status === MISSIONS_STATUS.PENDING) {
 		missionFiltered = requests.filter(requests => requests.status === status)
 	}
 
@@ -40,15 +40,25 @@ const findMissionsForUserConnectedFilteredByStatus = async (status) => {
 		length: missionFiltered.length
 	}
 }
-const acceptMission = async () => {
-
+const acceptMission = async (missionId) => {
+	return await useAxiosAuthInstance().put("/requests/" + missionId, {
+		"xResponse_Status__c": "Accepted",
+		"xStatus__c": "Submitted"
+	})
+}
+const refuseMission = async (missionId) => {
+	return await useAxiosAuthInstance().put("/requests/" + missionId, {
+		"xResponse_Status__c": "Declined",
+		"xStatus__c": "Submitted"
+	})
 }
 const normalizeMission = (mission) => {
 	return {
 		id: mission.Id,
 		status: mission.xStatus__c,
 		organization: {
-			name: mission.xOrganization__r ? mission.xOrganization__r.Name : mission.xService_Request__r.xOrganization__r.Name
+			name: mission.xOrganization__r ? mission.xOrganization__r.Name : mission.xService_Request__r.xOrganization__r.Name,
+			address: mission.xAddress__c ? mission.xAddress__c : mission.xService_Request__r.xAddress__c
 		},
 		job: {
 			name: mission.xSubject__c ? mission.xSubject__c : mission.xService_Request__r.xSubject__c,
@@ -66,5 +76,7 @@ export {
 	findMissionsForUserConnected,
 	findRequestsForUserConnected,
 	findMissionsForUserConnectedFilteredByStatus,
+	acceptMission,
+	refuseMission,
 	normalizeMission
 }
