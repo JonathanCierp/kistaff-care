@@ -5,7 +5,7 @@
 			<CustomTabs v-model="tab">
 				<CustomTab icon="IconCircleOutlineUser">Mes informations</CustomTab>
 				<CustomTab icon="IconFilledCog">Mes absences</CustomTab>
-<!--				<CustomTab icon="IconFilledCog">Mes Spécialités</CustomTab>-->
+				<!--				<CustomTab icon="IconFilledCog">Mes Spécialités</CustomTab>-->
 				<CustomTab icon="IconFilledCog">Mes préférences</CustomTab>
 			</CustomTabs>
 			<CustomTabItems v-model="tab">
@@ -44,7 +44,7 @@
 					           title="Absence" @callback="saveAbsence" />
 					<form class="profiles__form">
 						<CustomRow>
-							<CustomDatePicker class="mr-4" v-model="user.absenceStartDate" label="Date de début" />
+							<CustomDatePicker v-model="user.absenceStartDate" class="mr-4" label="Date de début" />
 							<CustomDatePicker v-model="user.absenceEndDate" label="Date de fin" />
 						</CustomRow>
 					</form>
@@ -86,9 +86,10 @@
 				fonction: "Nurse",
 				pole: "Emergency;Paediatric;Intensive Care",
 				schedule: store.state.user.xType_of_Schedule__c,
-				absenceStartDate: "2021-03-24",
-				absenceEndDate: "2021-03-28"
+				absenceStartDate: (new Date(store.state.user.xLeave_From__c)).toISOString().split('T')[0],
+				absenceEndDate: (new Date(store.state.user.xLeave_To__c)).toISOString().split('T')[0]
 			})
+
 			const scheduleDay = ref(user.schedule === "Day" || user.schedule === "All")
 			const scheduleNight = ref(user.schedule === "Night" || user.schedule === "All")
 			const loading = ref(false)
@@ -130,12 +131,20 @@
 						}
 					})
 				} catch(e) {
+					
 				}
 				loading.value = false
 			}
 			const saveAbsence = async () => {
 				try {
 					loading.value = true
+					await store.dispatch("editUser", {
+						id: store.state.user.Id,
+						user: {
+							xLeave_From__c: user.absenceStartDate,
+							xLeave_To__c: user.absenceEndDate
+						}
+					})
 
 				} catch(e) {
 

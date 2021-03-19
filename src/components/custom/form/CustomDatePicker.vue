@@ -55,7 +55,7 @@
 			}
 		},
 		setup(props, { emit }) {
-			const date = new Date()
+			const date = props.modelValue ? new Date(props.modelValue) : new Date()
 			const daysMap = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]
 			const monthMap = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
 			const todayTimestamp = ((new Date().getTime() / 1000) + 3600) * 1000
