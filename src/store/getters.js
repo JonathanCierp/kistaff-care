@@ -24,5 +24,12 @@ export default {
 	},
 	getDocumentByDescription: state => (description) => {
 		return state.userDocuments.find(userDocument => userDocument.Description === description)
+	},
+	filterOrganization: state => (v) => {
+		return state.organizations.filter(organization =>
+			normalize(organization.Account.Name).includes(normalize(v)) ||
+			normalize(organization.Account.BillingPostalCode).includes(normalize(v)) ||
+			normalize(organization.Account.BillingCity).includes(normalize(v))
+		)
 	}
 }

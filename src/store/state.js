@@ -7,5 +7,6 @@ export default () => ({
     pending: {},
     passed: {}
   },
-  userDocuments: []
+  userDocuments: [],
+  organizations: []
 })

@@ -69,6 +69,7 @@ import ListItemDetails from "./components/page/list/ListItemDetails.vue"
 import ListItems from "./components/page/list/ListItems.vue"
 import TabHeader from "./components/page/tab/TabHeader.vue"
 import DocumentUploadItem from "./components/page/documents/DocumentUploadItem.vue"
+import OrganizationItem from "./components/page/organizations/OrganizationItem.vue"
 
 const useComponents = (app) => {
 	app.component("CoreFooter", CoreFooter)
@@ -137,6 +138,7 @@ const useComponents = (app) => {
 	app.component("ListItems", ListItems)
 	app.component("TabHeader", TabHeader)
 	app.component("DocumentUploadItem", DocumentUploadItem)
+	app.component("OrganizationItem", OrganizationItem)
 
 	return app
 }

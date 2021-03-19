@@ -3,7 +3,6 @@ import Offers from "../page/offers.vue"
 import Organizations from "../page/organizations.vue"
 import Profiles from "../page/profiles.vue"
 import Documents from "../page/documents.vue"
-import MissionsSingle from "../page/missions-single.vue"
 import Signin from "../page/signin.vue"
 
 export default [
@@ -38,13 +37,6 @@ export default [
   {
   	path: "/documents",
 	  component: Documents,
-	  meta: {
-  		layout: "default"
-	  }
-  },
-  {
-  	path: "/missions/:mission_id",
-	  component: MissionsSingle,
 	  meta: {
   		layout: "default"
 	  }

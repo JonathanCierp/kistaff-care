@@ -12,16 +12,13 @@ export default {
 		const missionToRefuse = state.missions.new.missions.find(mission => mission.id === missionId)
 		const indexMissionToRefuse = state.missions.new.missions.indexOf(missionToRefuse)
 		state.missions.new.missions.splice(indexMissionToRefuse, 1)
-		state.missions.new.length = state.missions.new.missions.length
 	},
 	acceptMission(state, missionId) {
 		const missionToAccept = state.missions.new.missions.find(mission => mission.id === missionId)
 		const indexMissionToAccept = state.missions.new.missions.indexOf(missionToAccept)
 		state.missions.new.missions.splice(indexMissionToAccept, 1)
-		state.missions.new.length = state.missions.new.missions.length
 
-		state.missions.pending.missions = [missionToAccept, ...state.missions.pending.missions]
-		state.missions.pending.length = state.missions.pending.missions.length
+		state.missions.pending.missions.unshift(missionToAccept)
 	},
 	setUserDocuments(state, userDocuments) {
 		state.userDocuments = userDocuments
@@ -33,5 +30,8 @@ export default {
 	},
 	setUserDocument(state, document) {
 		state.userDocuments = [...state.userDocuments, document]
+	},
+	setOrganizations(state, organizations) {
+		state.organizations = organizations
 	}
 }

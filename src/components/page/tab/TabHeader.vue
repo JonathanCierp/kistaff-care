@@ -1,6 +1,6 @@
 <template>
 	<div class="tabs-header">
-		<h2 class="tabs-header__title">
+		<h2 class="tabs-header__title" v-if="title">
 			<component :is="icon" />
 			{{ title }}
 		</h2>
@@ -20,7 +20,7 @@
 		props: {
 			title: {
 				type: String,
-				required: true
+				default: ""
 			},
 			buttonLabel: {
 				type: String,

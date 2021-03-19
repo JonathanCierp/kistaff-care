@@ -4,6 +4,8 @@
 		<div class="profiles__body">
 			<CustomTabs v-model="tab">
 				<CustomTab icon="IconCircleOutlineUser">Mes informations</CustomTab>
+				<CustomTab icon="IconFilledCog">Mes absences</CustomTab>
+<!--				<CustomTab icon="IconFilledCog">Mes Spécialités</CustomTab>-->
 				<CustomTab icon="IconFilledCog">Mes préférences</CustomTab>
 			</CustomTabs>
 			<CustomTabItems v-model="tab">
@@ -25,9 +27,9 @@
 							<CustomInput v-model="user.email" label="Adresse e-mail" mail placeholder="Adresse mail" width="300px" />
 						</CustomRow>
 						<CustomRow>
-							<CustomInput v-model="user.phone" label="N° sécurité sociale" mobile placeholder="N° sécurité sociale"
+							<CustomInput v-model="user.ssn" label="N° sécurité sociale" mobile placeholder="N° sécurité sociale"
 							             width="300px" />
-							<CustomInput v-model="user.email" label="N° adéli" mail placeholder="N° adéli" width="300px" />
+							<CustomInput v-model="user.adeli" label="N° adéli" mail placeholder="N° adéli" width="300px" />
 						</CustomRow>
 						<h2>Adresse</h2>
 						<CustomRow>
@@ -35,38 +37,16 @@
 							<CustomInput v-model="user.postalCode" label="Code" placeholder="Code postal" postal width="300px" />
 							<CustomInput v-model="user.city" label="Ville" placeholder="Ville" width="300px" />
 						</CustomRow>
-						<h2>Declarer une absence</h2>
-						<CustomRow>
-							<CustomDatePicker class="mr-4" v-model="user.absenceStartDate" label="Date de début" />
-							<CustomDatePicker v-model="user.absenceEndDate" label="Date de fin" />
-						</CustomRow>
 					</CustomForm>
 				</CustomTabItem>
 				<CustomTabItem>
 					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer" icon="IconFilledCog"
-					           title="Mes préférences" @callback="savePreference" />
+					           title="Absence" @callback="saveAbsence" />
 					<form class="profiles__form">
 						<CustomRow>
-							<CustomSelect v-model="user.fonction" :items="fonction.value" label="Fonction" placeholder="Fonction"
-							              width="300px" />
-							<CustomSelect v-model="user.pole" :items="pole.value" label="Pôle" multiple placeholder="Pôle"
-							              width="450px" />
+							<CustomDatePicker class="mr-4" v-model="user.absenceStartDate" label="Date de début" />
+							<CustomDatePicker v-model="user.absenceEndDate" label="Date de fin" />
 						</CustomRow>
-						<div class="profiles__form__action">
-							<label>Type de planning</label>
-							<div class="profiles__form__planning">
-								<CustomButton :class="scheduleDay ? 'profiles__planning--active' : ''" text
-								              @click="onChangeSchedule('Day')">
-									<IconSun />
-									Jour
-								</CustomButton>
-								<CustomButton :class="scheduleNight ? 'profiles__planning--active' : ''" text
-								              @click="onChangeSchedule('Night')">
-									<IconMoon />
-									Nuit
-								</CustomButton>
-							</div>
-						</div>
 					</form>
 				</CustomTabItem>
 			</CustomTabItems>
@@ -101,7 +81,8 @@
 				email: store.state.user.Email,
 				street: store.state.user.MailingAddress.street,
 				postalCode: store.state.user.MailingAddress.postalCode,
-				city: store.state.user.MailingAddress.city,
+				ssn: store.state.user.xDecrypted_SSN__c,
+				adeli: store.state.user.xNumero_ADELI__c,
 				fonction: "Nurse",
 				pole: "Emergency;Paediatric;Intensive Care",
 				schedule: store.state.user.xType_of_Schedule__c,
@@ -141,14 +122,23 @@
 							LastName: user.lastName,
 							MobilePhone: user.phone,
 							Email: user.email,
-							// Securité sociale
-							// Adéli
+							xSSN__c: user.ssn,
+							xNumero_ADELI__c: user.adeli,
 							MailingStreet: user.street,
 							MailingPostalCode: user.postalCode,
 							MailingCity: user.city
 						}
 					})
 				} catch(e) {
+				}
+				loading.value = false
+			}
+			const saveAbsence = async () => {
+				try {
+					loading.value = true
+
+				} catch(e) {
+
 				}
 				loading.value = false
 			}
@@ -191,6 +181,7 @@
 				/* Methods */
 				onChangeSchedule,
 				saveInformations,
+				saveAbsence,
 				savePreference
 			}
 		}
