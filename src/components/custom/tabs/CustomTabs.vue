@@ -28,6 +28,7 @@
 					tabs.forEach(tab => tab.classList.remove("custom-tab--active"))
 					element.classList.add("custom-tab--active")
 
+					console.log(element.getAttribute("data-tab"))
 					emit("update:modelValue", element.getAttribute("data-tab") || tabs.indexOf(element))
 				}
 			}

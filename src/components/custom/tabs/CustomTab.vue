@@ -18,7 +18,7 @@
 			},
 			name: {
 				type: [Number, String],
-				default: 0
+				default: null
 			}
 		},
 		setup: () => {
