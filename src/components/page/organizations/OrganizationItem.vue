@@ -9,6 +9,7 @@
 
 <script>
 	import { computed, defineComponent, ref } from "vue"
+	import { useStore } from "vuex"
 
 	export default defineComponent({
 		name: "OrganizationItem",
@@ -19,11 +20,17 @@
 			}
 		},
 		setup(props) {
+			const store = useStore()
 			/* Datas */
-			const selected = ref(false)
+			const selected = ref(props.organization.xStatus__c === "Accepted")
 			/* Methods */
 			const saveOrganization = () => {
 				selected.value = !selected.value
+
+				store.dispatch("saveOrganisation", {
+					id: props.organization.Id,
+					value: selected.value ? "Accepted" : "Suspended"
+				})
 			}
 			/* Computed */
 			const fullAddress = computed(() => {

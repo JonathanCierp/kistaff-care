@@ -5,10 +5,14 @@ const getOrganizations = async () => {
 
 	return normalizeOrganisations(data)
 }
+const saveOrganizations = async (id, payload) => {
+	return await useAxiosAuthInstance().patch("/organizations/" + id, payload)
+}
 const normalizeOrganisations = (organizations) => {
-	return organizations.filter(organization => organization.xActiveOrg__c)
+	return organizations//.filter(organization => organization.xActiveOrg__c)
 }
 
 export {
-	getOrganizations
+	getOrganizations,
+	saveOrganizations
 }

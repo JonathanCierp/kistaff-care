@@ -81,6 +81,7 @@
 				email: store.state.user.Email,
 				street: store.state.user.MailingAddress.street,
 				postalCode: store.state.user.MailingAddress.postalCode,
+				city: store.state.user.MailingAddress.city,
 				ssn: store.state.user.xDecrypted_SSN__c,
 				adeli: store.state.user.xNumero_ADELI__c,
 				fonction: "Nurse",

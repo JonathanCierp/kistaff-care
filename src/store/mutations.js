@@ -33,5 +33,11 @@ export default {
 	},
 	setOrganizations(state, organizations) {
 		state.organizations = organizations
+	},
+	setOrganizationById(state, { id, newStatus }) {
+		console.log(newStatus)
+		state.organizations.filter(organization => organization.Id === id).xStatus__c = newStatus
+
+		console.log(state.organizations)
 	}
 }

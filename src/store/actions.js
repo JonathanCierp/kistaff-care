@@ -10,7 +10,7 @@ import {
 	refuseMission
 } from "../api/missions"
 import { deleteDocumentFromUser, getDocumentBelongsToUser, uploadDocument } from "../api/documents"
-import { getOrganizations } from "../api/organizations"
+import { getOrganizations, saveOrganizations } from "../api/organizations"
 
 const notification = useNotification()
 
@@ -70,7 +70,7 @@ export default {
 	},
 	async acceptMission({ commit }, missionId) {
 		try {
-			//await acceptMission(missionId)
+			await acceptMission(missionId)
 
 			await commit("acceptMission", missionId)
 			notification.success("Mission acceptée avec succès.")
@@ -132,6 +132,18 @@ export default {
 			const organizations = await getOrganizations()
 
 			commit("setOrganizations", organizations)
+		} catch(e) {
+			throw new Error(e.response?.data.message || e.message)
+		}
+	},
+	async saveOrganisation({ commit }, { id, value }) {
+		try {
+			await saveOrganizations(id, {
+				xStatus__c: value
+			})
+
+			commit("setOrganizationById", { id, newStatus: value })
+			notification.success(value === "Accepted" ? "Établissement associé avec succès." : "Établissement désassocié avec succès.")
 		} catch(e) {
 			throw new Error(e.response?.data.message || e.message)
 		}

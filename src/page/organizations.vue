@@ -30,7 +30,7 @@
 			onMounted(async () => {
 				await store.dispatch("getOrganizations")
 
-				organizations.value = store.state.organizations
+				organizations.value = store.getters.filterOrganization()
 			})
 
 			return {
