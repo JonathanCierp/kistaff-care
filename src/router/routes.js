@@ -4,6 +4,8 @@ import Organizations from "../page/organizations.vue"
 import Profiles from "../page/profiles.vue"
 import Documents from "../page/documents.vue"
 import Signin from "../page/signin.vue"
+import PasswordForgot from "../page/password/forgot.vue"
+import PasswordReset from "../page/password/reset.vue"
 
 export default [
   {
@@ -48,5 +50,21 @@ export default [
 	  meta: {
 		  layout: "blank"
 	  }
-  }
+  },
+	{
+		path: "/password/forgot",
+		component: PasswordForgot,
+		name: "PasswordForgot",
+		meta: {
+			layout: "blank"
+		}
+	},
+	{
+		path: "/password/reset",
+		component: PasswordReset,
+		name: "PasswordReset",
+		meta: {
+			layout: "blank"
+		}
+	}
 ]

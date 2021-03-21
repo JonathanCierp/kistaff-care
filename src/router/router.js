@@ -10,14 +10,20 @@ const router = createRouter({
 router.beforeEach(async (to, from) => {
 	const isAuthenticated = await useAuth()
 	const isSigninPath = to.name === "Signin"
+	const isAllowedNoConnected = to.meta.layout === "blank"
 
-	if (!isAuthenticated && !isSigninPath)  {
-		return "/auth/signin"
+
+	if(isAuthenticated) {
+		if(isAllowedNoConnected) {
+			return "/"
+		}
+	}else {
+		if(!isAllowedNoConnected) {
+			return "/auth/signin"
+		}
 	}
 
-	if(isAuthenticated && isSigninPath) {
-		return "/"
-	}
+	return true
 })
 
 export default router
