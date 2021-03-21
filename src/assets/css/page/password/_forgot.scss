@@ -1,0 +1,39 @@
+.forgot {
+  margin: auto;
+  width: 400px;
+  box-shadow: 0 2px 4px var(--shadow);
+  background-color: var(--color-background-lighter);
+  padding: 2rem;
+
+  & .forgot__card {
+    & .signin__brand {
+      text-align: center;
+
+      & img {
+        border-radius: 99999px;
+      }
+    }
+
+    & .forgot__title {
+      margin-top: 2rem;
+      text-align: center;
+      font-weight: 400;
+      font-size: .9rem;
+    }
+
+    & .signin__form {
+      margin-top: 2rem;
+
+      & .signin__form__row {
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .forgot {
+    margin: 0;
+    width: auto;
+  }
+}

@@ -110,6 +110,8 @@ svg {
 
 // Pages
 // ==================
+@import "page/password/forgot";
+@import "page/password/reset";
 @import "page/documents";
 @import "page/profiles";
 @import "page/signin";

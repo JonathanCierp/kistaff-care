@@ -25,7 +25,7 @@
   width: 100%;
   overflow: hidden;
 
-  main:not(.signin) {
+  main:not(.signin):not(.forgot):not(.reset) {
     @extend %container;
     padding: 4rem 0;
 

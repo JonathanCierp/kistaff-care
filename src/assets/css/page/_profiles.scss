@@ -54,3 +54,16 @@
     }
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .profiles .profiles__body .profiles__form {
+    & .custom-select, & .custom-input {
+      margin-right: 0;
+    }
+
+    & .custom-row {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

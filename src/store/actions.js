@@ -1,5 +1,5 @@
 import { loginWithEmail } from "../api/auth"
-import { editUser } from "../api/user"
+import { editUser, forgotPassword, resetPassword } from "../api/user"
 import { useNotification } from "../components/custom/notification/useNotification"
 import {
 	MISSIONS_STATUS,
@@ -23,6 +23,30 @@ export default {
 			await commit("setIsLogged", true)
 			localStorage.setItem("jwt", accessToken)
 		} catch(e) {
+			throw new Error(e.response?.data.message || e.message)
+		}
+	},
+	async forgotPassword({ commit }, { email }) {
+		try {
+			await forgotPassword(email)
+
+			notification.success("Un e-mail contenant des instructions, vous a été envoyé.")
+		} catch(e) {
+			const errorMessage = e.response?.data.message === "Invalid email" ? "Cet e-mail n'existe pas." : "Erreur."
+
+			notification.error(errorMessage)
+			throw new Error(e.response?.data.message || e.message)
+		}
+	},
+	async resetPassword({ commit }, payload) {
+		try {
+			await resetPassword(payload)
+
+			notification.success("Mot de passe changé avec succès.")
+		} catch(e) {
+			const errorMessage = e.response?.data.message === "Current password wrong" ? "Mauvais mot de passe." : "Erreur."
+
+			notification.error(errorMessage)
 			throw new Error(e.response?.data.message || e.message)
 		}
 	},

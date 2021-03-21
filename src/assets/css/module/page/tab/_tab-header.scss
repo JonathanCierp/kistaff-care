@@ -25,15 +25,19 @@
     & .tabs-header__title {
       font-size: 1.3rem;
     }
-
-    & button {
-      width: 48px !important;
-      min-width: 48px !important;
-    }
-
     & .tabs-header__input {
       margin-top: 1rem;
       width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .tabs-header {
+    flex-direction: column;
+
+    & button {
+      margin-top: 1.5rem;
     }
   }
 }

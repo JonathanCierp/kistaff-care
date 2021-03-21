@@ -32,6 +32,7 @@ import AcceptMissionDialog from "./components/dialog/AcceptMissionDialog.vue"
 import RefuseMissionDialog from "./components/dialog/RefuseMissionDialog.vue"
 import UploadDocumentDialog from "./components/dialog/UploadDocumentDialog.vue"
 import DeleteDocumentDialog from "./components/dialog/DeleteDocumentDialog.vue"
+import ResetPasswordDialog from "./components/dialog/ResetPasswordDialog.vue"
 
 /* Icons components */
 import IconBurger from "./components/icons/IconBurger.vue"
@@ -48,6 +49,7 @@ import IconCircleOutlineUser from "./components/icons/IconCircleOutlineUser.vue"
 import IconClose from "./components/icons/IconClose.vue"
 import IconFilledCog from "./components/icons/IconFilledCog.vue"
 import IconFilledWarning from "./components/icons/IconFilledWarning.vue"
+import IconLock from "./components/icons/IconLock.vue"
 import IconMoon from "./components/icons/IconMoon.vue"
 import IconNotFound from "./components/icons/IconNotFound.vue"
 import IconOutlinedBell from "./components/icons/IconOutlinedBell.vue"
@@ -103,6 +105,7 @@ const useComponents = (app) => {
 	app.component("RefuseMissionDialog", RefuseMissionDialog)
 	app.component("UploadDocumentDialog", UploadDocumentDialog)
 	app.component("DeleteDocumentDialog", DeleteDocumentDialog)
+	app.component("ResetPasswordDialog", ResetPasswordDialog)
 
 	app.component("IconBurger", IconBurger)
 	app.component("IconCheck", IconCheck)
@@ -118,6 +121,7 @@ const useComponents = (app) => {
 	app.component("IconClose", IconClose)
 	app.component("IconFilledCog", IconFilledCog)
 	app.component("IconFilledWarning", IconFilledWarning)
+	app.component("IconLock", IconLock)
 	app.component("IconMoon", IconMoon)
 	app.component("IconNotFound", IconNotFound)
 	app.component("IconOutlinedBell", IconOutlinedBell)

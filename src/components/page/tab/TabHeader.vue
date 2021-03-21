@@ -5,7 +5,7 @@
 			{{ title }}
 		</h2>
 		<CustomButton v-if="buttonLabel" :icon-left="buttonIcon" :loading="loading" class="tabs-header__button"
-		              hide-on-mobile-label @click="buttonCallback">{{ buttonLabel }}
+		              @click="buttonCallback">{{ buttonLabel }}
 		</CustomButton>
 		<CustomInput v-if="searchable" class="tabs-header__input" placeholder="Rechercher ..."
 		             @update:modelValue="onSearch" />

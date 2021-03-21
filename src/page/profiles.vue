@@ -3,10 +3,10 @@
 		<PageHeader label="Mon profil" />
 		<div class="profiles__body">
 			<CustomTabs v-model="tab">
-				<CustomTab icon="IconCircleOutlineUser">Mes informations</CustomTab>
-				<CustomTab icon="IconFilledCog">Mes absences</CustomTab>
+				<CustomTab icon="IconCircleOutlineUser">Informations</CustomTab>
+				<CustomTab icon="IconFilledCog">Absences</CustomTab>
 				<!--				<CustomTab icon="IconFilledCog">Mes Spécialités</CustomTab>-->
-				<CustomTab icon="IconFilledCog">Mes préférences</CustomTab>
+				<CustomTab icon="IconFilledCog">Préférences</CustomTab>
 			</CustomTabs>
 			<CustomTabItems v-model="tab">
 				<CustomTabItem>
@@ -14,6 +14,10 @@
 					           icon="IconCircleOutlineUser"
 					           title="Mes informations" @callback="saveInformations" />
 					<CustomForm class="profiles__form">
+						<CustomRow>
+							<CustomButton :loading="resetLoading" class="tabs-header__button" icon-left="IconLock"
+							              @click="resetPasswordDialogOpen = true">Changer le mot de passe</CustomButton>
+						</CustomRow>
 						<CustomRow>
 							<CustomSelect v-model="user.civility" :items="civility.value" label="Civilité" placeholder="Civilité"
 							              width="300px" />
@@ -49,8 +53,19 @@
 						</CustomRow>
 					</form>
 				</CustomTabItem>
+				<CustomTabItem>
+					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer" icon="IconFilledCog"
+					           title="Absence" @callback="saveAbsence" />
+					<form class="profiles__form">
+						<CustomRow>
+							<CustomDatePicker v-model="user.absenceStartDate" class="mr-4" label="Date de début" />
+							<CustomDatePicker v-model="user.absenceEndDate" label="Date de fin" />
+						</CustomRow>
+					</form>
+				</CustomTabItem>
 			</CustomTabItems>
 		</div>
+		<ResetPasswordDialog v-model="resetPasswordDialogOpen" />
 	</main>
 </template>
 
@@ -79,21 +94,22 @@
 				lastName: store.state.user.LastName,
 				phone: store.state.user.MobilePhone,
 				email: store.state.user.Email,
-				street: store.state.user.MailingAddress.street,
-				postalCode: store.state.user.MailingAddress.postalCode,
-				city: store.state.user.MailingAddress.city,
+				street: store.state.user.MailingAddress?.street,
+				postalCode: store.state.user.MailingAddress?.postalCode,
+				city: store.state.user.MailingAddress?.city,
 				ssn: store.state.user.xDecrypted_SSN__c,
 				adeli: store.state.user.xNumero_ADELI__c,
 				fonction: "Nurse",
 				pole: "Emergency;Paediatric;Intensive Care",
 				schedule: store.state.user.xType_of_Schedule__c,
-				absenceStartDate: (new Date(store.state.user.xLeave_From__c)).toISOString().split('T')[0],
-				absenceEndDate: (new Date(store.state.user.xLeave_To__c)).toISOString().split('T')[0]
+				absenceStartDate: store.state.user.xLeave_From__c ? (new Date(store.state.user.xLeave_From__c)).toISOString().split('T')[0] : null,
+				absenceEndDate: store.state.user.xLeave_To__c ? (new Date(store.state.user.xLeave_To__c)).toISOString().split('T')[0] : null
 			})
-
 			const scheduleDay = ref(user.schedule === "Day" || user.schedule === "All")
 			const scheduleNight = ref(user.schedule === "Night" || user.schedule === "All")
 			const loading = ref(false)
+			const resetLoading = ref(false)
+			const resetPasswordDialogOpen = ref(false)
 
 			/* Methods */
 			const onChangeSchedule = (type) => {
@@ -188,6 +204,8 @@
 				scheduleDay,
 				scheduleNight,
 				loading,
+				resetLoading,
+				resetPasswordDialogOpen,
 				/* Methods */
 				onChangeSchedule,
 				saveInformations,

@@ -1,5 +1,5 @@
 <template>
-	<transition :name="nameTransition">
+	<transition :name="nameTransition" :duration="175">
 		<slot v-if="show" />
 	</transition>
 </template>

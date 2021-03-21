@@ -18,11 +18,11 @@
 					]" label="Mot de passe" native-type="password" placeholder="Mot de passe" required />
 				</div>
 				<div class="signin__action">
-					<CustomButton @click="onSubmit" native-type="submit" block center rounded="md">Se connecter</CustomButton>
+					<CustomButton block center native-type="submit" rounded="md" @click="onSubmit">Se connecter</CustomButton>
 				</div>
 			</CustomForm>
 			<p class="signin__reset-password">
-				<CustomLink to="/password/reset">Mot de passe oublié</CustomLink>
+				<CustomLink to="/password/forgot">Mot de passe oublié</CustomLink>
 			</p>
 			<p class="signin__had-account">Vous n'avez pas de compte ?
 				<a href="https://www.kistaff.fr/s/login/SelfRegister?language=fr">S'inscrire</a>
@@ -39,6 +39,8 @@
 	export default defineComponent({
 		name: "Signin",
 		setup: () => {
+			const store = useStore()
+			const router = useRouter()
 			/* Datas */
 			const form = reactive({
 				email: "",
@@ -46,8 +48,6 @@
 			})
 			const emailInput = ref(null)
 			const passwordInput = ref(null)
-			const store = useStore()
-			const router = useRouter()
 
 			/* Methods */
 			const onSubmit = async (e) => {

@@ -2,7 +2,7 @@
 	<main class="organizations">
 		<PageHeader label="Mes établissements" />
 		<div class="organizations__body">
-			<TabHeader v-model="searchOrganization" searchable @update:modelValue="onSearch" />
+			<TabHeader title="Établissements" v-model="searchOrganization" searchable @update:modelValue="onSearch" />
 			<div class="organizations__items">
 				<OrganizationItem v-for="organization in organizations.value" :key="organization.Id"
 				                  :organization="organization" />

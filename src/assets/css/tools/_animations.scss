@@ -55,54 +55,54 @@
 
 /* FADE TRANSITION */
 .custom-transition--fade-enter-active {
-  animation: fade .5s;
+  animation: fade .2s;
 }
 
 .custom-transition--fade-leave-active {
-  animation: fade .5s reverse;
+  animation: fade .2s reverse;
 }
 
 /* SCALE TRANSITION*/
 .custom-transition--scale-enter-active {
-  animation: scale .5s;
+  animation: scale .2s;
 }
 
 .custom-transition--scale-leave-active {
-  animation: scale .5s reverse;
+  animation: scale .2s reverse;
 }
 
 /* SLIDE UP */
 .custom-transition--slide-up-enter-active {
-  animation: slide-up .5s;
+  animation: slide-up .2s;
 }
 
 .custom-transition--slide-up-leave-active {
-  animation: slide-up .5s reverse;
+  animation: slide-up .2s reverse;
 }
 
 /* SLIDE LEFT */
 .custom-transition--slide-left-enter-active {
-  animation: slide-left .5s;
+  animation: slide-left .2s;
 }
 
 .custom-transition--slide-left-leave-active {
-  animation: slide-left .5s reverse;
+  animation: slide-left .2s reverse;
 }
 
 /* SLIDE DOWN */
 .custom-transition--slide-down-enter-active {
-  animation: slide-down .5s;
+  animation: slide-down .2s;
 }
 
 .custom-transition--slide-down-leave-active {
-  animation: slide-down .5s reverse;
+  animation: slide-down .2s reverse;
 }
 
 /* SLIDE RIGHT */
 .custom-transition--slide-right-enter-active {
-  animation: slide-right .5s;
+  animation: slide-right .2s;
 }
 
 .custom-transition--slide-right-leave-active {
-  animation: slide-right .5s reverse;
+  animation: slide-right .2s reverse;
 }
