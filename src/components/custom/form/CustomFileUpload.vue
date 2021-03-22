@@ -4,13 +4,13 @@
 	  <p class="text-h5">votre fichier ici</p>
 	  <p class="custom-file-upload__or text-body-1">ou</p>
 	  <form id="test">
-		  <input ref="inputFile" type="file" @change="addFileToUpload">
+		  <input ref="inputFile" type="file" multiple @change="addFileToUpload">
 	  </form>
-	  <div v-if="file.value" class="custom-file-upload__file">
-		  <span>{{ file.value.name }}</span>
-		  <IconTrash @click="removeFile" />
+	  <div v-for="file in files.value" :key="file.name" class="custom-file-upload__file">
+		  <span>{{ file.name }}</span>
+		  <IconTrash @click="removeFile(file)" />
 	  </div>
-	  <CustomButton v-else size="sm" @click="inputFile.click()">Joindre un fichier</CustomButton>
+	  <CustomButton v-if="!files.value" size="sm" @click="inputFile.click()">Joindre un fichier</CustomButton>
   </section>
 </template>
 
@@ -22,26 +22,24 @@
 		setup(props, { emit }) {
     	/* Datas */
 			const inputFile = ref(null)
-			const file = reactive({})
+			const files = reactive([])
 
     	/* Methods */
     	const addFileToUpload = (e) => {
-    		if(!file.value) {
-			    let event = e.dataTransfer || e.target
-			    file.value = event.files[0]
+		    let event = e.dataTransfer || e.target
+		    files.value = Array.from(event.files)
 
-			    emit("update:modelValue", file.value)
-		    }
+		    emit("update:modelValue", files.value)
 	    }
-    	const removeFile = (e) => {
+    	const removeFile = (file) => {
 		    inputFile.value.value = ""
-		    file.value = null
+		    files.value = files.value.find(tempFile => tempFile !== file)
 	    }
 
 	    return {
 		    /* Datas */
 		    inputFile,
-		    file,
+		    files,
 		    /* Methods */
 		    addFileToUpload,
 		    removeFile

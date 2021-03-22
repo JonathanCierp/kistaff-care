@@ -40,5 +40,9 @@
       color: var(--color-red-primary);
       cursor: pointer;
     }
+
+    & ~ .custom-file-upload__file {
+      margin-top: 1rem;
+    }
   }
 }

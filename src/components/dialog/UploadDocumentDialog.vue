@@ -3,7 +3,7 @@
 		<CustomDialogTitle :label="label" @close="$emit('update:modelValue', false)" />
 		<CustomDialogBody>
 			<p class="text-body-2">Plus d'informations sur l'attestation de vigilance et comment la récupérer dans la FAQ</p>
-			<CustomFileUpload v-model="file" />
+			<CustomFileUpload v-model="files" />
 		</CustomDialogBody>
 		<CustomDialogActions>
 			<CustomButton size="sm" text @click="$emit('update:modelValue', false)">Fermer</CustomButton>
@@ -35,12 +35,12 @@
 
 			/* Datas */
 			const loading = ref(false)
-			const file = ref({})
+			const files = ref([])
 
 			/* Methods */
 			const uploadDocument = () => {
 				loading.value = true
-				let reader = new FileReader()
+				/*let reader = new FileReader()
 				reader.readAsDataURL(file.value)
 				reader.onload = async () => {
 					const document = {
@@ -59,14 +59,14 @@
 
 					}
 					loading.value = false
-				}
-
+				}*/
+				console.log(files)
 			}
 
 			return {
 				/* Datas */
 				loading,
-				file,
+				files,
 				/* Methods */
 				uploadDocument
 			}
