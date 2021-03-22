@@ -44,9 +44,12 @@
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
   .signin {
     margin: 0;
     width: auto;
+    box-shadow: none;
+    background-color: transparent;
+    min-height: 100vh;
   }
 }
