@@ -6,7 +6,7 @@
 				             width="300px" />
 			</template>
 			<template #popover>
-				<div class="custom-date-picker__container">
+				<div v-if="isDesktop" class="custom-date-picker__container">
 					<div class="custom-date-picker__years">
 						<div class="custom-date-picker__arrow-left" @click="setMonth(-1)">
 							<IconChevronLeft />
@@ -144,6 +144,7 @@
 
 			/* Computed */
 			const currentMonthYear = computed(() => `${getMonthStr(month.value)} ${year.value}`)
+			const isDesktop = computed(() => !navigator.userAgent.toLowerCase().match(/mobile/i))
 
 			return {
 				/* Datas */
@@ -160,7 +161,8 @@
 				setMonth,
 				onDateClick,
 				/* Computed */
-				currentMonthYear
+				currentMonthYear,
+				isDesktop
 			}
 		}
 	})

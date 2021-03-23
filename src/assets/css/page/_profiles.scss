@@ -51,6 +51,10 @@
         font-size: 1.5rem;
         font-weight: 500;
       }
+
+      & .v3dp__datepicker input {
+        width: 300px;
+      }
     }
   }
 }

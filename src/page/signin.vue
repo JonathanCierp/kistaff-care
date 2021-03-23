@@ -10,7 +10,7 @@
 					<CustomInput ref="emailInput" v-model="form.email" :rules="[
 							v => !!v || 'Le champs Email est obligatoire.',
               v => /.+@.+\..+/.test(v) || 'L\'adresse mail n\'est pas valide.'
-					]" label="Email" placeholder="Email" required />
+					]" label="Email" placeholder="Email" required native-type="email" />
 				</div>
 				<div class="signin__form__row">
 					<CustomInput ref="passwordInput" v-model="form.password" :rules="[

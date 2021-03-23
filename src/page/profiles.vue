@@ -28,7 +28,7 @@
 						</CustomRow>
 						<CustomRow>
 							<CustomInput v-model="user.phone" label="Téléphone" mobile placeholder="Téléphone mobile" width="300px" />
-							<CustomInput v-model="user.email" label="Adresse e-mail" mail placeholder="Adresse mail" width="300px" />
+							<CustomInput v-model="user.email" label="Adresse e-mail" mail placeholder="Adresse mail" width="300px" native-type="email" />
 						</CustomRow>
 						<CustomRow>
 							<CustomInput v-model="user.ssn" label="N° sécurité sociale" mobile placeholder="N° sécurité sociale"
@@ -48,8 +48,14 @@
 					           title="Absence" @callback="saveAbsence" />
 					<form class="profiles__form">
 						<CustomRow>
-							<CustomDatePicker v-model="user.absenceStartDate" class="mr-4" label="Date de début" />
-							<CustomDatePicker v-model="user.absenceEndDate" label="Date de fin" />
+							<div class="custom-input">
+								<label>Date de début</label>
+								<datepicker v-model="user.absenceStartDate" :locale="locale" inputFormat="dd-MM-yyyy" startingView="year" />
+							</div>
+							<div class="custom-input">
+								<label>Date de fin</label>
+								<datepicker v-model="user.absenceEndDate" :locale="locale" inputFormat="dd-MM-yyyy" startingView="year" />
+							</div>
 						</CustomRow>
 					</form>
 				</CustomTabItem>
@@ -58,8 +64,8 @@
 					           title="Absence" @callback="saveAbsence" />
 					<form class="profiles__form">
 						<CustomRow>
-							<CustomDatePicker v-model="user.absenceStartDate" class="mr-4" label="Date de début" />
-							<CustomDatePicker v-model="user.absenceEndDate" label="Date de fin" />
+							<datepicker v-model="user.absenceStartDate" :locale="locale" inputFormat="dd-MM-yyyy" startingView="year" />
+							<datepicker v-model="user.absenceEndDate" :locale="locale" inputFormat="dd-MM-yyyy" startingView="year" />
 						</CustomRow>
 					</form>
 				</CustomTabItem>
@@ -72,6 +78,7 @@
 <script>
 	import { defineComponent, onMounted, reactive, ref } from "vue"
 	import { useStore } from "vuex"
+	import { fr } from "date-fns/locale"
 	import {
 		findSobjectsForUserConnected,
 		findSobjectsForUserConnectedFilteredByField,
@@ -82,6 +89,7 @@
 		name: "Profiles",
 		setup: () => {
 			const store = useStore()
+			const locale = fr
 
 			/* Datas */
 			const tab = ref(0)
@@ -102,8 +110,8 @@
 				fonction: "Nurse",
 				pole: "Emergency;Paediatric;Intensive Care",
 				schedule: store.state.user.xType_of_Schedule__c,
-				absenceStartDate: store.state.user.xLeave_From__c ? (new Date(store.state.user.xLeave_From__c)).toISOString().split('T')[0] : null,
-				absenceEndDate: store.state.user.xLeave_To__c ? (new Date(store.state.user.xLeave_To__c)).toISOString().split('T')[0] : null
+				absenceStartDate: store.state.user.xLeave_From__c ? new Date(store.state.user.xLeave_From__c) : null,
+				absenceEndDate: store.state.user.xLeave_To__c ? new Date(store.state.user.xLeave_To__c) : null
 			})
 			const scheduleDay = ref(user.schedule === "Day" || user.schedule === "All")
 			const scheduleNight = ref(user.schedule === "Night" || user.schedule === "All")
@@ -195,6 +203,7 @@
 			})
 
 			return {
+				locale,
 				/* Datas */
 				tab,
 				civility,

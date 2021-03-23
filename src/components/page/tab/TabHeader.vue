@@ -1,7 +1,7 @@
 <template>
 	<div class="tabs-header">
-		<h2 class="tabs-header__title" v-if="title">
-			<component :is="icon" />
+		<h2 class="tabs-header__title" :class="[hideLabelOnMobile ? 'hide-on-mobile' : '']" v-if="title">
+			<component v-if="icon" :is="icon" />
 			{{ title }}
 		</h2>
 		<CustomButton v-if="buttonLabel" :icon-left="buttonIcon" :loading="loading" class="tabs-header__button"
@@ -39,6 +39,10 @@
 				default: false
 			},
 			searchable: {
+				type: Boolean,
+				default: false
+			},
+			hideLabelOnMobile: {
 				type: Boolean,
 				default: false
 			}

@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "date-fns": "^2.19.0",
     "vue": "^3.0.5",
     "vue-router": "^4",
+    "vue3-datepicker": "^0.2.4",
     "vuex": "^4.0.0"
   },
   "devDependencies": {

@@ -1,3 +1,6 @@
+/* Modules */
+import Datepicker from "vue3-datepicker"
+
 /* Core components */
 import CoreFooter from "./components/core/CoreFooter.vue"
 import CoreHeader from "./components/core/CoreHeader.vue"
@@ -74,6 +77,8 @@ import DocumentUploadItem from "./components/page/documents/DocumentUploadItem.v
 import OrganizationItem from "./components/page/organizations/OrganizationItem.vue"
 
 const useComponents = (app) => {
+	app.component("Datepicker", Datepicker)
+
 	app.component("CoreFooter", CoreFooter)
 	app.component("CoreHeader", CoreHeader)
 	app.component("CoreNotification", CoreNotification)
