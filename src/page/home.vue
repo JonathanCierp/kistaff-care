@@ -21,10 +21,7 @@
 					<TabHeader v-model="searchNewMission" icon="IconFilledCog" searchable title="Missions à pourvoir" hide-label-on-mobile
 					           @update:modelValue="v => onSearch('new', v)" />
 					<ListItems>
-						<div v-if="!newMissions.value.missions.length" class="missions__body__not-found">
-							<img src="/img/missions-not-found.svg" alt="Pas de missions à pourvoir">
-							<h3 class="text-h5 font-medium">Aucunes missions à pourvoir</h3>
-						</div>
+						<CustomEntriesNotFound v-if="!newMissions.value.missions.length" label="Aucunes missions à pourvoir" alt="Aucunes missions à pourvoir" />
 						<ListItem v-for="mission in newMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-confirm" confirm @open-accept="openDialog('accept', mission)"
 						          @open-refuse="openDialog('refuse', mission)" />
@@ -34,10 +31,7 @@
 					<TabHeader v-model="searchUpcomingMission" icon="IconFilledCog" searchable title="Missions en cours" hide-label-on-mobile
 					           @update:modelValue="v => onSearch('upcoming', v)" />
 					<ListItems>
-						<div v-if="!upcomingMissions.value.missions.length" class="missions__body__not-found">
-							<img src="/img/missions-not-found.svg" alt="Pas de missions à pourvoir">
-							<h3 class="text-h5 font-medium">Aucunes missions en cours</h3>
-						</div>
+						<CustomEntriesNotFound v-if="!upcomingMissions.value.missions.length" label="Aucunes missions en cours" alt="Aucunes missions en cours" />
 						<ListItem v-for="mission in upcomingMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-details" details />
 					</ListItems>
@@ -46,10 +40,7 @@
 					<TabHeader v-model="searchPendingMission" icon="IconFilledCog" searchable title="Missions en attente" hide-label-on-mobile
 					           @update:modelValue="v => onSearch('pending', v)" />
 					<ListItems>
-						<div v-if="!pendingMissions.value.missions.length" class="missions__body__not-found">
-							<img src="/img/missions-not-found.svg" alt="Pas de missions à pourvoir">
-							<h3 class="text-h5 font-medium">Aucunes missions en attente</h3>
-						</div>
+						<CustomEntriesNotFound v-if="!pendingMissions.value.missions.length" label="Aucunes missions en attente" alt="Aucunes missions en attente" />
 						<ListItem v-for="mission in pendingMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-details" details />
 					</ListItems>
@@ -58,15 +49,15 @@
 					<TabHeader v-model="searchPassedMission" icon="IconFilledCog" searchable title="Missions passées" hide-label-on-mobile
 					           @update:modelValue="v => onSearch('passed', v)" />
 					<ListItems>
-						<div v-if="!passedMissions.value.missions.length" class="missions__body__not-found">
-							<img src="/img/missions-not-found.svg" alt="Pas de missions à pourvoir">
-							<h3 class="text-h5 font-medium">Aucunes missions passées</h3>
-						</div>
+						<CustomEntriesNotFound v-if="!passedMissions.value.missions.length" label="Aucunes missions passées" alt="Aucunes missions passées" />
 						<ListItem v-for="mission in passedMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-details" details />
 					</ListItems>
 				</CustomTabItem>
 			</CustomTabItems>
+		</div>
+		<div v-else class="page-loader">
+			<CustomProgressCircle color="var(--color-blue-primary)" indeterminate />
 		</div>
 		<AcceptMissionDialog v-model="acceptDialogOpen" :mission="currentMission" />
 		<RefuseMissionDialog v-model="refuseDialogOpen" :mission="currentMission" />

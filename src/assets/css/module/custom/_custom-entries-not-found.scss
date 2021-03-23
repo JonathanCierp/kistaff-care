@@ -1,0 +1,25 @@
+.custom-entries-not-found {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: fade .5s;
+
+  & img {
+    width: 300px;
+  }
+
+  & h3 {
+    margin-top: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .custom-entries-not-found {
+    & img {
+      margin-top: 1rem;
+      width: 200px;
+    }
+  }
+}

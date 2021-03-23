@@ -29,6 +29,7 @@ import CustomTab from "./components/custom/tabs/CustomTab.vue"
 import CustomTabItems from "./components/custom/tabs/CustomTabItems.vue"
 import CustomTabItem from "./components/custom/tabs/CustomTabItem.vue"
 import CustomTransition from "./components/custom/CustomTransition.vue"
+import CustomEntriesNotFound from "./components/custom/CustomEntriesNotFound.vue"
 
 /* Dialog components */
 import AcceptMissionDialog from "./components/dialog/AcceptMissionDialog.vue"
@@ -105,6 +106,7 @@ const useComponents = (app) => {
 	app.component("CustomTabItems", CustomTabItems)
 	app.component("CustomTabItem", CustomTabItem)
 	app.component("CustomTransition", CustomTransition)
+	app.component("CustomEntriesNotFound", CustomEntriesNotFound)
 
 	app.component("AcceptMissionDialog", AcceptMissionDialog)
 	app.component("RefuseMissionDialog", RefuseMissionDialog)

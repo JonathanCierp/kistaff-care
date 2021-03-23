@@ -1,12 +1,16 @@
 <template>
 	<main class="organizations">
 		<PageHeader label="Mes établissements" />
-		<div class="organizations__body">
+		<div v-if="show" class="organizations__body">
 			<TabHeader title="Établissements" v-model="searchOrganization" searchable @update:modelValue="onSearch" />
 			<div class="organizations__items">
+				<CustomEntriesNotFound v-if="!organizations.value.length" label="Aucuns établissements trouvés" alt="Aucuns établissements trouvés" />
 				<OrganizationItem v-for="organization in organizations.value" :key="organization.Id"
 				                  :organization="organization" />
 			</div>
+		</div>
+		<div v-else class="page-loader">
+			<CustomProgressCircle color="var(--color-blue-primary)" indeterminate />
 		</div>
 	</main>
 </template>
@@ -20,6 +24,7 @@
 		setup: () => {
 			const store = useStore()
 			/* Datas */
+			const show = ref(false)
 			const searchOrganization = ref("")
 			const organizations = reactive([])
 			/* Methods */
@@ -31,10 +36,12 @@
 				await store.dispatch("getOrganizations")
 
 				organizations.value = store.getters.filterOrganization()
+				show.value = true
 			})
 
 			return {
 				/* Datas */
+				show,
 				organizations,
 				searchOrganization,
 				/* Methods */

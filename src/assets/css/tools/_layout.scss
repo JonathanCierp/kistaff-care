@@ -41,34 +41,17 @@
   }
 }
 
-.missions__body__not-found {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  animation: fade .5s;
-
-  & img {
-    width: 300px;
-  }
-
-  & h3 {
-    margin-top: 1.5rem;
-  }
+.page-loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media only screen and (max-width: 768px) {
   main {
     padding-top: 2rem !important;
     padding-bottom: 8rem !important;
-  }
-
-  .missions__body__not-found {
-    & img {
-      margin-top: 1rem;
-      width: 200px;
-    }
   }
 }
 

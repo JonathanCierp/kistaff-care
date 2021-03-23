@@ -1,7 +1,7 @@
 <template>
 	<main class="profiles">
 		<PageHeader label="Mon profil" />
-		<div class="profiles__body">
+		<div v-if="show" class="profiles__body">
 			<CustomTabs v-model="tab">
 				<CustomTab icon="IconCircleOutlineUser">Informations</CustomTab>
 				<CustomTab icon="IconFilledCog">Absences</CustomTab>
@@ -71,6 +71,9 @@
 				</CustomTabItem>
 			</CustomTabItems>
 		</div>
+		<div v-else class="page-loader">
+			<CustomProgressCircle color="var(--color-blue-primary)" indeterminate />
+		</div>
 		<ResetPasswordDialog v-model="resetPasswordDialogOpen" />
 	</main>
 </template>
@@ -92,6 +95,7 @@
 			const locale = fr
 
 			/* Datas */
+			const show = ref(false)
 			const tab = ref(0)
 			const civility = reactive({})
 			const fonction = reactive({})
@@ -200,11 +204,14 @@
 				civility.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.CIVILITY)
 				fonction.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.FONCTION)
 				pole.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.POLE)
+
+				show.value = true
 			})
 
 			return {
 				locale,
 				/* Datas */
+				show,
 				tab,
 				civility,
 				fonction,
