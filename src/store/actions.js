@@ -11,6 +11,8 @@ import {
 } from "../api/missions"
 import { deleteDocumentFromUser, getDocumentBelongsToUser, uploadDocument } from "../api/documents"
 import { getOrganizations, saveOrganizations } from "../api/organizations"
+import { getDeviceByToken, saveDevice } from "../api/device"
+import firebaseMessaging from "../plugins/firebase"
 
 const notification = useNotification()
 
@@ -168,6 +170,22 @@ export default {
 
 			commit("setOrganizationById", { id, newStatus: value })
 			notification.success(value === "Accepted" ? "Établissement associé avec succès." : "Établissement désassocié avec succès.")
+		} catch(e) {
+			throw new Error(e.response?.data.message || e.message)
+		}
+	},
+	async registerDevice({ commit }, { userId }) {
+		try {
+			if(localStorage.getItem("fcmTokenRegistered") !== "true") {
+				const token = await firebaseMessaging.getToken()
+				const existToken = await getDeviceByToken(token)
+
+				if(!existToken) {
+					await saveDevice({ userId, token })
+
+					localStorage.setItem("fcmTokenRegistered", "true")
+				}
+			}
 		} catch(e) {
 			throw new Error(e.response?.data.message || e.message)
 		}

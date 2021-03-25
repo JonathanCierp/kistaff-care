@@ -18,38 +18,46 @@
 			</CustomTabs>
 			<CustomTabItems v-model="tab">
 				<CustomTabItem name="new">
-					<TabHeader v-model="searchNewMission" icon="IconFilledCog" searchable title="Missions à pourvoir" hide-label-on-mobile
+					<TabHeader v-model="searchNewMission" hide-label-on-mobile icon="IconFilledCog" searchable
+					           title="Missions à pourvoir"
 					           @update:modelValue="v => onSearch('new', v)" />
 					<ListItems>
-						<CustomEntriesNotFound v-if="!newMissions.value.missions.length" label="Aucunes missions à pourvoir" alt="Aucunes missions à pourvoir" />
+						<CustomEntriesNotFound v-if="!newMissions.value.missions.length" alt="Aucunes missions à pourvoir"
+						                       label="Aucunes missions à pourvoir" />
 						<ListItem v-for="mission in newMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-confirm" confirm @open-accept="openDialog('accept', mission)"
 						          @open-refuse="openDialog('refuse', mission)" />
 					</ListItems>
 				</CustomTabItem>
 				<CustomTabItem name="upcoming">
-					<TabHeader v-model="searchUpcomingMission" icon="IconFilledCog" searchable title="Missions en cours" hide-label-on-mobile
+					<TabHeader v-model="searchUpcomingMission" hide-label-on-mobile icon="IconFilledCog" searchable
+					           title="Missions en cours"
 					           @update:modelValue="v => onSearch('upcoming', v)" />
 					<ListItems>
-						<CustomEntriesNotFound v-if="!upcomingMissions.value.missions.length" label="Aucunes missions en cours" alt="Aucunes missions en cours" />
+						<CustomEntriesNotFound v-if="!upcomingMissions.value.missions.length" alt="Aucunes missions en cours"
+						                       label="Aucunes missions en cours" />
 						<ListItem v-for="mission in upcomingMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-details" details />
 					</ListItems>
 				</CustomTabItem>
 				<CustomTabItem name="pending">
-					<TabHeader v-model="searchPendingMission" icon="IconFilledCog" searchable title="Missions en attente" hide-label-on-mobile
+					<TabHeader v-model="searchPendingMission" hide-label-on-mobile icon="IconFilledCog" searchable
+					           title="Missions en attente"
 					           @update:modelValue="v => onSearch('pending', v)" />
 					<ListItems>
-						<CustomEntriesNotFound v-if="!pendingMissions.value.missions.length" label="Aucunes missions en attente" alt="Aucunes missions en attente" />
+						<CustomEntriesNotFound v-if="!pendingMissions.value.missions.length" alt="Aucunes missions en attente"
+						                       label="Aucunes missions en attente" />
 						<ListItem v-for="mission in pendingMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-details" details />
 					</ListItems>
 				</CustomTabItem>
 				<CustomTabItem name="passed">
-					<TabHeader v-model="searchPassedMission" icon="IconFilledCog" searchable title="Missions passées" hide-label-on-mobile
+					<TabHeader v-model="searchPassedMission" hide-label-on-mobile icon="IconFilledCog" searchable
+					           title="Missions passées"
 					           @update:modelValue="v => onSearch('passed', v)" />
 					<ListItems>
-						<CustomEntriesNotFound v-if="!passedMissions.value.missions.length" label="Aucunes missions passées" alt="Aucunes missions passées" />
+						<CustomEntriesNotFound v-if="!passedMissions.value.missions.length" alt="Aucunes missions passées"
+						                       label="Aucunes missions passées" />
 						<ListItem v-for="mission in passedMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-details" details />
 					</ListItems>
@@ -65,7 +73,7 @@
 </template>
 
 <script>
-	import { defineComponent, onMounted, reactive, ref } from "vue"
+	import { defineComponent, inject, onMounted, reactive, ref } from "vue"
 	import { useStore } from "vuex"
 
 	export default defineComponent({
