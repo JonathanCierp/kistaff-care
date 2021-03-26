@@ -2,35 +2,36 @@
 	<main class="documents">
 		<PageHeader label="Mes documents" />
 		<div v-if="show" class="documents__body" style="flex-direction: column;padding: 1rem;">
-			<TabHeader v-model="searchDocument" icon="IconFilledWarning" searchable title="Documents obligatoires"
+			<TabHeader v-model="searchDocument" icon="IconFilledWarning" searchable title="Documents"
 			           @update:modelValue="onSearch" />
 			<CustomForm class="documents__form">
 				<CustomRow class="documents__form__row">
-					<CustomEntriesNotFound v-if="!requiredDocuments.value.length" label="Aucuns documents trouvés" alt="Aucuns documents trouvés" />
+					<CustomEntriesNotFound v-if="!requiredDocuments.value.length" alt="Aucuns documents trouvés"
+					                       label="Aucuns documents trouvés" />
 					<DocumentUploadItem v-for="document in requiredDocuments.value" :key="document.key"
 					                    :label="document.value" :user-documents="userDocuments.value" />
 				</CustomRow>
 			</CustomForm>
-<!--			<CustomTabs v-model="tab">
-				<CustomTab icon="IconFilledWarning">Documents obligatoires</CustomTab>
-				&lt;!&ndash;			  <CustomTab icon="IconCircleFilledPlus">Documents Facultatif</CustomTab>&ndash;&gt;
-			</CustomTabs>
-			<CustomTabItems v-model="tab">
-				<CustomTabItem>
-					<TabHeader v-model="searchDocument" icon="IconFilledWarning" searchable title="Documents obligatoires"
-					           @update:modelValue="onSearch" />
-					<CustomForm class="documents__form">
-						<CustomRow class="documents__form__row">
-							<CustomEntriesNotFound v-if="!requiredDocuments.value.length" label="Aucuns documents trouvés" alt="Aucuns documents trouvés" />
-							<DocumentUploadItem v-for="document in requiredDocuments.value" :key="document.key"
-							                    :label="document.value" :user-documents="userDocuments.value" />
-						</CustomRow>
-					</CustomForm>
-				</CustomTabItem>
-				&lt;!&ndash;			  <CustomTabItem>
-									2
-								</CustomTabItem>&ndash;&gt;
-			</CustomTabItems>-->
+			<!--			<CustomTabs v-model="tab">
+							<CustomTab icon="IconFilledWarning">Documents obligatoires</CustomTab>
+							&lt;!&ndash;			  <CustomTab icon="IconCircleFilledPlus">Documents Facultatif</CustomTab>&ndash;&gt;
+						</CustomTabs>
+						<CustomTabItems v-model="tab">
+							<CustomTabItem>
+								<TabHeader v-model="searchDocument" icon="IconFilledWarning" searchable title="Documents obligatoires"
+													 @update:modelValue="onSearch" />
+								<CustomForm class="documents__form">
+									<CustomRow class="documents__form__row">
+										<CustomEntriesNotFound v-if="!requiredDocuments.value.length" label="Aucuns documents trouvés" alt="Aucuns documents trouvés" />
+										<DocumentUploadItem v-for="document in requiredDocuments.value" :key="document.key"
+																				:label="document.value" :user-documents="userDocuments.value" />
+									</CustomRow>
+								</CustomForm>
+							</CustomTabItem>
+							&lt;!&ndash;			  <CustomTabItem>
+												2
+											</CustomTabItem>&ndash;&gt;
+						</CustomTabItems>-->
 		</div>
 		<div v-else class="page-loader">
 			<CustomProgressCircle color="var(--color-blue-primary)" indeterminate />
@@ -76,7 +77,7 @@
 				await store.dispatch("getUserDocument")
 				await findSobjectsForUserConnected()
 				requiredDocuments.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.DOCUMENT)
-				
+
 				userDocuments.value = store.state.userDocuments
 
 				show.value = true

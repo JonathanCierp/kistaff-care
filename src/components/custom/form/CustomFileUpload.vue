@@ -1,49 +1,63 @@
 <template>
-  <section class="custom-file-upload" @drop.prevent="addFileToUpload" @dragover.prevent>
-	  <h2 class="font-medium text-h4">Glissez et déposez</h2>
-	  <p class="text-h5">votre fichier ici</p>
-	  <p class="custom-file-upload__or text-body-1">ou</p>
-	  <form id="test">
-		  <input ref="inputFile" type="file" multiple @change="addFileToUpload">
-	  </form>
-	  <div v-for="file in files.value" :key="file.name" class="custom-file-upload__file">
-		  <span>{{ file.name }}</span>
-		  <IconTrash @click="removeFile(file)" />
-	  </div>
-	  <CustomButton v-if="!files.value" size="sm" @click="inputFile.click()">Joindre un fichier</CustomButton>
-  </section>
+	<section class="custom-file-upload" @drop.prevent="addFileToUpload" @dragover.prevent>
+		<h2 class="font-medium text-h4">Glissez et déposez</h2>
+		<p class="text-h5">votre fichier ici</p>
+		<p class="custom-file-upload__or text-body-1">ou</p>
+		<form id="test">
+			<input ref="inputFile" multiple type="file" @change="addFileToUpload">
+		</form>
+		<div v-for="file in files.value.filter(tempFile => typeof tempFile === 'object')" :key="file.name"
+		     class="custom-file-upload__file">
+			<span>{{ file.name || file.Name }}</span>
+			<IconTrash @click="removeFile(file.Id)" />
+		</div>
+		<CustomButton v-if="!files.value.find(tempFile => typeof tempFile === 'object')" size="sm"
+		              @click="inputFile.click()">Joindre un fichier
+		</CustomButton>
+	</section>
 </template>
 
 <script>
 	import { defineComponent, reactive, ref } from "vue"
 
 	export default defineComponent({
-    name: "CustomFileUpload",
+		name: "CustomFileUpload",
+		props: {
+			modelValue: {
+				type: Array
+			}
+		},
 		setup(props, { emit }) {
-    	/* Datas */
+			/* Datas */
 			const inputFile = ref(null)
 			const files = reactive([])
+			files.value = props.modelValue
 
-    	/* Methods */
-    	const addFileToUpload = (e) => {
-		    let event = e.dataTransfer || e.target
-		    files.value = Array.from(event.files)
+			/* Methods */
+			const addFileToUpload = (e) => {
+				let event = e.dataTransfer || e.target
 
-		    emit("update:modelValue", files.value)
-	    }
-    	const removeFile = (file) => {
-		    inputFile.value.value = ""
-		    files.value = files.value.find(tempFile => tempFile !== file)
-	    }
+				for(let file of Array.from(event.files)) {
+					files.value.push(file)
+				}
 
-	    return {
-		    /* Datas */
-		    inputFile,
-		    files,
-		    /* Methods */
-		    addFileToUpload,
-		    removeFile
-	    }
+				emit("update:modelValue", files.value)
+			}
+			const removeFile = (id) => {
+				inputFile.value.value = ""
+				const file = files.value.find(file => file.Id === id)
+				const fileIndex = files.value.indexOf(file)
+				files.value[fileIndex] = file.Id
+			}
+
+			return {
+				/* Datas */
+				inputFile,
+				files,
+				/* Methods */
+				addFileToUpload,
+				removeFile
+			}
 		}
-  })
+	})
 </script>

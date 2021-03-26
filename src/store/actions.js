@@ -2,11 +2,11 @@ import { loginWithEmail } from "../api/auth"
 import { editUser, forgotPassword, resetPassword } from "../api/user"
 import { useNotification } from "../components/custom/notification/useNotification"
 import {
-	MISSIONS_STATUS,
-	findMissionsForUserConnected,
-	findRequestsForUserConnected,
-	findMissionsForUserConnectedFilteredByStatus,
 	acceptMission,
+	findMissionsForUserConnected,
+	findMissionsForUserConnectedFilteredByStatus,
+	findRequestsForUserConnected,
+	MISSIONS_STATUS,
 	refuseMission
 } from "../api/missions"
 import { deleteDocumentFromUser, getDocumentBelongsToUser, uploadDocument } from "../api/documents"
@@ -118,11 +118,6 @@ export default {
 	},
 	async uploadDocument({ commit }, { document, userDocument }) {
 		try {
-			if(userDocument) {
-				commit("deteleUserDocument", userDocument.Id)
-				await deleteDocumentFromUser(userDocument.Id)
-			}
-
 			const data = await uploadDocument(document)
 
 			commit("setUserDocument", data)

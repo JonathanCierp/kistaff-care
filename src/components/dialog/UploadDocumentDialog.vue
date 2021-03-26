@@ -15,7 +15,7 @@
 </template>
 
 <script>
-	import { defineComponent, onMounted, ref } from "vue"
+	import { defineComponent, ref } from "vue"
 	import { useStore } from "vuex"
 
 	export default defineComponent({
@@ -25,9 +25,9 @@
 				type: String,
 				default: ""
 			},
-			filename: {
-				type: String,
-				default: ""
+			userDocuments: {
+				type: Array,
+				default: () => []
 			}
 		},
 		setup(props, { emit }) {
@@ -36,31 +36,42 @@
 			/* Datas */
 			const loading = ref(false)
 			const files = ref([])
+			files.value = props.userDocuments
 
 			/* Methods */
-			const uploadDocument = () => {
+			const uploadDocument = async () => {
 				loading.value = true
-				/*let reader = new FileReader()
-				reader.readAsDataURL(file.value)
+				try {
+					for(let file of files.value) {
+						if(file instanceof File) {
+							uploadSingleDocuments(file)
+						} else if(typeof file === "string") {
+							await store.dispatch("deleteDocument", file)
+						}
+					}
+				} catch(e) {
+
+				}
+				loading.value = false
+			}
+			const uploadSingleDocuments = (file) => {
+				let reader = new FileReader()
+				reader.readAsDataURL(file)
 				reader.onload = async () => {
 					const document = {
-						Name: props.label + "-" + file.value.name, // Adeli-azoejkdpaoiezjfp
+						Name: props.label + "-" + file.name, // Adeli-azoejkdpaoiezjfp
 						ParentId: store.state.user.Id, // User id
-						ContentType: file.value.type, // extension
+						ContentType: file.type, // extension
 						Description: props.label, // Type de doc
 						Body: reader.result.replace(/^data:.+;base64,/, "") // Encoder b64
 					}
 					try {
 						const userDocument = store.getters.getDocumentByDescription(props.label)
 						await store.dispatch("uploadDocument", { document, userDocument })
-						emit("update:filename", document.Name)
-						emit("update:modelValue", false)
 					} catch(e) {
 
 					}
-					loading.value = false
-				}*/
-				console.log(files)
+				}
 			}
 
 			return {
