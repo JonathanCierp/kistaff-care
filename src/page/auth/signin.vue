@@ -6,26 +6,26 @@
 			</div>
 			<h2 class="signin__title">Bienvenu(e) sur KISTAFF</h2>
 			<CustomForm class="signin__form">
-				<div class="signin__form__row">
+				<CustomRow class="signin__form__row">
 					<CustomInput ref="emailInput" v-model="form.email" :rules="[
 							v => !!v || 'Le champs Email est obligatoire.',
               v => /.+@.+\..+/.test(v) || 'L\'adresse mail n\'est pas valide.'
 					]" label="Email" placeholder="Email" required native-type="email" />
-				</div>
-				<div class="signin__form__row">
+				</CustomRow>
+				<CustomRow class="signin__form__row">
 					<CustomInput ref="passwordInput" v-model="form.password" :rules="[
 							v => !!v || 'Le champs Mot de passe est obligatoire.'
 					]" label="Mot de passe" native-type="password" placeholder="Mot de passe" required />
-				</div>
-				<div class="signin__action">
+				</CustomRow>
+				<CustomRow class="signin__action">
 					<CustomButton block center native-type="submit" rounded="md" @click="onSubmit">Se connecter</CustomButton>
-				</div>
+				</CustomRow>
 			</CustomForm>
 			<p class="signin__reset-password">
 				<CustomLink to="/password/forgot">Mot de passe oublié</CustomLink>
 			</p>
 			<p class="signin__had-account">Vous n'avez pas de compte ?
-				<a href="https://www.kistaff.fr/s/login/SelfRegister?language=fr">S'inscrire</a>
+				<RouterLink to="/auth/signup">S'inscrire</RouterLink>
 			</p>
 		</article>
 	</main>

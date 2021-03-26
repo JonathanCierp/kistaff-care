@@ -9,7 +9,6 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
 	const isAuthenticated = await useAuth()
-	const isSigninPath = to.name === "Signin"
 	const isAllowedNoConnected = to.meta.layout === "blank"
 
 

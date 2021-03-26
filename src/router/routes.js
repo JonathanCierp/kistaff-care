@@ -3,7 +3,8 @@ import Offers from "../page/offers.vue"
 import Organizations from "../page/organizations.vue"
 import Profiles from "../page/profiles.vue"
 import Documents from "../page/documents.vue"
-import Signin from "../page/signin.vue"
+import Signin from "../page/auth/signin.vue"
+import Signup from "../page/auth/signup.vue"
 import PasswordForgot from "../page/password/forgot.vue"
 import PasswordReset from "../page/password/reset.vue"
 
@@ -47,6 +48,14 @@ export default [
   	path: "/auth/signin",
 	  component: Signin,
 	  name: 'Signin',
+	  meta: {
+		  layout: "blank"
+	  }
+  },
+  {
+  	path: "/auth/signup",
+	  component: Signup,
+	  name: 'Signup',
 	  meta: {
 		  layout: "blank"
 	  }

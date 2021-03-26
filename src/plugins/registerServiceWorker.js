@@ -1,5 +1,5 @@
 if("serviceWorker" in navigator) {
-	navigator.serviceWorker.register("firebase-messaging-sw.js", {scope: "firebase-cloud-messaging-push-scope"})
+	navigator.serviceWorker.register("/firebase-messaging-sw.js", {scope: "firebase-cloud-messaging-push-scope"})
 		.then(reg => {
 			console.log(`Service Worker Registration (Scope: ${reg.scope})`)
 		})
