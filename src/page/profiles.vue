@@ -65,8 +65,8 @@
 					<form class="profiles__form">
 						<CustomRow>
 							<CustomSelect v-model="user.fonction" :items="fonction.value" label="Metier" placeholder="Metier"
-							              width="300px" />
-							<CustomSelect v-model="user.pole" multiple :items="pole.value" label="Compétences" placeholder="Compétences"
+							              width="300px" @update:modelValue="changeFonction" />
+							<CustomSelect v-model="user.pole" multiple :items="polePickListed" label="Compétences" placeholder="Compétences"
 							              width="500px" />
 						</CustomRow>
 						<div class="profiles__form__action">
@@ -115,6 +115,7 @@
 	import { useStore } from "vuex"
 	import { fr } from "date-fns/locale"
 	import {
+		findPickList,
 		findSobjectsForUserConnected,
 		findSobjectsForUserConnectedFilteredByField,
 		SOBJECTS_FIELD
@@ -156,6 +157,8 @@
 			const resetLoading = ref(false)
 			const resetPasswordDialogOpen = ref(false)
 			const preferences = ref([])
+			const pickLists = ref([])
+			const polePickListed = ref([])
 
 			/* Methods */
 			const onChangeSchedule = (type) => {
@@ -239,6 +242,10 @@
 
 				loading.value = false
 			}
+			const changeFonction = (v, defaultPole = null) => {
+				user.pole = defaultPole || null
+				polePickListed.value = pickLists.value[v]?.map(p => pole.value.find(pol => pol.key === p))
+			}
 
 			/* Lifecycle Hooks */
 			onMounted(async () => {
@@ -247,6 +254,7 @@
 				civility.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.CIVILITY)
 				fonction.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.FONCTION)
 				pole.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.POLE)
+				pickLists.value = await findPickList()
 
 				if(store.state.user.xPrimary_Channel__c) {
 					preferences.value.push(store.state.user.xPrimary_Channel__c)
@@ -257,6 +265,7 @@
 				if(localStorage.getItem("dark-theme") === "true") {
 					preferences.value.push("dark-theme")
 				}
+				changeFonction(user.fonction, user.pole)
 
 				show.value = true
 			})
@@ -276,11 +285,14 @@
 				resetLoading,
 				resetPasswordDialogOpen,
 				preferences,
+				pickLists,
+				polePickListed,
 				/* Methods */
 				onChangeSchedule,
 				saveInformations,
 				saveAbsence,
-				savePreference
+				savePreference,
+				changeFonction
 			}
 		}
 	})

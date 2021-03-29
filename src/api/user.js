@@ -1,5 +1,10 @@
 import { useAxiosAuthInstance } from "../plugins/axios"
 
+const addUser = async (user) => {
+	const { data } = await useAxiosAuthInstance().post("/signups", user)
+
+	return data.success
+}
 const editUser = async (id, user) => {
 	const { data } = await useAxiosAuthInstance().put(`/contacts/${id}`, user)
 
@@ -24,6 +29,7 @@ const resetPassword = async (payload) => {
 }
 
 export {
+	addUser,
 	editUser,
 	forgotPassword,
 	resetPassword

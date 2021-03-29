@@ -22,37 +22,38 @@
 		<CustomForm v-if="step === 0" class="signup__form signup__form--step-0">
 			<p class="text-caption">* Champs obligatoire</p>
 			<CustomRow class="signup__form__row">
-				<CustomInput v-model="form.Salutation" label="Civilité" placeholder="Civilité" width="100%" />
+				<CustomSelect v-model="form.salutation" :items="civilities" label="Civilité" placeholder="Civilité"
+				              width="100%" />
 			</CustomRow>
 			<CustomRow class="signup__form__row">
-				<CustomInput ref="fistNameInput" v-model="form.LastName" :rules="[
+				<CustomInput ref="fistNameInput" v-model="form.lastName" :rules="[
 							v => !!v || 'Le champs Nom est obligatoire.'
 					]" label="Nom *" placeholder="Nom" required width="48%" />
-				<CustomInput ref="lastNameInput" v-model="form.FirstName" :rules="[
+				<CustomInput ref="lastNameInput" v-model="form.firstName" :rules="[
 							v => !!v || 'Le champs Prénom est obligatoire.'
 					]" label="Prénom *" placeholder="Prénom" required width="48%" />
 			</CustomRow>
 			<CustomRow class="signup__form__row">
-				<CustomInput ref="emailInput" v-model="form.Email" :rules="[
+				<CustomInput ref="emailInput" v-model="form.email" :rules="[
 							v => !!v || 'Le champs Email est obligatoire.',
               v => /.+@.+\..+/.test(v) || 'L\'adresse mail n\'est pas valide.'
 					]" label="Email *" native-type="email" placeholder="Email" required width="100%" />
 			</CustomRow>
 			<CustomRow class="signup__form__row">
-				<CustomInput ref="phoneInput" v-model="form.MobilePhone" label="Téléphone *" :rules="[
+				<CustomInput ref="phoneInput" v-model="form.mobilePhone" :rules="[
 							v => !!v || 'Le champs Téléphone est obligatoire.'
-					]" required placeholder="Téléphone" width="100%" />
+					]" label="Téléphone *" placeholder="Téléphone" required width="100%" />
 			</CustomRow>
 			<CustomRow class="signup__form__row">
-				<CustomInput ref="streetInput" v-model="form.MailingStreet" label="Rue *" :rules="[
+				<CustomInput ref="streetInput" v-model="form.mailingStreet" :rules="[
 							v => !!v || 'Le champs Rue est obligatoire.'
-					]" required placeholder="Rue" width="100%" />
-				<CustomInput ref="postalCodeInput" v-model="form.MailingPostalCode" label="Code postal *" :rules="[
+					]" label="Rue *" placeholder="Rue" required width="100%" />
+				<CustomInput ref="postalCodeInput" v-model="form.mailingPostalCode" :rules="[
 							v => !!v || 'Le champs Code postal est obligatoire.'
-					]" required placeholder="Code postal" width="48%" />
-				<CustomInput ref="cityInput" v-model="form.MailingCity" label="Ville *" :rules="[
+					]" label="Code postal *" placeholder="Code postal" required width="48%" />
+				<CustomInput ref="cityInput" v-model="form.mailingCity" :rules="[
 							v => !!v || 'Le champs Ville est obligatoire.'
-					]" required placeholder="Ville" width="48%" />
+					]" label="Ville *" placeholder="Ville" required width="48%" />
 			</CustomRow>
 			<CustomRow class="signup__form__action">
 				<CustomButton block center @click="changeStep(1)">Suivant</CustomButton>
@@ -63,7 +64,8 @@
 				<IconWarning />
 				Le métier est obligatoire
 			</p>
-			<CustomRadio v-for="f in fonctions" v-model="fonction" :key="f.key" :label="f.value" name="fonction" :value="f.key" />
+			<CustomRadio v-for="f in fonctions" :key="f.key" v-model="fonction" :label="f.value" :value="f.key"
+			             name="fonction" @update:modelValue="changeFonction" />
 			<CustomRow class="signup__form__action">
 				<CustomButton text @click="changeStep(0)">Retour</CustomButton>
 				<CustomButton @click="changeStep(2)">Suivant</CustomButton>
@@ -74,7 +76,8 @@
 			<CustomCheckbox v-model="planningType" label="Nuit" name="day" value="Day" />
 			<CustomCheckbox v-model="planningType" label="Jour" name="night" value="Night" />
 			<h3 class="signup__form__poles">Compétences</h3>
-			<CustomCheckbox v-for="p in poles" v-model="pole" :key="p.key" :label="p.value" :name="p.key" :value="p.key" />
+			<CustomCheckbox v-for="p in polePickListed" :key="p.key" v-model="pole" :label="p.value"
+			                :name="p.key" :value="p.key" />
 			<CustomRow class="signup__form__action">
 				<CustomButton text @click="changeStep(1)">Retour</CustomButton>
 				<CustomButton @click="changeStep(3)">Suivant</CustomButton>
@@ -83,13 +86,13 @@
 		<CustomForm v-if="step === 3" class="signup__form signup__form--step-3">
 			<h3>Récapitulatif</h3>
 			<ul class="signup__form__list">
-				<li v-html="recapConvertItem('Civilité', form.Salutation)" />
-				<li v-html="recapConvertItem('Nom', form.LastName)" />
-				<li v-html="recapConvertItem('Prénom', form.FirstName)" />
-				<li v-html="recapConvertItem('Email', form.Email)" />
-				<li v-html="recapConvertItem('Rue', form.MailingStreet)" />
-				<li v-html="recapConvertItem('Ville', form.MailingCity)" />
-				<li v-html="recapConvertItem('Code postal', form.MailingPostalCode)" />
+				<li v-html="recapConvertItem('Civilité', form.salutation)" />
+				<li v-html="recapConvertItem('Nom', form.lastName)" />
+				<li v-html="recapConvertItem('Prénom', form.firstName)" />
+				<li v-html="recapConvertItem('Email', form.email)" />
+				<li v-html="recapConvertItem('Rue', form.mailingStreet)" />
+				<li v-html="recapConvertItem('Ville', form.mailingCity)" />
+				<li v-html="recapConvertItem('Code postal', form.mailingPostalCode)" />
 				<li v-html="recapConvertItem('Fonction', fonctions.find(f => f.key === fonction)?.value)" />
 				<li v-html="recapConvertItem('Pôles', pole.map(p => poles.find(po => po.key === p).value)?.join(', '))" />
 				<li v-html="recapConvertItem('Type de planning', 'planning')" />
@@ -112,36 +115,47 @@
 				<CustomButton @click="onSignUp">S'inscrire</CustomButton>
 			</CustomRow>
 		</CustomForm>
+		<CustomRow class="signup__have-account">
+			<p>Vous avez déjà un compte? <CustomLink class="font-medium" to="/auth/signin">Me connecter</CustomLink></p>
+		</CustomRow>
 	</main>
 </template>
 
 <script>
 	import { defineComponent, onMounted, ref } from "vue"
-	import { findSobjectsForUserConnected, findSobjectsForUserConnectedFilteredByField, SOBJECTS_FIELD } from "../../api/sobjects"
+	import {
+		findPickList,
+		findSobjectsForUserConnected,
+		findSobjectsForUserConnectedFilteredByField,
+		SOBJECTS_FIELD
+	} from "../../api/sobjects"
 	import { useRouter } from "vue-router"
+	import { useStore } from "vuex"
 
 	export default defineComponent({
 		name: "Signup",
 		setup() {
+			const store = useStore()
 			const router = useRouter()
 
 			/* Datas */
-			const step = ref(2)
+			const step = ref(1)
 			const innerWidth = ref(window.innerWidth)
 			const civilities = ref([])
 			const fonctions = ref([])
 			const poles = ref([])
+			const pickLists = ref([])
 
 			/* Step 1 */
 			const form = ref({
-				Salutation: "",
-				LastName: "",
-				FirstName: "",
-				Email: "",
-				MobilePhone: "",
-				MailingStreet: "",
-				MailingPostalCode: "",
-				MailingCity: ""
+				salutation: "",
+				lastName: "",
+				firstName: "",
+				email: "",
+				mobilePhone: "",
+				mailingStreet: "",
+				mailingPostalCode: "",
+				mailingCity: ""
 			})
 			const fistNameInput = ref(null)
 			const lastNameInput = ref(null)
@@ -157,6 +171,7 @@
 
 			/* Step 3 */
 			const pole = ref([])
+			const polePickListed = ref([])
 			const poleStepError = ref(false)
 			const planningType = ref([])
 
@@ -197,15 +212,25 @@
 					step.value = tempStep
 				}
 			}
-			const onSignUp = () => {
+			const onSignUp = async () => {
 				passwordInput.value.validate()
 				passwordConfirmInput.value.validate()
 
 				const isFormValid = !passwordInput.value.inputError && !passwordConfirmInput.value.inputError
 
 				if(isFormValid) {
-					console.log(1)
-					//router.push("/documents")
+					try {
+						await store.dispatch("signup", {
+							...form.value,
+							typeOfService: fonction.value,
+							services: pole.value.join(";"),
+							password: password.value
+						})
+						localStorage.setItem("tempEmail", form.value.email)
+						await router.push("/auth/signin")
+					} catch(e) {
+
+					}
 				}
 			}
 			const recapConvertItem = (label, item) => {
@@ -214,7 +239,11 @@
 				}
 				const classNames = item ? "font-medium" : "italic"
 
-				return `${label} : <span class="${classNames}">${item ? item : "A compléter" }</span>`
+				return `${label} : <span class="${classNames}">${item ? item : "A compléter"}</span>`
+			}
+			const changeFonction = (v) => {
+				pole.value = []
+				polePickListed.value = pickLists.value[v].map(p => poles.value.find(pole => pole.key === p))
 			}
 
 			/* Lifecycle Hooks */
@@ -224,6 +253,7 @@
 				civilities.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.CIVILITY)
 				fonctions.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.FONCTION)
 				poles.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.POLE)
+				pickLists.value = await findPickList()
 			})
 
 			return {
@@ -233,6 +263,8 @@
 				civilities,
 				fonctions,
 				poles,
+				pickLists,
+				polePickListed,
 				form,
 				fistNameInput,
 				lastNameInput,
@@ -253,7 +285,8 @@
 				/* Methods */
 				changeStep,
 				onSignUp,
-				recapConvertItem
+				recapConvertItem,
+				changeFonction
 			}
 		}
 	})

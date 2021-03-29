@@ -80,6 +80,11 @@
 		name: "Home",
 		setup: () => {
 			const store = useStore()
+			const firebaseMessaging = inject("firebaseMessaging")
+
+			firebaseMessaging.onMessage(payload => {
+				alert("Message received.")
+			})
 
 			/* Datas */
 			const show = ref(false)

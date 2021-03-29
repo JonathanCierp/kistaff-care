@@ -70,7 +70,18 @@
 				let tempItem = item.key ? item.key : item
 				if(props.multiple) {
 					element.classList.toggle("custom-select__item--active")
-					tempItem = props.modelValue.indexOf(tempItem) !== -1 ? props.modelValue.replace(tempItem + ";", "") : props.modelValue + ";" + tempItem + ";"
+					if(props.modelValue) {
+						if(props.modelValue.indexOf(tempItem) !== -1) {
+							tempItem = props.modelValue.includes(";") ? props.modelValue.replace(tempItem + ";", "") : props.modelValue.replace(tempItem, "")
+						}else {
+							tempItem = props.modelValue + ";" + tempItem + ";"
+						}
+					}
+
+					if(tempItem === ";") {
+						tempItem = null
+					}
+
 					emit("update:modelValue", tempItem)
 				}else {
 					Array.from(popoverItems.value.children).forEach(item => item.classList.remove("custom-select__item--active"))
@@ -83,7 +94,7 @@
 				const tempItem = item.key ? item.key : item
 				
 				if(props.multiple) {
-					return props.modelValue.indexOf(tempItem) !== -1 ? 'custom-select__item--active' : ''
+					return props.modelValue && props.modelValue.indexOf(tempItem) !== -1 ? 'custom-select__item--active' : ''
 				}
 
 				return tempItem === props.modelValue ? 'custom-select__item--active' : ''

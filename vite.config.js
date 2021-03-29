@@ -8,11 +8,11 @@ export default defineConfig({
 		vue(),
 		VitePWA({
 			manifest: {
-				"name": "Test vue pwa notification",
-				"short_name": "Test vue",
-				"start_url": "index.html",
+				"name": "Kistaff",
+				"short_name": "Kistaff",
+				"start_url": "/",
 				"display": "standalone",
-				"theme_color": "#0476F2",
+				"theme_color": "#3E66FB",
 				"background_color": "#fff",
 				"icons": [
 					{

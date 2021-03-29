@@ -1,5 +1,5 @@
 import { loginWithEmail } from "../api/auth"
-import { editUser, forgotPassword, resetPassword } from "../api/user"
+import { addUser, editUser, forgotPassword, resetPassword } from "../api/user"
 import { useNotification } from "../components/custom/notification/useNotification"
 import {
 	acceptMission,
@@ -13,6 +13,7 @@ import { deleteDocumentFromUser, getDocumentBelongsToUser, uploadDocument } from
 import { getOrganizations, saveOrganizations } from "../api/organizations"
 import { getDeviceByToken, saveDevice } from "../api/device"
 import firebaseMessaging from "../plugins/firebase"
+import { useRouter } from "vue-router"
 
 const notification = useNotification()
 
@@ -24,6 +25,13 @@ export default {
 			await commit("setUser", { user })
 			await commit("setIsLogged", true)
 			localStorage.setItem("jwt", accessToken)
+		} catch(e) {
+			throw new Error(e.response?.data.message || e.message)
+		}
+	},
+	async signup({ commit }, user) {
+		try {
+			await addUser(user)
 		} catch(e) {
 			throw new Error(e.response?.data.message || e.message)
 		}
@@ -171,7 +179,25 @@ export default {
 	},
 	async registerDevice({ commit }, { userId }) {
 		try {
-			if(localStorage.getItem("fcmTokenRegistered") !== "true" && Notification.permission === "granted") {
+			let notification = false
+
+			if(!("Notification" in window)) {
+				console.log("This browser does not support desktop notification")
+			}
+			// Let's check whether notification permissions have already been granted
+			else if(Notification.permission === "granted") {
+				notification = true
+			}
+			// Otherwise, we need to ask the user for permission
+			else if(Notification.permission !== "denied") {
+				const permission = await Notification.requestPermission()
+
+				if(permission === "granted") {
+					notification = true
+				}
+			}
+
+			if(localStorage.getItem("fcmTokenRegistered") !== "true" && notification) {
 				const token = await firebaseMessaging.getToken()
 				const existToken = await getDeviceByToken(token)
 

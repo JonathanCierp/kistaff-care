@@ -43,7 +43,7 @@
 			const router = useRouter()
 			/* Datas */
 			const form = reactive({
-				email: "",
+				email: localStorage.getItem("tempEmail") ? localStorage.getItem("tempEmail") : "",
 				password: ""
 			})
 			const emailInput = ref(null)
@@ -59,9 +59,15 @@
 
 				if(isFormValid) {
 					await store.dispatch("login", form)
-					await router.push("/")
+					if(!store.state.user.user.Contact.xDocuments_Received__c) {
+						await router.push("/documents")
+					}else {
+						await router.push("/")
+					}
 				}
 			}
+
+			localStorage.removeItem("tempEmail")
 
 			return {
 				/* Datas */
