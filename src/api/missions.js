@@ -59,6 +59,7 @@ const normalizeMission = (mission) => {
 		id: mission.Id,
 		status: mission.xStatus__c,
 		isPending: mission.xIsPending__c,
+		documentReceived: mission.xDocuments_Received__c,
 		organization: {
 			name: mission.xOrganization__r ? mission.xOrganization__r.Name : mission.xService_Request__r.xOrganization__r.Name,
 			address: mission.xAddress__c ? mission.xAddress__c : mission.xService_Request__r.xAddress__c

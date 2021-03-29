@@ -16,10 +16,19 @@
 				<p class="font-medium text-body-1">Adresse : </p>
 				<a class="my-1 ml-1" :href="organizationMapsUrl" target="_blank">{{ mission.organization.address }}</a>
 			</div>
+			<div class="flex items-center mt-4 text-red-primary text-body-2" v-if="!mission.documentReceived">
+				<div>
+					<IconWarning class="mr-2" />
+				</div>
+				<span>
+					Vos documents ne sont pas à jour, vous ne pouvez pas accepter cette mission.
+					<a class="font-medium italic" href="/documents">Cliquez ici</a> pour les mettre à jours.
+				</span>
+			</div>
 		</CustomDialogBody>
 		<CustomDialogActions>
 			<CustomButton size="sm" text @click="$emit('update:modelValue', false)">Fermer</CustomButton>
-			<CustomButton :disabled="loading" :loading="loading" size="sm" type="success" @click="acceptMission">Accepter
+			<CustomButton :disabled="loading || !mission.documentReceived" :loading="loading" size="sm" type="success" @click="acceptMission">Accepter
 			</CustomButton>
 		</CustomDialogActions>
 	</CustomDialog>
