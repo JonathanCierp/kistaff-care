@@ -13,7 +13,9 @@
 			<li>
 				<CustomDropdown ref="notificationDropdown" icon>
 					<template #title>
-						<IconOutlinedBell />
+						<CustomBadge type="error" inset="10" content="2">
+							<IconOutlinedBell />
+						</CustomBadge>
 					</template>
 					<template #popover>
 						<CoreNotification @change-route="onChangeRoute" />

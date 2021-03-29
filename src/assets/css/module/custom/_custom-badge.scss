@@ -1,0 +1,53 @@
+.custom-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  position: relative;
+
+  &.custom-badge--success .custom-badge__wrapper .custom-badge__badge {
+    color: var(--color-white-primary);
+    background-color: var(--color-green-primary);
+  }
+
+  &.custom-badge--warning .custom-badge__wrapper .custom-badge__badge {
+    color: var(--color-white-primary);
+    background-color: var(--color-orange-primary);
+  }
+
+  &.custom-badge--error .custom-badge__wrapper .custom-badge__badge {
+    color: var(--color-white-primary);
+    background-color: var(--color-red-primary);
+  }
+
+  &.custom-badge--info .custom-badge__wrapper .custom-badge__badge {
+    color: var(--color-white-primary);
+    background-color: var(--color-blue-primary);
+  }
+
+  & .custom-badge__wrapper {
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    & .custom-badge__badge {
+      border-radius: 10px;
+      color: #fff;
+      font-size: 12px;
+      height: 20px;
+      letter-spacing: 0;
+      min-width: 20px;
+      padding: 4px 6px;
+      pointer-events: auto;
+      position: absolute;
+      text-align: center;
+      text-indent: 0;
+      top: auto;
+      transition: .3s cubic-bezier(.25,.8,.5,1);
+      white-space: nowrap;
+    }
+  }
+}

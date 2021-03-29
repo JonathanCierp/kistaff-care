@@ -11,6 +11,7 @@ import CoreUserMenuItem from "./components/core/CoreUserMenuItem.vue"
 
 /* Custom components */
 import CustomButton from "./components/custom/CustomButton.vue"
+import CustomBadge from "./components/custom/CustomBadge.vue"
 import CustomDialog from "./components/custom/dialog/CustomDialog.vue"
 import CustomDialogActions from "./components/custom/dialog/CustomDialogActions.vue"
 import CustomDialogBody from "./components/custom/dialog/CustomDialogBody.vue"
@@ -90,6 +91,7 @@ const useComponents = (app) => {
 	app.component("CoreUserMenuItem", CoreUserMenuItem)
 
 	app.component("CustomButton", CustomButton)
+	app.component("CustomBadge", CustomBadge)
 	app.component("CustomDialog", CustomDialog)
 	app.component("CustomDialogActions", CustomDialogActions)
 	app.component("CustomDialogBody", CustomDialogBody)
