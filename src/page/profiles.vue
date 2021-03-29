@@ -5,7 +5,7 @@
 			<CustomTabs v-model="tab">
 				<CustomTab icon="IconCircleOutlineUser">Informations</CustomTab>
 				<CustomTab icon="IconFilledCog">Absences</CustomTab>
-				<!--				<CustomTab icon="IconFilledCog">Mes Spécialités</CustomTab>-->
+								<CustomTab icon="IconFilledCog">Spécialités</CustomTab>
 				<CustomTab icon="IconFilledCog">Préférences</CustomTab>
 			</CustomTabs>
 			<CustomTabItems v-model="tab">
@@ -57,6 +57,33 @@
 								<datepicker v-model="user.absenceEndDate" :locale="locale" inputFormat="dd-MM-yyyy" startingView="year" />
 							</div>
 						</CustomRow>
+					</form>
+				</CustomTabItem>
+				<CustomTabItem>
+					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer" icon="IconFilledCog"
+					           title="Spécialités" @callback="saveInformations" />
+					<form class="profiles__form">
+						<CustomRow>
+							<CustomSelect v-model="user.fonction" :items="fonction.value" label="Metier" placeholder="Metier"
+							              width="300px" />
+							<CustomSelect v-model="user.pole" multiple :items="pole.value" label="Compétences" placeholder="Compétences"
+							              width="500px" />
+						</CustomRow>
+						<div class="profiles__form__action">
+							<label>Type de planning</label>
+							<div class="profiles__form__planning">
+								<CustomButton :class="scheduleDay ? 'profiles__planning--active' : ''" text
+								              @click="onChangeSchedule('Day')">
+									<IconSun />
+									Jour
+								</CustomButton>
+								<CustomButton :class="scheduleNight ? 'profiles__planning--active' : ''" text
+								              @click="onChangeSchedule('Night')">
+									<IconMoon />
+									Nuit
+								</CustomButton>
+							</div>
+						</div>
 					</form>
 				</CustomTabItem>
 				<CustomTabItem>
@@ -144,7 +171,7 @@
 					user.schedule = "Night"
 				}
 
-				if(scheduleDay.value && scheduleNight.value) {
+				if(scheduleDay.value && scheduleNight.value || !scheduleDay.value && !scheduleNight.value) {
 					user.schedule = "All"
 				}
 			}
@@ -163,7 +190,10 @@
 							xNumero_ADELI__c: user.adeli,
 							MailingStreet: user.street,
 							MailingPostalCode: user.postalCode,
-							MailingCity: user.city
+							MailingCity: user.city,
+							xType_of_service__c: user.fonction,
+							xServices__c: user.pole,
+							xType_of_Schedule__c: user.schedule
 						}
 					})
 				} catch(e) {
