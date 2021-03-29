@@ -61,11 +61,16 @@
 				</CustomTabItem>
 				<CustomTabItem>
 					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer" icon="IconFilledCog"
-					           title="Absence" @callback="saveAbsence" />
+					           title="Préférence" @callback="savePreference" />
 					<form class="profiles__form">
 						<CustomRow>
-							<datepicker v-model="user.absenceStartDate" :locale="locale" inputFormat="dd-MM-yyyy" startingView="year" />
-							<datepicker v-model="user.absenceEndDate" :locale="locale" inputFormat="dd-MM-yyyy" startingView="year" />
+							<CustomCheckbox v-model="preferences" label="Notfication email" name="email" value="Email" right-label />
+						</CustomRow>
+						<CustomRow>
+							<CustomCheckbox v-model="preferences" label="Notfication mobile" name="mobile" value="App" right-label />
+						</CustomRow>
+						<CustomRow>
+							<CustomCheckbox v-model="preferences" label="Thème sombre (pour cet appareil)" name="sombre" value="dark-theme" right-label />
 						</CustomRow>
 					</form>
 				</CustomTabItem>
@@ -123,6 +128,7 @@
 			const loading = ref(false)
 			const resetLoading = ref(false)
 			const resetPasswordDialogOpen = ref(false)
+			const preferences = ref([])
 
 			/* Methods */
 			const onChangeSchedule = (type) => {
@@ -187,11 +193,17 @@
 					await store.dispatch("editUser", {
 						id: store.state.user.Id,
 						user: {
-							xType_of_service__c: user.fonction,
-							xServices__c: user.pole,
-							xType_of_Schedule__c: user.schedule
+							xPrimary_Channel__c: preferences.value.includes("Email") ? "Email" : "",
+							xSecondary_Channel__c: preferences.value.includes("App") ? "App" : ""
 						}
 					})
+					if(preferences.value.includes("dark-theme")) {
+						localStorage.setItem("dark-theme", "true")
+						document.body.classList.add("theme-dark")
+					}else {
+						localStorage.removeItem("dark-theme")
+						document.body.classList.remove("theme-dark")
+					}
 				} catch(e) {
 				}
 
@@ -205,6 +217,16 @@
 				civility.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.CIVILITY)
 				fonction.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.FONCTION)
 				pole.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.POLE)
+
+				if(store.state.user.xPrimary_Channel__c) {
+					preferences.value.push(store.state.user.xPrimary_Channel__c)
+				}
+				if(store.state.user.xSecondary_Channel__c) {
+					preferences.value.push(store.state.user.xSecondary_Channel__c)
+				}
+				if(localStorage.getItem("dark-theme") === "true") {
+					preferences.value.push("dark-theme")
+				}
 
 				show.value = true
 			})
@@ -223,6 +245,7 @@
 				loading,
 				resetLoading,
 				resetPasswordDialogOpen,
+				preferences,
 				/* Methods */
 				onChangeSchedule,
 				saveInformations,

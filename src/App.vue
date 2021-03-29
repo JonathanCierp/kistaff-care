@@ -14,15 +14,16 @@
 		name: "App",
 		setup: () => {
 			provide("firebaseMessaging", firebaseMessaging)
-
-			const store = useStore()
 			const route = useRoute()
+
 			/* Computed */
 			const isDefaultLayout = computed(() => route.meta.layout === "default")
 
 			/* Lifecycle Hooks */
 			onMounted(async () => {
-				//await store.dispatch("registerDevice", { userId: store.state.user.Id })
+				if(localStorage.getItem("dark-theme") === "true") {
+					document.body.classList.add("theme-dark")
+				}
 			})
 			
 			return {
