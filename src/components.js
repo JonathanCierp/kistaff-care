@@ -23,6 +23,8 @@ import CustomFileUpload from "./components/custom/form/CustomFileUpload.vue"
 import CustomForm from "./components/custom/form/CustomForm.vue"
 import CustomInput from "./components/custom/form/CustomInput.vue"
 import CustomSelect from "./components/custom/form/CustomSelect.vue"
+import CustomRadio from "./components/custom/form/CustomRadio.vue"
+import CustomCheckbox from "./components/custom/form/CustomCheckbox.vue"
 import CustomRow from "./components/custom/layout/CustomRow.vue"
 import CustomTabs from "./components/custom/tabs/CustomTabs.vue"
 import CustomTab from "./components/custom/tabs/CustomTab.vue"
@@ -100,6 +102,8 @@ const useComponents = (app) => {
 	app.component("CustomForm", CustomForm)
 	app.component("CustomInput", CustomInput)
 	app.component("CustomSelect", CustomSelect)
+	app.component("CustomRadio", CustomRadio)
+	app.component("CustomCheckbox", CustomCheckbox)
 	app.component("CustomRow", CustomRow)
 	app.component("CustomTabs", CustomTabs)
 	app.component("CustomTab", CustomTab)

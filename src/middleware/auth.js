@@ -4,6 +4,7 @@ import { useAxiosAuthInstance } from "../plugins/axios"
 const registerDevice = async (userId) => {
 	return await store.dispatch("registerDevice", { userId })
 }
+
 const useAuth = async () => {
 	try {
 		if(!localStorage.getItem("jwt")) {

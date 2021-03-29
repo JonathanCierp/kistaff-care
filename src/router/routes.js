@@ -6,7 +6,6 @@ import Documents from "../page/documents.vue"
 import Signin from "../page/auth/signin.vue"
 import Signup from "../page/auth/signup.vue"
 import PasswordForgot from "../page/password/forgot.vue"
-import PasswordReset from "../page/password/reset.vue"
 
 export default [
   {
@@ -64,14 +63,6 @@ export default [
 		path: "/password/forgot",
 		component: PasswordForgot,
 		name: "PasswordForgot",
-		meta: {
-			layout: "blank"
-		}
-	},
-	{
-		path: "/password/reset",
-		component: PasswordReset,
-		name: "PasswordReset",
 		meta: {
 			layout: "blank"
 		}

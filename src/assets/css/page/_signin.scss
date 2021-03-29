@@ -26,6 +26,10 @@
 
       & .signin__form__row {
         margin-bottom: 2rem;
+
+        & div {
+          width: 100%;
+        }
       }
     }
 

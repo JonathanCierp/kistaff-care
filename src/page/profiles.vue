@@ -38,7 +38,7 @@
 						<h2>Adresse</h2>
 						<CustomRow>
 							<CustomInput v-model="user.street" label="Rue" placeholder="Rue" width="300px" />
-							<CustomInput v-model="user.postalCode" label="Code" placeholder="Code postal" postal width="300px" />
+							<CustomInput v-model="user.postalCode" label="Code postal" placeholder="Code postal" postal width="300px" />
 							<CustomInput v-model="user.city" label="Ville" placeholder="Ville" width="300px" />
 						</CustomRow>
 					</CustomForm>
@@ -111,12 +111,13 @@
 				city: store.state.user.MailingAddress?.city,
 				ssn: store.state.user.xDecrypted_SSN__c,
 				adeli: store.state.user.xNumero_ADELI__c,
-				fonction: "Nurse",
-				pole: "Emergency;Paediatric;Intensive Care",
+				fonction: store.state.user.xType_of_service__c,
+				pole: store.state.user.xServices__c,
 				schedule: store.state.user.xType_of_Schedule__c,
 				absenceStartDate: store.state.user.xLeave_From__c ? new Date(store.state.user.xLeave_From__c) : null,
 				absenceEndDate: store.state.user.xLeave_To__c ? new Date(store.state.user.xLeave_To__c) : null
 			})
+
 			const scheduleDay = ref(user.schedule === "Day" || user.schedule === "All")
 			const scheduleNight = ref(user.schedule === "Night" || user.schedule === "All")
 			const loading = ref(false)

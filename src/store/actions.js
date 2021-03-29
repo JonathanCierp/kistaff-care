@@ -171,7 +171,7 @@ export default {
 	},
 	async registerDevice({ commit }, { userId }) {
 		try {
-			if(localStorage.getItem("fcmTokenRegistered") !== "true") {
+			if(localStorage.getItem("fcmTokenRegistered") !== "true" && Notification.permission === "granted") {
 				const token = await firebaseMessaging.getToken()
 				const existToken = await getDeviceByToken(token)
 
