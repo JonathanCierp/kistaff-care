@@ -43,6 +43,11 @@ import ResetPasswordDialog from "./components/dialog/ResetPasswordDialog.vue"
 
 /* Icons components */
 import IconBurger from "./components/icons/IconBurger.vue"
+import IconCalendar from "./components/icons/IconCalendar.vue"
+import IconCalendarEvent from "./components/icons/IconCalendarEvent.vue"
+import IconCalendarExclamation from "./components/icons/IconCalendarExclamation.vue"
+import IconCalendarClose from "./components/icons/IconCalendarClose.vue"
+import IconCalendarPlus from "./components/icons/IconCalendarPlus.vue"
 import IconCheck from "./components/icons/IconCheck.vue"
 import IconChevronDown from "./components/icons/IconChevronDown.vue"
 import IconChevronLeft from "./components/icons/IconChevronLeft.vue"
@@ -60,12 +65,14 @@ import IconLock from "./components/icons/IconLock.vue"
 import IconMoon from "./components/icons/IconMoon.vue"
 import IconNotFound from "./components/icons/IconNotFound.vue"
 import IconOutlinedBell from "./components/icons/IconOutlinedBell.vue"
+import IconOutlinedCog from "./components/icons/IconOutlinedCog.vue"
 import IconOutlinedDocument from "./components/icons/IconOutlinedDocument.vue"
 import IconOutlinedHelp from "./components/icons/IconOutlinedHelp.vue"
 import IconOutlinedLogout from "./components/icons/IconOutlinedLogout.vue"
 import IconOutlinedEdit from "./components/icons/IconOutlinedEdit.vue"
 import IconPlus from "./components/icons/IconPlus.vue"
 import IconSave from "./components/icons/IconSave.vue"
+import IconBook from "./components/icons/IconBook.vue"
 import IconSun from "./components/icons/IconSun.vue"
 import IconTrash from "./components/icons/IconTrash.vue"
 import IconWarning from "./components/icons/IconWarning.vue"
@@ -121,6 +128,11 @@ const useComponents = (app) => {
 	app.component("ResetPasswordDialog", ResetPasswordDialog)
 
 	app.component("IconBurger", IconBurger)
+	app.component("IconCalendar", IconCalendar)
+	app.component("IconCalendarEvent", IconCalendarEvent)
+	app.component("IconCalendarExclamation", IconCalendarExclamation)
+	app.component("IconCalendarClose", IconCalendarClose)
+	app.component("IconCalendarPlus", IconCalendarPlus)
 	app.component("IconCheck", IconCheck)
 	app.component("IconChevronDown", IconChevronDown)
 	app.component("IconChevronLeft", IconChevronLeft)
@@ -138,12 +150,14 @@ const useComponents = (app) => {
 	app.component("IconMoon", IconMoon)
 	app.component("IconNotFound", IconNotFound)
 	app.component("IconOutlinedBell", IconOutlinedBell)
+	app.component("IconOutlinedCog", IconOutlinedCog)
 	app.component("IconOutlinedDocument", IconOutlinedDocument)
 	app.component("IconOutlinedHelp", IconOutlinedHelp)
 	app.component("IconOutlinedLogout", IconOutlinedLogout)
 	app.component("IconOutlinedEdit", IconOutlinedEdit)
 	app.component("IconPlus", IconPlus)
 	app.component("IconSave", IconSave)
+	app.component("IconBook", IconBook)
 	app.component("IconSun", IconSun)
 	app.component("IconTrash", IconTrash)
 	app.component("IconWarning", IconWarning)

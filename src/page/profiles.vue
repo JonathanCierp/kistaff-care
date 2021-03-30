@@ -4,9 +4,9 @@
 		<div v-if="show" class="profiles__body">
 			<CustomTabs v-model="tab">
 				<CustomTab icon="IconCircleOutlineUser">Informations</CustomTab>
-				<CustomTab icon="IconFilledCog">Absences</CustomTab>
-								<CustomTab icon="IconFilledCog">Spécialités</CustomTab>
-				<CustomTab icon="IconFilledCog">Préférences</CustomTab>
+				<CustomTab icon="IconCalendar">Absences</CustomTab>
+				<CustomTab icon="IconBook">Spécialités</CustomTab>
+				<CustomTab icon="IconOutlinedCog">Préférences</CustomTab>
 			</CustomTabs>
 			<CustomTabItems v-model="tab">
 				<CustomTabItem>
@@ -44,9 +44,9 @@
 					</CustomForm>
 				</CustomTabItem>
 				<CustomTabItem>
-					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer" icon="IconFilledCog"
+					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer" icon="IconCalendar"
 					           title="Absence" @callback="saveAbsence" />
-					<form class="profiles__form">
+					<CustomForm class="profiles__form">
 						<CustomRow>
 							<div class="custom-input">
 								<label>Date de début</label>
@@ -57,12 +57,12 @@
 								<datepicker v-model="user.absenceEndDate" :locale="locale" inputFormat="dd-MM-yyyy" startingView="year" />
 							</div>
 						</CustomRow>
-					</form>
+					</CustomForm>
 				</CustomTabItem>
 				<CustomTabItem>
-					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer" icon="IconFilledCog"
+					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer" icon="IconBook"
 					           title="Spécialités" @callback="saveInformations" />
-					<form class="profiles__form">
+					<CustomForm class="profiles__form">
 						<CustomRow>
 							<CustomSelect v-model="user.fonction" :items="fonction.value" label="Metier" placeholder="Metier"
 							              width="300px" @update:modelValue="changeFonction" />
@@ -84,10 +84,10 @@
 								</CustomButton>
 							</div>
 						</div>
-					</form>
+					</CustomForm>
 				</CustomTabItem>
 				<CustomTabItem>
-					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer" icon="IconFilledCog"
+					<TabHeader :loading="loading" button-icon="IconSave" button-label="Enregistrer" icon="IconOutlinedCog"
 					           title="Préférence" @callback="savePreference" />
 					<form class="profiles__form">
 						<CustomRow>

@@ -3,22 +3,22 @@
 		<PageHeader label="Mes missions" />
 		<div v-if="show" class="missions__body">
 			<CustomTabs v-model="tab">
-				<CustomTab icon="IconFilledCog" name="new">
+				<CustomTab icon="IconCalendarPlus" name="new">
 					A pourvoir&nbsp;<sub class="hide-on-mobile text-caption">({{ newMissions.value.missions.length }})</sub>
 				</CustomTab>
-				<CustomTab icon="IconFilledCog" name="upcoming">
+				<CustomTab icon="IconCalendarExclamation" name="upcoming">
 					En cours&nbsp;<sub class="hide-on-mobile text-caption">({{ upcomingMissions.value.missions.length }})</sub>
 				</CustomTab>
-				<CustomTab icon="IconFilledCog" name="pending">
+				<CustomTab icon="IconCalendarEvent" name="pending">
 					En attente&nbsp;<sub class="hide-on-mobile text-caption">({{ pendingMissions.value.missions.length }})</sub>
 				</CustomTab>
-				<CustomTab icon="IconFilledCog" name="passed">
+				<CustomTab icon="IconCalendarClose" name="passed">
 					Passées&nbsp;<sub class="hide-on-mobile text-caption">({{ passedMissions.value.missions.length }})</sub>
 				</CustomTab>
 			</CustomTabs>
 			<CustomTabItems v-model="tab">
 				<CustomTabItem name="new">
-					<TabHeader v-model="searchNewMission" hide-label-on-mobile icon="IconFilledCog" searchable
+					<TabHeader v-model="searchNewMission" hide-label-on-mobile icon="IconCalendarPlus" searchable
 					           title="Missions à pourvoir"
 					           @update:modelValue="v => onSearch('new', v)" />
 					<ListItems>
@@ -30,7 +30,7 @@
 					</ListItems>
 				</CustomTabItem>
 				<CustomTabItem name="upcoming">
-					<TabHeader v-model="searchUpcomingMission" hide-label-on-mobile icon="IconFilledCog" searchable
+					<TabHeader v-model="searchUpcomingMission" hide-label-on-mobile icon="IconCalendarExclamation" searchable
 					           title="Missions en cours"
 					           @update:modelValue="v => onSearch('upcoming', v)" />
 					<ListItems>
@@ -41,7 +41,7 @@
 					</ListItems>
 				</CustomTabItem>
 				<CustomTabItem name="pending">
-					<TabHeader v-model="searchPendingMission" hide-label-on-mobile icon="IconFilledCog" searchable
+					<TabHeader v-model="searchPendingMission" hide-label-on-mobile icon="IconCalendarEvent" searchable
 					           title="Missions en attente"
 					           @update:modelValue="v => onSearch('pending', v)" />
 					<ListItems>
@@ -52,7 +52,7 @@
 					</ListItems>
 				</CustomTabItem>
 				<CustomTabItem name="passed">
-					<TabHeader v-model="searchPassedMission" hide-label-on-mobile icon="IconFilledCog" searchable
+					<TabHeader v-model="searchPassedMission" hide-label-on-mobile icon="IconCalendarClose" searchable
 					           title="Missions passées"
 					           @update:modelValue="v => onSearch('passed', v)" />
 					<ListItems>
