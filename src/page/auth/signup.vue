@@ -139,7 +139,7 @@
 			const router = useRouter()
 
 			/* Datas */
-			const step = ref(1)
+			const step = ref(0)
 			const innerWidth = ref(window.innerWidth)
 			const civilities = ref([])
 			const fonctions = ref([])

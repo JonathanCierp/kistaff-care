@@ -97,7 +97,7 @@
 							<CustomCheckbox v-model="preferences" label="Notfication mobile" name="mobile" value="App" right-label />
 						</CustomRow>
 						<CustomRow>
-							<CustomCheckbox v-model="preferences" label="Thème sombre (pour cet appareil)" name="sombre" value="dark-theme" right-label />
+							<CustomCheckbox v-model="theme" label="Thème sombre (pour cet appareil)" name="sombre" true-value="dark" false-value="light" right-label />
 						</CustomRow>
 					</form>
 				</CustomTabItem>
@@ -157,6 +157,7 @@
 			const resetLoading = ref(false)
 			const resetPasswordDialogOpen = ref(false)
 			const preferences = ref([])
+			const theme = ref("")
 			const pickLists = ref([])
 			const polePickListed = ref([])
 
@@ -230,11 +231,13 @@
 							xSecondary_Channel__c: preferences.value.includes("App") ? "App" : ""
 						}
 					})
-					if(preferences.value.includes("dark-theme")) {
-						localStorage.setItem("dark-theme", "true")
+					localStorage.setItem("theme", theme.value)
+
+					if(localStorage.getItem("theme") === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+						localStorage.setItem("theme", "dark")
 						document.body.classList.add("theme-dark")
-					}else {
-						localStorage.removeItem("dark-theme")
+					} else {
+						localStorage.setItem("theme", "light")
 						document.body.classList.remove("theme-dark")
 					}
 				} catch(e) {
@@ -262,9 +265,18 @@
 				if(store.state.user.xSecondary_Channel__c) {
 					preferences.value.push(store.state.user.xSecondary_Channel__c)
 				}
-				if(localStorage.getItem("dark-theme") === "true") {
-					preferences.value.push("dark-theme")
+
+
+				if(localStorage.getItem("theme") === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+					theme.value = "dark"
+					localStorage.setItem("theme", "dark")
+					document.body.classList.add("theme-dark")
+				} else {
+					theme.value = "light"
+					localStorage.setItem("theme", "light")
+					document.body.classList.remove("theme")
 				}
+
 				changeFonction(user.fonction, user.pole)
 
 				show.value = true
@@ -285,6 +297,7 @@
 				resetLoading,
 				resetPasswordDialogOpen,
 				preferences,
+				theme,
 				pickLists,
 				polePickListed,
 				/* Methods */

@@ -19,7 +19,7 @@ const findSobjectsForUserConnectedFilteredByField = async (field) => {
 	return sobject.picklistValues.map(value => normalizeSobject(value)).filter(value => value.active)
 }
 const findPickList = async () => {
-	const { data } = await useAxiosAuthInstance().get("/picklists?objectName=xSchedule__c&fieldName=xService__c")
+	const { data } = await useAxiosAuthInstance().get("/picklists?objectName=Contact&fieldName=xServices__c")
 
 	return data
 }

@@ -25,14 +25,14 @@
 			const notifications = [
 				{
 					key: "organization",
-					title: "Des établissements vous ont été rattaché, cliquez-ici pour les modifier.",
+					title: "Des établissements vous ont été rattachés, cliquez-ici pour les modifier.",
 					timeLabel: "Important",
 					to: "/organizations",
 					status: "not_read"
 				},
 				{
 					key: "document",
-					title: "Des documents sont manquant, cliquez-ici pour en rajouter.",
+					title: "Des documents sont manquants, cliquez-ici pour en rajouter.",
 					timeLabel: "Important",
 					to: "/documents",
 					status: "not_read"

@@ -12,7 +12,7 @@ import {
 import { deleteDocumentFromUser, getDocumentBelongsToUser, uploadDocument } from "../api/documents"
 import { getOrganizations, saveOrganizations } from "../api/organizations"
 import { getDeviceByToken, saveDevice } from "../api/device"
-import firebaseMessaging from "../plugins/firebase"
+//import firebaseMessaging from "../plugins/firebase"
 import { useRouter } from "vue-router"
 
 const notification = useNotification()
@@ -197,7 +197,7 @@ export default {
 				}
 			}
 
-			if(localStorage.getItem("fcmTokenRegistered") !== "true" && notification) {
+			/*if(localStorage.getItem("fcmTokenRegistered") !== "true" && notification) {
 				const token = await firebaseMessaging.getToken()
 				const existToken = await getDeviceByToken(token)
 
@@ -206,7 +206,7 @@ export default {
 
 					localStorage.setItem("fcmTokenRegistered", "true")
 				}
-			}
+			}*/
 		} catch(e) {
 			throw new Error(e.response?.data.message || e.message)
 		}

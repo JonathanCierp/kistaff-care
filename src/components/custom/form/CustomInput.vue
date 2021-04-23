@@ -1,7 +1,7 @@
 <template>
 	<div :style="[widthStyle]" class="custom-input" :class="inputErrorClass">
-		<label :for="label.toLowerCase().replace(' ', '-')">{{ label }}</label>
-		<input :id="label.toLowerCase().replace(' ', '-')" :placeholder="placeholder" :type="nativeType"
+		<label :for="`${label.toLowerCase().replace(' ', '-')}-${guid}`">{{ label }}</label>
+		<input :id="`${label.toLowerCase().replace(' ', '-')}-${guid}`" :placeholder="placeholder" :type="nativeType"
 		       @input="onInput" :value="modelValue" />
 		<p v-if="inputError" class="custom-input__error-message">
 			<IconWarning />
@@ -12,6 +12,7 @@
 
 <script>
 	import { computed, defineComponent, ref, nextTick } from "vue"
+	import { getUid } from "../../../utils"
 
 	export default defineComponent({
 		name: "CustomInput",
@@ -50,6 +51,7 @@
 			const errorMessage = ref("")
 			const inputError = ref(false)
 			const inputValue = ref("")
+			const guid = ref(getUid())
 
 			/* Methods */
 			const onInput = async (e) => {
@@ -90,6 +92,7 @@
 				errorMessage,
 				inputError,
 				inputValue,
+				guid,
 				/* Methods */
 				onInput,
 				validate,

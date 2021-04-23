@@ -53,7 +53,8 @@
 
 // Dark mode
 // =============
-@include dark {
+//@include dark {
+.theme-dark {
   --color-background: #171933;
   --color-background-lighter: #1B1E3D;
   --color-text: #D4DCFF;
