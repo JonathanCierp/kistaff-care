@@ -2,7 +2,7 @@
 	<div :style="[widthStyle]" class="custom-select">
 		<label :for="label.toLowerCase().replace(' ', '-')">{{ label }}</label>
 		<CustomDropdown ref="dropdown" :id="label.toLowerCase().replace(' ', '-')" :center="center" popover-width="100%"
-		                icon-right="IconChevronDown" offset="0" text>
+		                icon-right="IconChevronDown" offset="0" text :disabled="disabled">
 			<template #title>
 				<span v-if="modelValue" class="custom-select__text">{{ dropdownTitle }}</span>
 				<span v-else>{{ placeholder }}</span>
@@ -51,6 +51,10 @@
 				default: false
 			},
 			multiple: {
+				type: Boolean,
+				default: false
+			},
+			disabled: {
 				type: Boolean,
 				default: false
 			},

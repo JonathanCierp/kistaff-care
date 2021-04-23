@@ -23,13 +23,13 @@
 		setup: (props, { emit }) => {
     	/* Datas */
 			const notifications = [
-				{
+				/*{
 					key: "organization",
 					title: "Des établissements vous ont été rattachés, cliquez-ici pour les modifier.",
 					timeLabel: "Important",
 					to: "/organizations",
 					status: "not_read"
-				},
+				},*/
 				{
 					key: "document",
 					title: "Des documents sont manquants, cliquez-ici pour en rajouter.",

@@ -65,7 +65,7 @@
 					<CustomForm class="profiles__form">
 						<CustomRow>
 							<CustomSelect v-model="user.fonction" :items="fonction.value" label="Metier" placeholder="Metier"
-							              width="300px" @update:modelValue="changeFonction" />
+							              width="300px" @update:modelValue="changeFonction" disabled />
 							<CustomSelect v-model="user.pole" multiple :items="polePickListed" label="Compétences" placeholder="Compétences"
 							              width="500px" />
 						</CustomRow>

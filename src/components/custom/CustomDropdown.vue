@@ -1,5 +1,5 @@
 <template>
-	<div ref="root" class="custom-dropdown" :data-uid="uid" :class="[placementClass]">
+	<div ref="root" class="custom-dropdown" :data-uid="uid" :class="[placementClass, disabledClass]">
 		<custom-button v-if="$slots.title" class="custom-dropdown__title" :icon="icon" :text="text" @click="onOpen" :center="center" block :icon-right="iconRight">
 			<slot name="title"></slot>
 		</custom-button>
@@ -42,6 +42,10 @@
 				type: Boolean,
 				default: false
 			},
+			disabled: {
+				type: Boolean,
+				default: false
+			},
 			placement: {
 				type: String,
 				default: "bottom"
@@ -58,11 +62,13 @@
 
 			/* Methods */
 			const onOpen = () => {
-				popoverTop.value = root.value.offsetHeight
-				open.value = !open.value
+				if(!props.disabled) {
+					popoverTop.value = root.value.offsetHeight
+					open.value = !open.value
 
-				if(open.value) {
-					document.querySelector("html").addEventListener("click", closeDropdown)
+					if(open.value) {
+						document.querySelector("html").addEventListener("click", closeDropdown)
+					}
 				}
 			}
 
@@ -93,6 +99,7 @@
 
 				return styles
 			})
+			const disabledClass = computed(() => props.disabled? `custom-dropdown--disabled` : "")
 			const placementClass = computed(() => `custom-dropdown--${props.placement}`)
 
 			return {
@@ -105,6 +112,7 @@
 				closeDropdown,
 				/* Computed */
 				popoverStyle,
+				disabledClass,
 				placementClass
 			}
 		}

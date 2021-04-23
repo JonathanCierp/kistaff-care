@@ -1,6 +1,17 @@
 .custom-dropdown {
   position: relative;
 
+  &.custom-dropdown--disabled {
+    & .custom-dropdown__title {
+      cursor: not-allowed;
+      background-color: var(--color-gray-lighter-1);
+
+      &:hover {
+        background-color: var(--color-gray-lighter-1) !important;
+      }
+    }
+  }
+
   & .custom-dropdown__title {
     display: flex;
     align-items: center;
