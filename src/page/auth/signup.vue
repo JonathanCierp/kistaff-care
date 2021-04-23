@@ -60,7 +60,7 @@
 			</CustomRow>
 		</CustomForm>
 		<CustomForm v-if="step === 1" class="signup__form signup__form--step-1">
-			<p v-if="!fonction && fonctionStepError" class="text-caption">
+			<p v-if="!fonction && fonctionStepError" class="signup__form--error text-caption">
 				<IconWarning />
 				Le métier est obligatoire
 			</p>
@@ -116,8 +116,14 @@
 				<CustomButton @click="onSignUp">S'inscrire</CustomButton>
 			</CustomRow>
 		</CustomForm>
+		<CustomRow class="signup__cgu text-body-2">
+			<p>
+				En cliquant sur s'inscrire, vous acceptez nos
+				<a class="font-medium" href="https://www.kistaff.fr/s/terms?language=fr" target="_blank">CGU</a>
+			</p>
+		</CustomRow>
 		<CustomRow class="signup__have-account">
-			<p>Vous avez déjà un compte? <CustomLink class="font-medium" to="/auth/signin">Me connecter</CustomLink></p>
+			<p>Vous avez déjà un compte ? <CustomLink class="font-medium" to="/auth/signin">Me connecter</CustomLink></p>
 		</CustomRow>
 	</main>
 </template>
@@ -140,7 +146,7 @@
 			const router = useRouter()
 
 			/* Datas */
-			const step = ref(0)
+			const step = ref(3)
 			const innerWidth = ref(window.innerWidth)
 			const civilities = ref([])
 			const fonctions = ref([])
@@ -174,7 +180,7 @@
 			const pole = ref([])
 			const polePickListed = ref([])
 			const poleStepError = ref(false)
-			const planningType = ref([])
+			const planningType = ref("All")
 
 			/* Step 4 */
 			const password = ref("")
