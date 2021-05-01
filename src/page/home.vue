@@ -75,9 +75,11 @@
 <script>
 	import { defineComponent, inject, onMounted, reactive, ref } from "vue"
 	import { useStore } from "vuex"
+	import { moveTawkToWidget } from "../utils"
 
 	export default defineComponent({
 		name: "Home",
+		title: "Mes missions - Kistaff",
 		setup: () => {
 			const store = useStore()
 			//const firebaseMessaging = inject("firebaseMessaging")
@@ -138,6 +140,7 @@
 				passedMissions.value = store.getters.filterMissions("passed")
 
 				show.value = true
+				moveTawkToWidget()
 			})
 
 			return {

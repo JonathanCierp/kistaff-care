@@ -12,16 +12,10 @@ const device = () => {
 		navigator.userAgent.match(/Windows/i) ? "Windows" : null
 }
 const saveDevice = async ({ userId, token }) => {
-	console.log({
-		"xEmployee__c": userId,
-		"xModel__c": device(),
-		"xCategory__c": device() === "Windows" ? "Desktop" : "Phone",
-		"xToken__c": token
-	})
 	await useAxiosAuthInstance().post("/devices",  {
 		"xEmployee__c": userId,
 		"xModel__c": device(),
-		"xCategory__c": device() === "Windows" ? "Desktop" : "Phone",
+		"xCategory__c": "Desktop",
 		"xToken__c": token
 	})
 }

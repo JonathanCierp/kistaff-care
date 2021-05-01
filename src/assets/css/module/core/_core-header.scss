@@ -26,6 +26,14 @@
     }
   }
 
+  & .core-header__brand img {
+    height: 2.5rem;
+
+    &:last-child {
+      display: none;
+    }
+  }
+
   & .core-header__nav {
     flex: 1;
     margin-left: 2rem;
@@ -65,6 +73,11 @@
 
       &.core-header__burger {
         display: none;
+
+        & button {
+          height: 20px;
+          width: 20px;
+        }
 
         & span {
           font-size: 0;
@@ -146,10 +159,23 @@
       }
     }
 
+    & .core-header__brand img {
+      height: 2.5rem;
+
+      &:first-child {
+        display: none;
+      }
+
+      &:last-child {
+        display: inline-block;
+      }
+    }
+
     & .core-header__nav {
       flex: 0;
       visibility: hidden;
       opacity: 0;
+      margin-left: 0;
 
       & li {
         user-select: none;

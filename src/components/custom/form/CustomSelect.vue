@@ -63,6 +63,7 @@
 				default: []
 			}
 		},
+		emits: ["update:modelValue"],
 		setup: (props, { emit }) => {
 			/* Datas */
 			const popoverItems = ref(null)

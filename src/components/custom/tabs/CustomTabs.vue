@@ -10,11 +10,12 @@
 	export default defineComponent({
     name: "CustomTabs",
 		props: {
-    	modelValue: {
-    		type: [Number, String],
-		    default: 0
-	    }
+			modelValue: {
+				type: [Number, String],
+				default: 0
+			}
 		},
+		emits: ["update:modelValue"],
 		setup: (props, { emit }) => {
 			/* Datas */
     	const root = ref(null)

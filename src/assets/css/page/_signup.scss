@@ -167,5 +167,9 @@
     & .signup__step {
       font-size: .8rem !important;
     }
+    
+    & .signup__form__row .custom-input {
+      width: 100% !important;
+    }
   }
 }

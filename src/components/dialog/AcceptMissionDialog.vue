@@ -46,6 +46,7 @@
 				required: true
 			}
 		},
+		emits: ["update:modelValue"],
 		setup(props, { emit }) {
 			const store = useStore()
 			/* Datas */

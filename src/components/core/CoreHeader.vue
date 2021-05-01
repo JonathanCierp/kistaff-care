@@ -1,8 +1,9 @@
 <template>
 	<nav :class="mobileOpenClass" class="core-header">
-		<ul class="core-header__brand">
-			<li>Logo</li>
-		</ul>
+		<CustomLink to="/" class="core-header__brand">
+			<img src="/img/brand-name.png" alt="Kistaff logo plain desktop">
+			<img src="/img/brand-name-mobile.png" alt="Kistaff logo plain mobile">
+		</CustomLink>
 		<ul class="core-header__nav">
 			<li v-for="link of links" :key="link.key" :class="[$route.path === link.to ? 'core-header__nav__link--active' : '']"
 			    class="core-header__nav__link" @click="onChangeRoute">
@@ -13,7 +14,7 @@
 			<li>
 				<CustomDropdown ref="notificationDropdown" icon>
 					<template #title>
-						<CustomBadge type="error" inset="10" content="2">
+						<CustomBadge type="error" inset="10" content="1">
 							<IconOutlinedBell />
 						</CustomBadge>
 					</template>

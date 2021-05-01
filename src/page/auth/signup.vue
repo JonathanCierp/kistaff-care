@@ -73,9 +73,9 @@
 		</CustomForm>
 		<CustomForm v-if="step === 2" class="signup__form signup__form--step-2">
 			<h3>Type de planning</h3>
-			<CustomRadio v-model="planningType" label="Nuit" name="day" value="Day" />
-			<CustomRadio v-model="planningType" label="Jour" name="night" value="Night" />
-			<CustomRadio v-model="planningType" label="Peu importe" name="night" value="All" />
+			<CustomRadio v-model="planningType" label="Nuit" name="night" value="Night" />
+			<CustomRadio v-model="planningType" label="Jour" name="day" value="Day" />
+			<CustomRadio v-model="planningType" label="Peu importe" name="all" value="All" />
 			<h3 class="signup__form__poles">Compétences</h3>
 			<CustomCheckbox v-for="p in polePickListed" :key="p.key" v-model="pole" :label="p.value"
 			                :name="p.key" :value="p.key" />
@@ -116,7 +116,7 @@
 				<CustomButton @click="onSignUp">S'inscrire</CustomButton>
 			</CustomRow>
 		</CustomForm>
-		<CustomRow class="signup__cgu text-body-2">
+		<CustomRow v-if="step === 3" class="signup__cgu text-body-2">
 			<p>
 				En cliquant sur s'inscrire, vous acceptez nos
 				<a class="font-medium" href="https://www.kistaff.fr/s/terms?language=fr" target="_blank">CGU</a>
@@ -138,15 +138,17 @@
 	} from "../../api/sobjects"
 	import { useRouter } from "vue-router"
 	import { useStore } from "vuex"
+	import { moveTawkToWidget } from "../../utils"
 
 	export default defineComponent({
 		name: "Signup",
+		title: "Inscription - Kistaff",
 		setup() {
 			const store = useStore()
 			const router = useRouter()
 
 			/* Datas */
-			const step = ref(3)
+			const step = ref(0)
 			const innerWidth = ref(window.innerWidth)
 			const civilities = ref([])
 			const fonctions = ref([])
@@ -231,7 +233,8 @@
 							...form.value,
 							typeOfService: fonction.value,
 							services: pole.value.join(";"),
-							password: password.value
+							password: password.value,
+							typeOfSchedule: planningType.value
 						})
 						localStorage.setItem("tempEmail", form.value.email)
 						await router.push("/auth/signin")
@@ -261,6 +264,9 @@
 				fonctions.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.FONCTION)
 				poles.value = await findSobjectsForUserConnectedFilteredByField(SOBJECTS_FIELD.POLE)
 				pickLists.value = await findPickList()
+
+
+				moveTawkToWidget()
 			})
 
 			return {

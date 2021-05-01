@@ -9,10 +9,15 @@ const getId = (i => () => i++)(0)
 const normalize = s => {
 	return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 }
+const moveTawkToWidget = () => {
+	const iframes = document.querySelectorAll("div > iframe")
+	iframes.forEach(iframe => iframe.style.marginBottom = "3rem")
+}
 
 export {
 	getUid,
 	ucFirst,
 	getId,
-	normalize
+	normalize,
+	moveTawkToWidget
 }

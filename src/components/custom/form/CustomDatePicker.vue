@@ -54,6 +54,7 @@
 				default: ""
 			}
 		},
+		emits: ["update:modelValue"],
 		setup(props, { emit }) {
 			const date = props.modelValue ? new Date(props.modelValue) : new Date()
 			const daysMap = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"]

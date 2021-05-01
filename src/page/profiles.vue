@@ -120,9 +120,11 @@
 		findSobjectsForUserConnectedFilteredByField,
 		SOBJECTS_FIELD
 	} from "../api/sobjects"
+	import { moveTawkToWidget } from "../utils"
 
 	export default defineComponent({
 		name: "Profiles",
+		title: "Mon profile - Kistaff",
 		setup: () => {
 			const store = useStore()
 			const locale = fr
@@ -280,6 +282,7 @@
 				changeFonction(user.fonction, user.pole)
 
 				show.value = true
+				moveTawkToWidget()
 			})
 
 			return {

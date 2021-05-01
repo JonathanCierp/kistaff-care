@@ -2,7 +2,7 @@
 	<main class="forgot">
 		<article class="forgot__card">
 			<div class="signin__brand">
-				<img alt="" src="https://picsum.photos/80">
+				<img alt="Kistaff logo circle" src="/img/brand-logo.png">
 			</div>
 			<h2 class="forgot__title">Veuillez entrer l'adresse email que vous avez utilisée lors de la création de votre
 				compte. Un email sera envoyé à cette adresse avec des instructions supplémentaires sur la façon de réinitialiser
@@ -16,20 +16,30 @@
 				</div>
 				<div class="signin__action">
 					<CustomButton block center native-type="submit" rounded="md" text @click="$router.push('/')">Retour</CustomButton>
-					<CustomButton block center native-type="submit" rounded="md" @click="onSubmit">Se connecter</CustomButton>
+					<CustomButton block center native-type="submit" rounded="md" @click="onSubmit">Réinitialiser</CustomButton>
 				</div>
+				<p class="signin__to-signin">
+					<RouterLink to="/auth/signin">Se connecter</RouterLink>
+				</p>
 			</CustomForm>
 		</article>
 	</main>
 </template>
 
 <script>
-	import { defineComponent, reactive, ref } from "vue"
+	import { defineComponent, onMounted, reactive, ref } from "vue"
 	import { useStore } from "vuex"
 	import { useRouter } from "vue-router"
+	import {
+		findSobjectsForUserConnected,
+		findSobjectsForUserConnectedFilteredByField,
+		SOBJECTS_FIELD
+	} from "../../api/sobjects"
+	import { moveTawkToWidget } from "../../utils"
 
 	export default defineComponent({
 		name: "PasswordForgot",
+		title: "Réinitialisation du mot de passe - Kistaff",
 		setup: () => {
 			const store = useStore()
 			const router = useRouter()
@@ -50,6 +60,11 @@
 					await router.push("/auth/signin")
 				}
 			}
+
+			/* Lifecycle Hooks */
+			onMounted(async () => {
+				moveTawkToWidget()
+			})
 
 			return {
 				/* Datas */

@@ -24,7 +24,7 @@
 				default: ""
 			}
 		},
-		emits: ["deleteDocument"],
+		emits: ["deleteDocument", "update:modelValue"],
 		setup(props, { emit }) {
 			const store = useStore()
 			/* Datas */

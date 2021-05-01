@@ -18,11 +18,12 @@
 	export default defineComponent({
     name: "RefuseMissionDialog",
 		props: {
-    	mission: {
-    		type: Object,
-		    required: true
-	    }
+			mission: {
+				type: Object,
+				required: true
+			}
 		},
+		emits: ["update:modelValue"],
 		setup(props, { emit }) {
 			const store = useStore()
 			/* Datas */

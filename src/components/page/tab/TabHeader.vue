@@ -47,6 +47,7 @@
 				default: false
 			}
 		},
+		emits: ["update:modelValue"],
 		setup(props, { emit }) {
 			/* Methods */
 			const buttonCallback = (e) => {

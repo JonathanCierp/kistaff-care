@@ -18,9 +18,11 @@
 <script>
 	import { defineComponent, onMounted, reactive, ref } from "vue"
 	import { useStore } from "vuex"
+	import { moveTawkToWidget } from "../utils"
 
 	export default defineComponent({
 		name: "Organizations",
+		title: "Mes établissements - Kistaff",
 		setup: () => {
 			const store = useStore()
 			/* Datas */
@@ -37,6 +39,7 @@
 
 				organizations.value = store.getters.filterOrganization()
 				show.value = true
+				moveTawkToWidget()
 			})
 
 			return {

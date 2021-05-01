@@ -27,6 +27,7 @@
 				type: Array
 			}
 		},
+		emits: ["update:modelValue"],
 		setup(props, { emit }) {
 			/* Datas */
 			const inputFile = ref(null)

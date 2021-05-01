@@ -46,6 +46,7 @@
 				default: ""
 			}
 		},
+		emits: ["update:modelValue"],
 		setup(props, { emit }) {
 			/* Datas */
 			const checked = ref(props.modelValue === props.trueValue || props.modelValue.includes(props.value))

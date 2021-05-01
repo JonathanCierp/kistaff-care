@@ -46,6 +46,7 @@
 				default: () => []
 			}
 		},
+		emits: ["update:modelValue"],
 		setup: (props , { emit }) => {
 			/* Datas */
 			const errorMessage = ref("")

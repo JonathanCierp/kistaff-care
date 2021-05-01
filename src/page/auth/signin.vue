@@ -2,7 +2,7 @@
 	<main class="signin">
 		<article class="signin__card">
 			<div class="signin__brand">
-				<img alt="" src="https://picsum.photos/80">
+				<img alt="Kistaff logo circle" src="/img/brand-logo.png">
 			</div>
 			<h2 class="signin__title">Bienvenu(e) sur KISTAFF</h2>
 			<CustomForm class="signin__form">
@@ -32,12 +32,14 @@
 </template>
 
 <script>
-	import { defineComponent, reactive, ref } from "vue"
+	import { defineComponent, onMounted, reactive, ref } from "vue"
 	import { useStore } from "vuex"
 	import { useRouter } from "vue-router"
+	import { moveTawkToWidget } from "../../utils"
 
 	export default defineComponent({
 		name: "Signin",
+		title: "Connexion - Kistaff",
 		setup: () => {
 			const store = useStore()
 			const router = useRouter()
@@ -67,7 +69,11 @@
 				}
 			}
 
-			localStorage.removeItem("tempEmail")
+			/* Lifecycle Hooks */
+			onMounted(async () => {
+				localStorage.removeItem("tempEmail")
+				moveTawkToWidget()
+			})
 
 			return {
 				/* Datas */

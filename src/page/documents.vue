@@ -46,11 +46,12 @@
 		findSobjectsForUserConnectedFilteredByField,
 		SOBJECTS_FIELD
 	} from "../api/sobjects"
-	import { normalize } from "../utils"
+	import { moveTawkToWidget, normalize } from "../utils"
 	import { useStore } from "vuex"
 
 	export default defineComponent({
 		name: "Documents",
+		title: "Mes documents - Kistaff",
 		setup: () => {
 			const store = useStore()
 
@@ -81,6 +82,7 @@
 				userDocuments.value = store.state.userDocuments
 
 				show.value = true
+				moveTawkToWidget()
 			})
 
 			return {

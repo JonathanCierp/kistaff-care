@@ -39,6 +39,7 @@
 
 	export default defineComponent({
 		name: "ResetPasswordDialog",
+		emits: ["update:modelValue"],
 		setup(props, { emit }) {
 			const store = useStore()
 			const router = useRouter()
