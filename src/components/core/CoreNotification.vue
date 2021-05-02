@@ -1,43 +1,53 @@
 <template>
   <div class="core-notification">
-		<div class="core-notification__header">
-			<h2 class="text-h5 font-medium">Notification</h2>
-			<CustomLink to="/settings#preferences" @click="onChangeRoute">
-				<IconOutlinedCog />
-			</CustomLink>
-		</div>
-		<ul class="core-notification__items">
-			<CoreNotificationItem v-for="notification in notifications" :notification="notification" @click="onChangeRoute" />
-		</ul>
-		<div class="core-notification__footer">
-			<CustomLink to="/notifications" class="text-h5 font-medium" @click="onChangeRoute">Toutes les notifications</CustomLink>
-		</div>
+    <div class="core-notification__header">
+      <h2 class="text-h5 font-medium">Notification</h2>
+      <CustomLink to="/settings#preferences" @click="onChangeRoute">
+        <IconOutlinedCog />
+      </CustomLink>
+    </div>
+    <ul class="core-notification__items">
+      <CoreNotificationItem
+        v-for="notification in notifications"
+        :notification="notification"
+        @click="onChangeRoute"
+      />
+    </ul>
+    <div class="core-notification__footer">
+      <CustomLink
+        to="/notifications"
+        class="text-h5 font-medium"
+        @click="onChangeRoute"
+        >Toutes les notifications</CustomLink
+      >
+    </div>
   </div>
 </template>
 
 <script>
-  import { defineComponent } from "vue"
+import { defineComponent } from "vue";
 
-	export default defineComponent({
-    name: "CoreNotification",
-		setup: (props, { emit }) => {
-    	/* Datas */
-			const notifications = [
-				/*{
+export default defineComponent({
+  name: "CoreNotification",
+  emits: ["change-route"],
+  setup: (props, { emit }) => {
+    /* Datas */
+    const notifications = [
+      /*{
 					key: "organization",
 					title: "Des établissements vous ont été rattachés, cliquez-ici pour les modifier.",
 					timeLabel: "Important",
 					to: "/organizations",
 					status: "not_read"
 				},*/
-				{
-					key: "document",
-					title: "Des documents sont manquants, cliquez-ici pour en rajouter.",
-					timeLabel: "Important",
-					to: "/documents",
-					status: "not_read"
-				},
-				/*{
+      {
+        key: "document",
+        title: "Des documents sont manquants, cliquez-ici pour en rajouter.",
+        timeLabel: "Important",
+        to: "/documents",
+        status: "not_read",
+      },
+      /*{
 					key: "mission-3",
 					title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
 					timeLabel: "Il y a 1 heure",
@@ -49,19 +59,19 @@
 					timeLabel: "Il y a 1 heure",
 					to: "/missions/4"
 				}*/
-			]
+    ];
 
-			/* Methods */
-			const onChangeRoute = () => {
-				emit("change-route")
-			}
+    /* Methods */
+    const onChangeRoute = () => {
+      emit("change-route");
+    };
 
-			return {
-				/* Datas */
-				notifications,
-				/* Methods */
-				onChangeRoute
-			}
-		}
-  })
+    return {
+      /* Datas */
+      notifications,
+      /* Methods */
+      onChangeRoute,
+    };
+  },
+});
 </script>

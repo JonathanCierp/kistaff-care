@@ -1,7 +1,7 @@
-//import firebase from "firebase/app"
-//import "firebase/firebase-messaging"
+import firebase from "firebase/app"
+import "firebase/firebase-messaging"
 
-/*const firebaseConfig = {
+const firebaseConfig = {
 	apiKey: "AIzaSyCEGAdrzPEMlikaQc3p4EK5NH8eOXiNKW0",//import.meta.env.VITE_API_KEY,
 	authDomain: "test-vue-pwa-notification.firebaseapp.com",//import.meta.env.VITE_AUTH_DOMAIN,
 	projectId: "test-vue-pwa-notification",//import.meta.env.VITE_PROJECT_ID,
@@ -13,4 +13,4 @@
 
 firebase.initializeApp(firebaseConfig)
 
-export default firebase.messaging()*/
+export default firebase.messaging()

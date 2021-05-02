@@ -10,7 +10,7 @@
 					<CustomInput ref="emailInput" v-model="form.email" :rules="[
 							v => !!v || 'Le champs Email est obligatoire.',
               v => /.+@.+\..+/.test(v) || 'L\'adresse mail n\'est pas valide.'
-					]" label="Email" placeholder="Email" required native-type="email" />
+					]" label="Email" native-type="email" placeholder="Email" required />
 				</CustomRow>
 				<CustomRow class="signin__form__row">
 					<CustomInput ref="passwordInput" v-model="form.password" :rules="[
@@ -18,7 +18,9 @@
 					]" label="Mot de passe" native-type="password" placeholder="Mot de passe" required />
 				</CustomRow>
 				<CustomRow class="signin__action">
-					<CustomButton block center native-type="submit" rounded="md" @click="onSubmit">Se connecter</CustomButton>
+					<CustomButton :loading="loading" block center native-type="submit" rounded="md" @click="onSubmit">Se
+						connecter
+					</CustomButton>
 				</CustomRow>
 			</CustomForm>
 			<p class="signin__reset-password">
@@ -36,6 +38,7 @@
 	import { useStore } from "vuex"
 	import { useRouter } from "vue-router"
 	import { moveTawkToWidget } from "../../utils"
+	import { useNotification } from "../../components/custom/notification/useNotification"
 
 	export default defineComponent({
 		name: "Signin",
@@ -43,6 +46,7 @@
 		setup: () => {
 			const store = useStore()
 			const router = useRouter()
+			const notification = useNotification()
 			/* Datas */
 			const form = reactive({
 				email: localStorage.getItem("tempEmail") ? localStorage.getItem("tempEmail") : "",
@@ -50,21 +54,29 @@
 			})
 			const emailInput = ref(null)
 			const passwordInput = ref(null)
+			const loading = ref(false)
 
 			/* Methods */
 			const onSubmit = async (e) => {
 				e.preventDefault()
+				loading.value = true
 				emailInput.value.validate()
 				passwordInput.value.validate()
 
 				const isFormValid = !emailInput.value.inputError && !passwordInput.value.inputError
 
 				if(isFormValid) {
-					await store.dispatch("login", form)
-					if(!store.state.user.user.Contact.xDocuments_Received__c) {
-						await router.push("/documents")
-					}else {
-						await router.push("/")
+					try {
+						await store.dispatch("login", form)
+						if(!store.state.user.user.Contact.xDocuments_Received__c) {
+							await router.push("/documents")
+						} else {
+							await router.push("/")
+						}
+					} catch(e) {
+						notification.error("Email ou mot de passe incorrect.")
+					} finally {
+						loading.value = false
 					}
 				}
 			}
@@ -80,6 +92,7 @@
 				form,
 				emailInput,
 				passwordInput,
+				loading,
 				/* Methods */
 				onSubmit
 			}

@@ -7,7 +7,7 @@
 <script>
 import { computed, defineComponent, onMounted } from "vue";
 import { useRoute } from "vue-router";
-//import firebaseMessaging from "./plugins/firebase"
+import firebaseMessaging from "./plugins/firebase"
 
 export default defineComponent({
   name: "App",
@@ -31,6 +31,10 @@ export default defineComponent({
         localStorage.setItem("theme", "light");
         document.body.classList.remove("theme-dark");
       }
+
+      firebaseMessaging.onMessage(payload => {
+				alert("Message received.")
+			})
     });
 
     return {

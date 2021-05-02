@@ -7,6 +7,9 @@ import { useComponents } from "./components.js";
 import "./plugins/registerServiceWorker.js";
 import "./assets/css/app.scss";
 
-let app = createApp(App).mixin(titleMixin).use(router).use(store);
-app = useComponents(app);
-app.mount("#page-wrapper");
+let app = createApp(App)
+app.mixin(titleMixin)
+app.use(router)
+app.use(store)
+app = useComponents(app)
+app.mount("#page-wrapper")
