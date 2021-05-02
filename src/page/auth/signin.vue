@@ -59,13 +59,13 @@
 			/* Methods */
 			const onSubmit = async (e) => {
 				e.preventDefault()
+				loading.value = true
 				emailInput.value.validate()
 				passwordInput.value.validate()
 
 				const isFormValid = !emailInput.value.inputError && !passwordInput.value.inputError
 
 				if(isFormValid) {
-					loading.value = true
 					try {
 						await store.dispatch("login", form)
 						if(!store.state.user.user.Contact.xDocuments_Received__c) {

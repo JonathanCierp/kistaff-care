@@ -4,13 +4,13 @@
   justify-content: center;
   position: relative;
   cursor: pointer;
-  transition: opacity .2s, background-color .3s, color .3s;
+  transition: opacity 0.2s, background-color 0.3s, color 0.3s;
 
   & .custom-button__icon-left ~ .custom-button__content {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
   }
   & .custom-button__icon-right ~ .custom-button__content {
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
 
   &:not(.custom-button__content--hidden):disabled {
@@ -31,7 +31,8 @@
   &.custom-button--success {
     background-color: var(--color-green-primary);
     color: var(--color-white-primary);
-    box-shadow: 0 10px 15px -3px rgba(76, 175, 80, .2), 0 4px 6px -2px rgba(76, 175, 80, .1);
+    box-shadow: 0 10px 15px -3px rgba(76, 175, 80, 0.2),
+      0 4px 6px -2px rgba(76, 175, 80, 0.1);
 
     &:hover {
       background-color: var(--color-green-darker);
@@ -44,7 +45,7 @@
 
       &:hover {
         background-color: var(--color-green-primary);
-        color: var(--color-white-primary)
+        color: var(--color-white-primary);
       }
     }
 
@@ -56,7 +57,8 @@
   &.custom-button--warning {
     background-color: var(--color-orange-primary);
     color: var(--color-white-primary);
-    box-shadow: 0 10px 15px -3px rgba(251, 140, 0, .2), 0 4px 6px -2px rgba(251, 140, 0, .1);
+    box-shadow: 0 10px 15px -3px rgba(251, 140, 0, 0.2),
+      0 4px 6px -2px rgba(251, 140, 0, 0.1);
 
     &:hover {
       background-color: var(--color-orange-darker);
@@ -69,7 +71,7 @@
 
       &:hover {
         background-color: var(--color-orange-primary);
-        color: var(--color-white-primary)
+        color: var(--color-white-primary);
       }
     }
 
@@ -81,7 +83,8 @@
   &.custom-button--error {
     background-color: var(--color-red-primary);
     color: var(--color-white-primary);
-    box-shadow: 0 10px 15px -3px rgba(255, 82, 82, .2), 0 4px 6px -2px rgba(255, 82, 82, .1);
+    box-shadow: 0 10px 15px -3px rgba(255, 82, 82, 0.2),
+      0 4px 6px -2px rgba(255, 82, 82, 0.1);
 
     &:hover {
       background-color: var(--color-red-darker);
@@ -94,7 +97,7 @@
 
       &:hover {
         background-color: var(--color-red-primary);
-        color: var(--color-white-primary)
+        color: var(--color-white-primary);
       }
     }
 
@@ -106,7 +109,8 @@
   &.custom-button--info {
     background-color: var(--color-blue-primary);
     color: var(--color-white-primary);
-    box-shadow: 0 10px 15px -3px rgba(33, 150, 243, .2), 0 4px 6px -2px rgba(33, 150, 243, .1);
+    box-shadow: 0 10px 15px -3px rgba(33, 150, 243, 0.2),
+      0 4px 6px -2px rgba(33, 150, 243, 0.1);
 
     &:hover {
       background-color: var(--color-blue-darker);
@@ -119,7 +123,7 @@
 
       &:hover {
         background-color: var(--color-blue-primary);
-        color: var(--color-white-primary)
+        color: var(--color-white-primary);
       }
     }
 
@@ -132,7 +136,7 @@
     height: 20px;
     min-width: 36px;
     padding: 0 9px;
-    font-size: .75rem;
+    font-size: 0.75rem;
 
     & .custom-button__loading {
       width: 12px !important;
@@ -149,7 +153,7 @@
     height: 28px;
     min-width: 50px;
     padding: 0 12px;
-    font-size: .875rem;
+    font-size: 0.875rem;
 
     & .custom-button__loading {
       width: 18px !important;
@@ -236,7 +240,7 @@
   &.custom-button--block {
     width: 100%;
 
-    & .custom-button__content {
+    &:not(.custom-button--icon-left) .custom-button__content {
       width: 100%;
     }
   }
@@ -286,11 +290,12 @@
         background-color: var(--color-blue-hover-lighter);
       }
     }
-
   }
 
   &.custom-button__content--hidden {
-    & .custom-button__content, & .custom-button__icon-left, & .custom-button__icon-right {
+    & .custom-button__content,
+    & .custom-button__icon-left,
+    & .custom-button__icon-right {
       visibility: hidden;
     }
 
@@ -304,9 +309,20 @@
     align-items: center;
   }
 
-  &.custom-button--center .custom-button__content{
+  &.custom-button--center .custom-button__content {
     justify-content: center;
     text-align: center;
+  }
+}
+
+.custom-floating-button {
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+
+  & .custom-button__icon-left {
+    width: 1.75rem;
+    height: 1.75rem;
   }
 }
 
@@ -315,5 +331,10 @@
     &.custom-button--mobile-hidden .custom-button__content {
       display: none;
     }
+  }
+
+  .custom-floating-button {
+    bottom: 5rem;
+    right: 1rem;
   }
 }

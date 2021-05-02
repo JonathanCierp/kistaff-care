@@ -1,8 +1,7 @@
 <template>
 	<nav :class="mobileOpenClass" class="core-header">
 		<CustomLink to="/" class="core-header__brand">
-			<img src="/img/brand-name.png" alt="Kistaff logo plain desktop">
-			<img src="/img/brand-name-mobile.png" alt="Kistaff logo plain mobile">
+			<img src="/img/brand-name.png" alt="Kistaff logo plain">
 		</CustomLink>
 		<ul class="core-header__nav">
 			<li v-for="link of links" :key="link.key" :class="[$route.path === link.to ? 'core-header__nav__link--active' : '']"
@@ -83,6 +82,10 @@
 			const toggleMobileMenu = () => {
 				mobileMenuIsOpen.value = !mobileMenuIsOpen.value
 				document.body.style.overflow = mobileMenuIsOpen.value ? "hidden" : "visible"
+				/*const iframe = document.querySelector("body > div > iframe:first-child")
+				mobileMenuIsOpen.value ? 
+					iframe.style.display = "block" :
+					iframe.style.display = "none"*/
 			}
 			const onChangeRoute = () => {
 				notificationDropdown.value.closeDropdown()

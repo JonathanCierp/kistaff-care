@@ -68,6 +68,21 @@
     & .custom-row {
       align-items: center;
       justify-content: center;
+      
+      & > div {
+        width: 100% !important;
+
+        & input {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+
+  .profiles .profiles__body .profiles__form-settings {
+    & .custom-row {
+      align-items: flex-start;
+      justify-content: flex-start;
     }
   }
 }

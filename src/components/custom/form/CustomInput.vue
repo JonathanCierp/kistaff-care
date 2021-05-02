@@ -2,7 +2,7 @@
 	<div :style="[widthStyle]" class="custom-input" :class="inputErrorClass">
 		<label :for="`${label.toLowerCase().replace(' ', '-')}-${guid}`">{{ label }}</label>
 		<input :id="`${label.toLowerCase().replace(' ', '-')}-${guid}`" :placeholder="placeholder" :type="nativeType"
-		       @input="onInput" :value="modelValue" />
+		       @blur="onBlur" :value="modelValue" />
 		<p v-if="inputError" class="custom-input__error-message">
 			<IconWarning />
 			{{ errorMessage }}
@@ -55,7 +55,7 @@
 			const guid = ref(getUid())
 
 			/* Methods */
-			const onInput = async (e) => {
+			const onBlur = async (e) => {
 				const v = e.target.value
 
 				emit("update:modelValue", v)
@@ -95,7 +95,7 @@
 				inputValue,
 				guid,
 				/* Methods */
-				onInput,
+				onBlur,
 				validate,
 				/* Computed */
 				widthStyle,

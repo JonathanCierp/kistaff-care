@@ -33,13 +33,13 @@ import CustomTabItems from "./components/custom/tabs/CustomTabItems.vue"
 import CustomTabItem from "./components/custom/tabs/CustomTabItem.vue"
 import CustomTransition from "./components/custom/CustomTransition.vue"
 import CustomEntriesNotFound from "./components/custom/CustomEntriesNotFound.vue"
+import CustomFloatingButton from "./components/custom/CustomFloatingButton.vue";
 
 /* Dialog components */
 import AcceptMissionDialog from "./components/dialog/AcceptMissionDialog.vue"
 import RefuseMissionDialog from "./components/dialog/RefuseMissionDialog.vue"
 import UploadDocumentDialog from "./components/dialog/UploadDocumentDialog.vue"
 import DeleteDocumentDialog from "./components/dialog/DeleteDocumentDialog.vue"
-import ResetPasswordDialog from "./components/dialog/ResetPasswordDialog.vue"
 
 /* Icons components */
 import IconBurger from "./components/icons/IconBurger.vue"
@@ -120,12 +120,12 @@ const useComponents = (app) => {
 	app.component("CustomTabItem", CustomTabItem)
 	app.component("CustomTransition", CustomTransition)
 	app.component("CustomEntriesNotFound", CustomEntriesNotFound)
+	app.component("CustomFloatingButton", CustomFloatingButton)
 
 	app.component("AcceptMissionDialog", AcceptMissionDialog)
 	app.component("RefuseMissionDialog", RefuseMissionDialog)
 	app.component("UploadDocumentDialog", UploadDocumentDialog)
 	app.component("DeleteDocumentDialog", DeleteDocumentDialog)
-	app.component("ResetPasswordDialog", ResetPasswordDialog)
 
 	app.component("IconBurger", IconBurger)
 	app.component("IconCalendar", IconCalendar)

@@ -72,13 +72,13 @@
 			</CustomRow>
 		</CustomForm>
 		<CustomForm v-if="step === 2" class="signup__form signup__form--step-2">
-			<h3>Type de planning</h3>
-			<CustomRadio v-model="planningType" label="Nuit" name="night" value="Night" />
-			<CustomRadio v-model="planningType" label="Jour" name="day" value="Day" />
-			<CustomRadio v-model="planningType" label="Peu importe" name="all" value="All" />
 			<h3 class="signup__form__poles">Compétences</h3>
 			<CustomCheckbox v-for="p in polePickListed" :key="p.key" v-model="pole" :label="p.value"
 			                :name="p.key" :value="p.key" />
+			<h3 class="signup__form__planning">Type de planning</h3>
+			<CustomRadio v-model="planningType" label="Nuit" name="night" value="Night" />
+			<CustomRadio v-model="planningType" label="Jour" name="day" value="Day" />
+			<CustomRadio v-model="planningType" label="Peu importe" name="all" value="All" />
 			<CustomRow class="signup__form__action">
 				<CustomButton text @click="changeStep(1)">Retour</CustomButton>
 				<CustomButton @click="changeStep(3)">Suivant</CustomButton>

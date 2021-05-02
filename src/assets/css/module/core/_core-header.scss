@@ -27,11 +27,7 @@
   }
 
   & .core-header__brand img {
-    height: 2.5rem;
-
-    &:last-child {
-      display: none;
-    }
+    height: 2.5rem; 
   }
 
   & .core-header__nav {
@@ -57,6 +53,10 @@
       margin-left: 1.5rem;
       z-index: 20;
 
+      &:first-child {
+        margin-left: .5rem !important;
+      }
+
       & > a {
         display: flex;
         align-items: center;
@@ -64,6 +64,10 @@
 
       & svg {
         height: 1.25rem;
+      }
+
+      &.core-header__user {
+        margin-left: 1rem !important;
       }
 
       &.core-header__user svg {
@@ -156,18 +160,6 @@
           top: -2px;
           transform: rotate(0);
         }
-      }
-    }
-
-    & .core-header__brand img {
-      height: 2.5rem;
-
-      &:first-child {
-        display: none;
-      }
-
-      &:last-child {
-        display: inline-block;
       }
     }
 

@@ -2,9 +2,9 @@
   <div class="core-notification">
     <div class="core-notification__header">
       <h2 class="text-h5 font-medium">Notification</h2>
-      <CustomLink to="/settings#preferences" @click="onChangeRoute">
+      <!--<CustomLink to="/settings#preferences" @click="onChangeRoute">
         <IconOutlinedCog />
-      </CustomLink>
+      </CustomLink>-->
     </div>
     <ul class="core-notification__items">
       <CoreNotificationItem
@@ -13,14 +13,14 @@
         @click="onChangeRoute"
       />
     </ul>
-    <div class="core-notification__footer">
+    <!--<div class="core-notification__footer">
       <CustomLink
         to="/notifications"
         class="text-h5 font-medium"
         @click="onChangeRoute"
         >Toutes les notifications</CustomLink
       >
-    </div>
+    </div>-->
   </div>
 </template>
 

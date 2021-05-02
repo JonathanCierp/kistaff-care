@@ -1,10 +1,10 @@
 <template>
 	<button
-			:class="[typeClass, sizeClass, roundedClass, roundedClass, outlinedClass, flatClass, blockClass, iconClass,
+			:class="[typeClass, sizeClass, roundedClass, roundedClass, outlinedClass, flatClass, blockClass, iconClass, iconLeftClass,
 			textClass, centerClass, hideContentIfLoadingClass, hideOnMobileLabelClass]"
 			:disabled="disabled" :type="nativeType" class="custom-button" role="button">
 		<component :is="iconLeft" v-if="iconLeft" class="custom-button__icon-left" />
-		<span class="custom-button__content">
+		<span v-if="!-floating" class="custom-button__content">
       <slot />
     </span>
 		<component :is="iconRight" v-if="iconRight" class="custom-button__icon-right" />
@@ -31,6 +31,10 @@
 				default: ""
 			},
 			outlined: {
+				type: Boolean,
+				default: false
+			},
+			floating: {
 				type: Boolean,
 				default: false
 			},
@@ -88,6 +92,7 @@
 			const flatClass = computed(() => props.flat ? "custom-button--flat" : "")
 			const blockClass = computed(() => props.block ? "custom-button--block" : "")
 			const iconClass = computed(() => props.icon ? "custom-button--icon" : "")
+			const iconLeftClass = computed(() => props.iconLeft ? "custom-button--icon-left" : "")
 			const textClass = computed(() => props.text ? "custom-button--text" : "")
 			const centerClass = computed(() => props.center ? "custom-button--center" : "")
 			const hideContentIfLoadingClass = computed(() => props.loading ? "custom-button__content--hidden" : "")
@@ -119,6 +124,7 @@
 				flatClass,
 				blockClass,
 				iconClass,
+				iconLeftClass,
 				textClass,
 				centerClass,
 				hideContentIfLoadingClass,

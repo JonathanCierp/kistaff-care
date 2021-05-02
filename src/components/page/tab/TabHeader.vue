@@ -4,9 +4,9 @@
 			<component v-if="icon" :is="icon" />
 			{{ title }}
 		</h2>
-		<CustomButton v-if="buttonLabel" :icon-left="buttonIcon" :loading="loading" class="tabs-header__button"
+		<CustomFloatingButton v-if="buttonLabel || buttonIcon" :icon-left="buttonIcon" :loading="loading" class="tabs-header__button"
 		              @click="buttonCallback">{{ buttonLabel }}
-		</CustomButton>
+		</CustomFloatingButton>
 		<CustomInput v-if="searchable" class="tabs-header__input" placeholder="Rechercher ..."
 		             @update:modelValue="onSearch" />
 	</div>
