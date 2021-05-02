@@ -1,6 +1,10 @@
 {
   "name": "kistaff-care",
-  "version": "0.0.0",
+  "description": "Trouve du taff, trouve du staff",
+  "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
