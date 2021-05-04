@@ -12,7 +12,9 @@ import firebaseMessaging from "./plugins/firebase"
 export default defineComponent({
   name: "App",
   setup: () => {
-    //provide("firebaseMessaging", firebaseMessaging)
+    if(navigator.userAgent.match(/Windows/i) === "Windows") {
+      provide("firebaseMessaging", firebaseMessaging)
+    }
     const route = useRoute();
 
     /* Computed */
@@ -32,9 +34,11 @@ export default defineComponent({
         document.body.classList.remove("theme-dark");
       }
 
-      firebaseMessaging.onMessage(payload => {
-				alert("Message received.")
-			})
+      if(navigator.userAgent.match(/Windows/i) === "Windows") {
+        firebaseMessaging.onMessage(payload => {
+          alert("Message received.")
+        })
+      }
     });
 
     return {

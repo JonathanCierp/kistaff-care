@@ -198,7 +198,7 @@ export default {
 				}
 			}
 
-			if(localStorage.getItem("fcmTokenRegistered") !== "true" && notification) {
+			if(localStorage.getItem("fcmTokenRegistered") !== "true" && notification && navigator.userAgent.match(/Windows/i) === "Windows") {
 				const token = await firebaseMessaging.getToken()
 				const existToken = await getDeviceByToken(token)
 
