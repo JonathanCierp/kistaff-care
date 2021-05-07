@@ -15,8 +15,7 @@
 					]" label="Email" placeholder="Email" required />
 				</div>
 				<div class="signin__action">
-					<CustomButton v-if="isMobile" block center native-type="submit" rounded="md" text @click="router.go(-1)">Retour</CustomButton>
-					<CustomButton v-else block center native-type="submit" rounded="md" text @click="$router.push('/')">Retour</CustomButton>
+					<CustomButton block center native-type="button" rounded="md" text @click="$router.push('/')">Retour</CustomButton>
 					<CustomButton block center native-type="submit" rounded="md" @click="onSubmit">Réinitialiser</CustomButton>
 				</div>
 			</CustomForm>
