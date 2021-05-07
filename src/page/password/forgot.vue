@@ -15,7 +15,8 @@
 					]" label="Email" placeholder="Email" required />
 				</div>
 				<div class="signin__action">
-					<CustomButton block center native-type="submit" rounded="md" text @click="$router.push('/auth/signin')">Retour</CustomButton>
+					<CustomButton v-if="isMobile" block center native-type="submit" rounded="md" text @click="router.go(-1)">Retour</CustomButton>
+					<CustomButton v-else block center native-type="submit" rounded="md" text @click="$router.push('/')">Retour</CustomButton>
 					<CustomButton block center native-type="submit" rounded="md" @click="onSubmit">Réinitialiser</CustomButton>
 				</div>
 			</CustomForm>
@@ -41,6 +42,7 @@
 			const store = useStore()
 			const router = useRouter()
 			/* Datas */
+			const isMobile = ref(window.innerWidth < 500)
 			const form = reactive({
 				email: "",
 			})
@@ -65,6 +67,7 @@
 
 			return {
 				/* Datas */
+				isMobile,
 				form,
 				emailInput,
 				/* Methods */
