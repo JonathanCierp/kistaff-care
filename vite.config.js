@@ -1,12 +1,12 @@
 import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
-import { VitePWA } from "vite-plugin-pwa"
+//import { VitePWA } from "vite-plugin-pwa"
 
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [
 		vue(),
-		VitePWA({
+		/*VitePWA({
 			manifest: {
 				"name": "Kistaff",
 				"short_name": "Kistaff",
@@ -22,7 +22,7 @@ export default defineConfig({
 					}
 				]
 			}
-		})
+		})*/
 	],
 	server: {
 		port: 3001
