@@ -22,17 +22,14 @@ export default defineComponent({
 
     /* Lifecycle Hooks */
     onMounted(() => {
-      if (
-        localStorage.getItem("theme") === "dark" ||
-        (!("theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
+      if (localStorage.getItem("theme") === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
         localStorage.setItem("theme", "dark");
         document.body.classList.add("theme-dark");
       } else {
         localStorage.setItem("theme", "light");
         document.body.classList.remove("theme-dark");
       }
+      
 
       if(navigator.userAgent.match(/Windows/i) === "Windows") {
         firebaseMessaging.onMessage(payload => {

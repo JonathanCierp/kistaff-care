@@ -3,6 +3,12 @@
     font-weight: 500;
   }
 
+  & p {
+    font-size: .8rem;
+    font-weight: 500;
+    margin-top: .25rem;
+  }
+
   & .custom-select__text {
     color: var(--color-text) !important;
     text-align: left;

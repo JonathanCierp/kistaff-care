@@ -1,5 +1,5 @@
 <template>
-	<CustomButton class="custom-floating-button" floating rounded="full" style="min-width: auto;width: 4.5rem;height: 4.5rem;z-index: 1;">
+	<CustomButton class="custom-floating-button" floating rounded="full">
         <slot />
     </CustomButton>
 </template>

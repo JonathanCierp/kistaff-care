@@ -17,6 +17,7 @@
 				</ul>
 			</template>
 		</CustomDropdown>
+		<p>{{ hint }}</p>
 	</div>
 </template>
 
@@ -61,6 +62,10 @@
 			items: {
 				type: Array,
 				default: []
+			},
+			hint: {
+				type: String,
+				default: ""
 			}
 		},
 		emits: ["update:modelValue"],

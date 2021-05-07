@@ -4,7 +4,7 @@
 			textClass, centerClass, hideContentIfLoadingClass, hideOnMobileLabelClass]"
 			:disabled="disabled" :type="nativeType" class="custom-button" role="button">
 		<component :is="iconLeft" v-if="iconLeft" class="custom-button__icon-left" />
-		<span v-if="!-floating" class="custom-button__content">
+		<span v-if="!floating" class="custom-button__content">
       <slot />
     </span>
 		<component :is="iconRight" v-if="iconRight" class="custom-button__icon-right" />

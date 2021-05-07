@@ -336,5 +336,14 @@
   .custom-floating-button {
     bottom: 5rem;
     right: 1rem;
+    min-width: auto !important;
+    width: 3.75rem !important;
+    height: 3.75rem !important;
+    z-index: 1;
+
+    & svg {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    }
   }
 }

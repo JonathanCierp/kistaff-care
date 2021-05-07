@@ -4,20 +4,27 @@
 			<component v-if="icon" :is="icon" />
 			{{ title }}
 		</h2>
-		<CustomFloatingButton v-if="buttonLabel || buttonIcon" :icon-left="buttonIcon" :loading="loading" class="tabs-header__button"
+		<CustomFloatingButton v-if="isMobile && (buttonLabel || buttonIcon)" :icon-left="buttonIcon" :loading="loading" class="tabs-header__button"
 		              @click="buttonCallback">{{ buttonLabel }}
 		</CustomFloatingButton>
+		<CustomButton v-else-if="!isMobile && (buttonLabel || buttonIcon)" :icon-left="buttonIcon" :loading="loading" class="tabs-header__button"
+		              @click="buttonCallback">{{ buttonLabel }}
+		</CustomButton>
 		<CustomInput v-if="searchable" class="tabs-header__input" placeholder="Rechercher ..."
 		             @update:modelValue="onSearch" />
 	</div>
 </template>
 
 <script>
-	import { defineComponent } from "vue"
+	import { defineComponent, ref } from "vue"
 
 	export default defineComponent({
 		name: "TabsHeader",
 		props: {
+			modelValue: {
+				type: String,
+				default: ""
+			},
 			title: {
 				type: String,
 				default: ""
@@ -47,8 +54,10 @@
 				default: false
 			}
 		},
-		emits: ["update:modelValue"],
+		emits: ["callback", "update:modelValue"],
 		setup(props, { emit }) {
+			const isMobile = ref(window.innerWidth < 500)
+
 			/* Methods */
 			const buttonCallback = (e) => {
 				emit("callback", e)
@@ -58,6 +67,7 @@
 			}
 
 			return {
+				isMobile,
 				buttonCallback,
 				onSearch
 			}

@@ -18,6 +18,7 @@
 		    required: true
 	    }
 		},
+  emits: ["change-route"],
 		setup: (props, { emit }) => {
 			/* Methods */
 			const onChangeRoute = () => {

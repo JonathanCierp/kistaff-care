@@ -12,6 +12,7 @@
 
 	export default defineComponent({
 		name: "CoreUserMenu",
+  emits: ["change-route"],
 		setup: (props, { emit }) => {
 			const router = useRouter()
 			/* Datas */

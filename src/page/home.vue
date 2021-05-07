@@ -114,6 +114,7 @@
 				}
 			}
 			const onSearch = (type, v) => {
+				console.log(v);
 				switch(type) {
 					case "new":
 						newMissions.value = store.getters.filterMissions("new", v)

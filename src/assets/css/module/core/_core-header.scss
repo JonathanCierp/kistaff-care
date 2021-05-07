@@ -27,7 +27,7 @@
   }
 
   & .core-header__brand img {
-    height: 2.5rem; 
+    height: 1.75rem; 
   }
 
   & .core-header__nav {
@@ -131,7 +131,7 @@
         height: 100%;
         width: 100%;
         margin: 0;
-        background-color: rgba(255, 255, 255, .9);
+        background-color: var(--color-background-lighter);
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -161,6 +161,10 @@
           transform: rotate(0);
         }
       }
+    }
+    
+    & .core-header__brand img {
+      height: 1.5rem; 
     }
 
     & .core-header__nav {

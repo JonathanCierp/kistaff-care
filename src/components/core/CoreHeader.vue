@@ -1,7 +1,7 @@
 <template>
 	<nav :class="mobileOpenClass" class="core-header">
 		<CustomLink to="/" class="core-header__brand">
-			<img src="/img/brand-name.png" alt="Kistaff logo plain">
+			<img :src="mainLogo" alt="Kistaff logo plain">
 		</CustomLink>
 		<ul class="core-header__nav">
 			<li v-for="link of links" :key="link.key" :class="[$route.path === link.to ? 'core-header__nav__link--active' : '']"
@@ -98,6 +98,9 @@
 			const mobileOpenClass = computed(() => mobileMenuIsOpen.value ? "core-header--mobile" : "")
 			const fullName = computed(() => store.state.user.FirstName + " " + store.state.user.LastName)
 			const fullNameOnMobile = computed(() => store.state.user.FirstName?.substr(0, 7) + " ...")
+			const mainLogo = computed(() => `/img/brand-name-${store.state.theme}.png`)
+
+			
 
 			return {
 				/* Datas */
@@ -111,7 +114,8 @@
 				/* Computed */
 				mobileOpenClass,
 				fullName,
-				fullNameOnMobile
+				fullNameOnMobile,
+				mainLogo
 			}
 		}
 	})

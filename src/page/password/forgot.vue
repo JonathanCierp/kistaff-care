@@ -18,9 +18,6 @@
 					<CustomButton block center native-type="submit" rounded="md" text @click="$router.push('/')">Retour</CustomButton>
 					<CustomButton block center native-type="submit" rounded="md" @click="onSubmit">Réinitialiser</CustomButton>
 				</div>
-				<p class="signin__to-signin">
-					<RouterLink to="/auth/signin">Se connecter</RouterLink>
-				</p>
 			</CustomForm>
 		</article>
 	</main>

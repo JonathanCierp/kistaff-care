@@ -12,6 +12,7 @@
         <CustomTabItem>
           <TabHeader
             :loading="loading"
+            button-label="Enregistrer"
             button-icon="IconSave"
             icon="IconCircleOutlineUser"
             title="Mes informations"
@@ -144,6 +145,7 @@
                 icon-left="IconLock"
                 block
                 center
+                style="max-width: calc(600px + 1rem);"
                 @click="resetPassword"
                 :loading="loadingPassword"
                 >Changer le mot de passe</CustomButton
@@ -197,8 +199,9 @@
               <CustomSelect
                 v-model="user.fonction"
                 :items="fonction.value"
-                label="Metier"
-                placeholder="Metier"
+                label="Métier"
+                placeholder="Métier"
+                hint="Ce champs n'est pas modifiable"
                 width="300px"
                 @update:modelValue="changeFonction"
                 disabled
@@ -424,6 +427,7 @@ export default defineComponent({
           },
         });
         localStorage.setItem("theme", theme.value);
+        store.commit("setTheme", theme.value)
 
         if (
           localStorage.getItem("theme") === "dark" ||
