@@ -15,7 +15,7 @@
 					]" label="Email" placeholder="Email" required />
 				</div>
 				<div class="signin__action">
-					<CustomButton block center native-type="submit" rounded="md" text @click="$router.push('/')">Retour</CustomButton>
+					<CustomButton block center native-type="submit" rounded="md" text @click="$router.push('/auth/signup')">Retour</CustomButton>
 					<CustomButton block center native-type="submit" rounded="md" @click="onSubmit">Réinitialiser</CustomButton>
 				</div>
 			</CustomForm>
