@@ -59,7 +59,6 @@
 			/* Methods */
 			const onSubmit = async (e) => {
 				e.preventDefault()
-				loading.value = true
 				emailInput.value.validate()
 				passwordInput.value.validate()
 
@@ -67,6 +66,7 @@
 
 				if(isFormValid) {
 					try {
+						loading.value = true
 						await store.dispatch("login", form)
 						if(!store.state.user.user.Contact.xDocuments_Received__c) {
 							await router.push("/documents")

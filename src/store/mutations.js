@@ -55,4 +55,7 @@ export default {
 
     console.log(state.organizations);
   },
+  setNotifications(state, notifications) {
+    state.notifications = notifications
+  }
 };

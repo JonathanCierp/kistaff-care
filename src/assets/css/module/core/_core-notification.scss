@@ -18,23 +18,33 @@
     }
   }
 
-  & .core-notification__items .core-notification-item {
-    display: block;
-    padding: .75rem 1rem;
-    border-bottom: 1px solid var(--color-border);
-    cursor: pointer;
+  & .core-notification__items {
+    max-height: 450px;
+    overflow-y: auto;
 
-    &:hover {
-      background-color: var(--color-blue-hover-lighter);
-      color: var(--color-blue-primary);
-    }
+    & .core-notification-item {
+      display: block;
+      padding: .75rem 1rem;
+      border-bottom: 1px solid var(--color-border);
 
-    & h2 {
-      margin-bottom: .75rem;
-    }
+      &:hover {
+        background-color: var(--color-blue-hover-lighter);
+        color: var(--color-blue-primary);
+      }
 
-    & span {
-      color: var(--color-gray-darker-1);
+      & h2 {
+        font-weight: 500;
+      }
+
+      & p {
+        margin: .5rem 0;
+        font-size: .9rem;
+        font-weight: 400;
+      }
+
+      & span {
+        color: var(--color-gray-darker-1);
+      }
     }
   }
 

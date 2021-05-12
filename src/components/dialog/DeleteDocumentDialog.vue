@@ -31,16 +31,15 @@
 			const loading = ref(false)
 			/* Methods */
 			const deleteDocument = async () => {
-				loading.value = true
 				try {
+					loading.value = true
 					const userDocument = store.getters.getDocumentByDescription(props.label)
 					await store.dispatch("deleteDocument", userDocument.Id)
 					emit("deleteDocument")
 					emit("update:modelValue", false)
-				} catch(e) {
-
+				} finally {
+					loading.value = false
 				}
-				loading.value = false
 			}
 
 			return {

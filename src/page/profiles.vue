@@ -396,8 +396,9 @@ export default defineComponent({
             xType_of_Schedule__c: user.schedule,
           },
         });
-      } catch (e) {}
-      loading.value = false;
+      } finally {
+      	loading.value = false;
+      }
     };
     const saveAbsence = async () => {
       try {
@@ -409,8 +410,9 @@ export default defineComponent({
             xLeave_To__c: user.absenceEndDate,
           },
         });
-      } catch (e) {}
-      loading.value = false;
+      } finally {
+	      loading.value = false;
+      }
     };
     const savePreference = async () => {
       try {
@@ -440,9 +442,9 @@ export default defineComponent({
           localStorage.setItem("theme", "light");
           document.body.classList.remove("theme-dark");
         }
-      } catch (e) {}
-
-      loading.value = false;
+      } finally {
+	      loading.value = false;
+      }
     };
     const changeFonction = (v, defaultPole = null) => {
       user.pole = defaultPole || null;
@@ -452,7 +454,6 @@ export default defineComponent({
     };
     const resetPassword = async (e) => {
       e.preventDefault();
-      loadingPassword.value = true;
       oldPasswordInput.value.validate();
       newPasswordInput.value.validate();
       newPasswordConfirmInput.value.validate();
@@ -464,14 +465,15 @@ export default defineComponent({
 
       if (isFormValid) {
         try {
+	        loadingPassword.value = true;
           await store.dispatch("resetPassword", {
             oldPassword: oldPassword.value,
             newPassword: newPassword.value,
           });
-        } catch (e) {}
+        } finally {
+	        loadingPassword.value = false;
+        }
       }
-
-      loadingPassword.value = false;
     };
 
     /* Lifecycle Hooks */

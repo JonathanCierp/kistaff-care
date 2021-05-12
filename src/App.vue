@@ -7,21 +7,30 @@
 <script>
 import { computed, defineComponent, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import firebaseMessaging from "./plugins/firebase"
+import { useStore } from "vuex";
+//import firebaseMessaging from "./plugins/firebase"
 
 export default defineComponent({
   name: "App",
   setup: () => {
-    if(navigator.userAgent.match(/Windows/i) === "Windows") {
+    /*if(navigator.userAgent.match(/Windows/i) === "Windows") {
       provide("firebaseMessaging", firebaseMessaging)
-    }
+    }*/
     const route = useRoute();
+    const store = useStore();
+
+    const getNotifications = async () => {
+	    await store.dispatch("getNotifications")
+    }
 
     /* Computed */
     const isDefaultLayout = computed(() => route.meta.layout === "default");
 
     /* Lifecycle Hooks */
-    onMounted(() => {
+    onMounted(async () => {
+	    await getNotifications()
+			setInterval(async () => await getNotifications(), 30000)
+
       if (localStorage.getItem("theme") === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
         localStorage.setItem("theme", "dark");
         document.body.classList.add("theme-dark");
@@ -31,11 +40,11 @@ export default defineComponent({
       }
       
 
-      if(navigator.userAgent.match(/Windows/i) === "Windows") {
+      /*if(navigator.userAgent.match(/Windows/i) === "Windows") {
         firebaseMessaging.onMessage(payload => {
           alert("Message received.")
         })
-      }
+      }*/
     });
 
     return {

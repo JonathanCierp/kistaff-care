@@ -10,4 +10,5 @@ export default () => ({
   },
   userDocuments: [],
   organizations: [],
+  notifications: []
 });

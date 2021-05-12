@@ -1,7 +1,7 @@
 <template>
   <div class="core-notification">
     <div class="core-notification__header">
-      <h2 class="text-h5 font-medium">Notification</h2>
+      <h2 class="text-h5 font-medium">Notifications</h2>
       <!--<CustomLink to="/settings#preferences" @click="onChangeRoute">
         <IconOutlinedCog />
       </CustomLink>-->
@@ -10,7 +10,6 @@
       <CoreNotificationItem
         v-for="notification in notifications"
         :notification="notification"
-        @click="onChangeRoute"
       />
     </ul>
     <!--<div class="core-notification__footer">
@@ -26,39 +25,24 @@
 
 <script>
 import { defineComponent } from "vue";
+import { useStore } from "vuex"
 
 export default defineComponent({
   name: "CoreNotification",
   emits: ["change-route"],
   setup: (props, { emit }) => {
+  	const store = useStore()
+
     /* Datas */
     const notifications = [
-      /*{
-					key: "organization",
-					title: "Des établissements vous ont été rattachés, cliquez-ici pour les modifier.",
-					timeLabel: "Important",
-					to: "/organizations",
-					status: "not_read"
-				},*/
       {
         key: "document",
         title: "Des documents sont manquants, cliquez-ici pour en rajouter.",
-        timeLabel: "Important",
+        /*timeLabel: "Important",
         to: "/documents",
-        status: "not_read",
+        status: "not_read",*/
       },
-      /*{
-					key: "mission-3",
-					title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-					timeLabel: "Il y a 1 heure",
-					to: "/missions/3"
-				},
-				{
-					key: "mission-4",
-					title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-					timeLabel: "Il y a 1 heure",
-					to: "/missions/4"
-				}*/
+	    ...store.state.notifications
     ];
 
     /* Methods */

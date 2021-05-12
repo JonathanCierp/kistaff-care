@@ -51,8 +51,8 @@ export default defineComponent({
 
     /* Methods */
     const uploadDocument = async () => {
-      loading.value = true;
       try {
+	      loading.value = true;
         for (let file of files.value) {
           if (file instanceof File) {
             uploadSingleDocuments(file);
@@ -60,7 +60,6 @@ export default defineComponent({
             await store.dispatch("deleteDocument", file);
           }
         }
-      } catch (e) {
       } finally {
         loading.value = false;
       }

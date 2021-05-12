@@ -12,7 +12,8 @@ import {
 import { deleteDocumentFromUser, getDocumentBelongsToUser, uploadDocument } from "../api/documents"
 import { getOrganizations, saveOrganizations } from "../api/organizations"
 import { getDeviceByToken, saveDevice } from "../api/device"
-import firebaseMessaging from "../plugins/firebase"
+//import firebaseMessaging from "../plugins/firebase"
+import { getNotifications } from "../api/notifications"
 
 const notification = useNotification()
 
@@ -179,7 +180,7 @@ export default {
 		}
 	},
 	async registerDevice({ commit }, { userId }) {
-		try {
+		/*try {
 			let notification = false
 
 			if(!("Notification" in window)) {
@@ -208,6 +209,15 @@ export default {
 					localStorage.setItem("fcmTokenRegistered", "true")
 				}
 			}
+		} catch(e) {
+			throw new Error(e.response?.data.message || e.message)
+		}*/
+	},
+	async getNotifications({ commit }) {
+		try {
+			const notifications = await getNotifications()
+
+			commit("setNotifications", notifications)
 		} catch(e) {
 			throw new Error(e.response?.data.message || e.message)
 		}
