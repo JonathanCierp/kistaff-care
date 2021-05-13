@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import routes from "./routes";
 import { useAuth } from "../middleware/auth";
+import store from "../store/store";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -12,6 +13,9 @@ router.beforeEach(async (to, from) => {
   const isAllowedNoConnected = to.meta.layout === "blank";
 
   if (isAuthenticated) {
+    await getNotifications();
+    setInterval(async () => await getNotifications(), 30000);
+    
     if (isAllowedNoConnected) {
       return "/";
     }
@@ -23,5 +27,9 @@ router.beforeEach(async (to, from) => {
 
   return true;
 });
+
+const getNotifications = async () => {
+  await store.dispatch("getNotifications");
+};
 
 export default router;

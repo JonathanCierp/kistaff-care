@@ -4,7 +4,7 @@ import store from "./store/store";
 import App from "./App.vue";
 import titleMixin from "./mixin/titleMixin";
 import { useComponents } from "./components.js";
-import "./plugins/registerServiceWorker.js";
+//import "./plugins/registerServiceWorker.js";
 import "./assets/css/app.scss";
 
 let app = createApp(App)
