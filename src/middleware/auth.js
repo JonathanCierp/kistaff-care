@@ -12,7 +12,7 @@ const useAuth = async () => {
       return false;
     }
     const decoded = jwt_decode(localStorage.getItem("jwt"));
-    if(!store.state.isLogged && decoded.exp <= (new Date()).getTime()) {
+    if(decoded.exp <= (new Date()).getTime() / 1000) {
       localStorage.removeItem("jwt")
       return false;
     }

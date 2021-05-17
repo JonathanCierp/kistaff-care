@@ -4,9 +4,11 @@
   background-color: var(--color-background-lighter);
   border-bottom: 1px solid var(--color-border);
   display: flex;
+  position: fixed;
   align-items: center;
   justify-content: space-between;
   font-weight: 500;
+  z-index: 20;
 
   & > ul {
     display: flex;
@@ -122,6 +124,10 @@
 @media only screen and (max-width: 768px) {
   .core-header {
     &.core-header--mobile {
+      height: 100vh;
+      flex-direction: column-reverse;
+      padding-top: 1rem;
+
       & .core-header__nav {
         position: absolute;
         top: 0;
@@ -148,7 +154,10 @@
         }
       }
 
-      .core-header__side .core-header__burger span {
+      & .core-header__side {
+        align-self: flex-end;
+      }
+      & .core-header__side .core-header__burger span {
         transform: rotate(-135deg);
 
         &::before {
