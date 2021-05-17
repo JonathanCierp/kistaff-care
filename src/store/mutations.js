@@ -57,5 +57,12 @@ export default {
   },
   setNotifications(state, notifications) {
     state.notifications = notifications
+  },
+  deleteNotification(state, notification) {
+    const indexNotificationToDelete = state.notifications.indexOf(notification);
+    state.notifications.splice(indexNotificationToDelete, 1);
+  },
+  deleteAllNotifications(state, notification) {
+    state.notifications = []
   }
 };

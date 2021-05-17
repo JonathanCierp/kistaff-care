@@ -35,5 +35,8 @@ export default {
 		}
 
 		return state.organizations
-	}
+	},
+	getNotificationsNotRead: state => {
+		return state.notifications.filter(notification => !notification.isRead)
+	},
 }

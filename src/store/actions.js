@@ -222,11 +222,13 @@ export default {
 			throw new Error(e.response?.data.message || e.message)
 		}
 	},
-	async markAllNotificationAsRead({ commit }) {
+	async markAllNotificationAsRead({ commit, getters }) {
 		try {
-			const notifications = await markAllNotificationAsRead()
-
-			commit("setNotifications", notifications)
+			const notifications = [...getters.getNotificationsNotRead]
+			for(let notification of notifications) {
+				await markAllNotificationAsRead(notification.key)
+				commit("deleteNotification", notification)
+			}
 		} catch(e) {
 			throw new Error(e.response?.data.message || e.message)
 		}

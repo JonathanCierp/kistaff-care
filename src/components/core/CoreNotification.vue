@@ -2,7 +2,7 @@
   <div class="core-notification">
     <div class="core-notification__header">
       <h2 class="text-h5 font-medium">Notifications</h2>
-      <CustomButton size="sm" @click="onReadAllNotifications">
+      <CustomButton size="sm" @click="onReadAllNotifications" :loading="loading">
         Marquer comme lu
       </CustomButton>
     </div>
@@ -24,35 +24,30 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { useStore } from "vuex"
 
 export default defineComponent({
   name: "CoreNotification",
-  emits: ["change-route"],
+	props: {
+		notifications: {
+			type: Array,
+			default: () => []
+		}
+	},
   setup: (props, { emit }) => {
   	const store = useStore()
 
-    /* Datas */
-    const notifications = [
-      {
-        key: "document",
-        title: "Des documents sont manquants, cliquez-ici pour en rajouter.",
-        /*timeLabel: "Important",
-        to: "/documents",
-        status: "not_read",*/
-      },
-	    ...store.state.notifications
-    ];
-
+	  const loading = ref(false)
     /* Methods */
     const onReadAllNotifications = async () => {
+    	loading.value = true
       await store.dispatch("markAllNotificationAsRead")
+	    loading.value = false
     };
 
     return {
-      /* Datas */
-      notifications,
+	    loading,
       /* Methods */
 	    onReadAllNotifications,
     };

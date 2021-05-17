@@ -13,12 +13,12 @@
 			<li>
 				<CustomDropdown ref="notificationDropdown" icon>
 					<template #title>
-						<CustomBadge type="error" inset="10" :content="store.state.notifications.length + 1">
+						<CustomBadge type="error" inset="10" :content="notifications.length">
 							<IconOutlinedBell />
 						</CustomBadge>
 					</template>
 					<template #popover>
-						<CoreNotification @change-route="onChangeRoute" />
+						<CoreNotification :notifications="notifications" @change-route="onChangeRoute" />
 					</template>
 				</CustomDropdown>
 			</li>
@@ -55,6 +55,7 @@
 	export default defineComponent({
 		name: "CoreHeader.vue",
 		setup: () => {
+			const store = useStore()
 			/* Datas */
 			const links = [
 				{
@@ -76,7 +77,6 @@
 			const mobileMenuIsOpen = ref(false)
 			const notificationDropdown = ref(null)
 			const userDropdown = ref(null)
-			const store = useStore()
 
 			/* Methods */
 			const toggleMobileMenu = () => {
@@ -99,15 +99,24 @@
 			const fullName = computed(() => store.state.user.FirstName + " " + store.state.user.LastName)
 			const fullNameOnMobile = computed(() => store.state.user.FirstName?.substr(0, 7) + " ...")
 			const mainLogo = computed(() => `/img/brand-name-${store.state.theme}.png`)
-
+			const notifications = computed( () => [
+				{
+					key: "document",
+					title: "Des documents sont manquants, cliquez-ici pour en rajouter.",
+					/*timeLabel: "Important",
+					to: "/documents",
+					status: "not_read",*/
+				},
+				...store.getters.getNotificationsNotRead
+			]);
 			
 
 			return {
+				store,
 				/* Datas */
 				links,
 				notificationDropdown,
 				userDropdown,
-				store,
 				/* Methods */
 				toggleMobileMenu,
 				onChangeRoute,
@@ -115,7 +124,8 @@
 				mobileOpenClass,
 				fullName,
 				fullNameOnMobile,
-				mainLogo
+				mainLogo,
+				notifications
 			}
 		}
 	})
