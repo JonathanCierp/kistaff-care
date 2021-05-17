@@ -6,7 +6,7 @@ const getNotifications = async () => {
   return data.map(notification => normalizeNotification(notification))
 };
 
-const markNotificationAsRead = async () => {};
+const markAllNotificationAsRead = async () => {};
 
 const normalizeNotification = (notification) => {
   return  {
@@ -19,4 +19,4 @@ const normalizeNotification = (notification) => {
   }
 };
 
-export { getNotifications, markNotificationAsRead };
+export { getNotifications, markAllNotificationAsRead };

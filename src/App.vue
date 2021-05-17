@@ -22,6 +22,10 @@ export default defineComponent({
 
     /* Lifecycle Hooks */
     onMounted(async () => {
+	    if(isDefaultLayout.value) {
+		    await getNotifications()
+				setInterval(async () => await getNotifications(), 30000)
+	    }
       if (localStorage.getItem("theme") === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
         localStorage.setItem("theme", "dark");
         document.body.classList.add("theme-dark");
@@ -29,7 +33,7 @@ export default defineComponent({
         localStorage.setItem("theme", "light");
         document.body.classList.remove("theme-dark");
       }
-      
+
 
       /*if(navigator.userAgent.match(/Windows/i) === "Windows") {
         firebaseMessaging.onMessage(payload => {

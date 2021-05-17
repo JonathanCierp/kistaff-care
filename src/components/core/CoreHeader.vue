@@ -13,7 +13,7 @@
 			<li>
 				<CustomDropdown ref="notificationDropdown" icon>
 					<template #title>
-						<CustomBadge type="error" inset="10" content="1">
+						<CustomBadge type="error" inset="10" :content="store.state.notifications.length + 1">
 							<IconOutlinedBell />
 						</CustomBadge>
 					</template>

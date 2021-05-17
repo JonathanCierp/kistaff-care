@@ -2,9 +2,9 @@
   <div class="core-notification">
     <div class="core-notification__header">
       <h2 class="text-h5 font-medium">Notifications</h2>
-      <!--<CustomLink to="/settings#preferences" @click="onChangeRoute">
-        <IconOutlinedCog />
-      </CustomLink>-->
+      <CustomButton size="sm" @click="onReadAllNotifications">
+        Marquer comme lu
+      </CustomButton>
     </div>
     <ul class="core-notification__items">
       <CoreNotificationItem
@@ -46,15 +46,15 @@ export default defineComponent({
     ];
 
     /* Methods */
-    const onChangeRoute = () => {
-      emit("change-route");
+    const onReadAllNotifications = async () => {
+      await store.dispatch("markAllNotificationAsRead")
     };
 
     return {
       /* Datas */
       notifications,
       /* Methods */
-      onChangeRoute,
+	    onReadAllNotifications,
     };
   },
 });

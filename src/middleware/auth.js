@@ -1,3 +1,4 @@
+import jwt_decode from "jwt-decode";
 import store from "../store/store";
 import { useAxiosAuthInstance } from "../plugins/axios";
 
@@ -8,6 +9,11 @@ import { useAxiosAuthInstance } from "../plugins/axios";
 const useAuth = async () => {
   try {
     if (!localStorage.getItem("jwt")) {
+      return false;
+    }
+    const decoded = jwt_decode(localStorage.getItem("jwt"));
+    if(!store.state.isLogged && decoded.exp <= (new Date()).getTime()) {
+      localStorage.removeItem("jwt")
       return false;
     }
 

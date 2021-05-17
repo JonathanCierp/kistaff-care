@@ -13,7 +13,7 @@ import { deleteDocumentFromUser, getDocumentBelongsToUser, uploadDocument } from
 import { getOrganizations, saveOrganizations } from "../api/organizations"
 import { getDeviceByToken, saveDevice } from "../api/device"
 //import firebaseMessaging from "../plugins/firebase"
-import { getNotifications } from "../api/notifications"
+import { getNotifications, markAllNotificationAsRead } from "../api/notifications"
 
 const notification = useNotification()
 
@@ -216,6 +216,15 @@ export default {
 	async getNotifications({ commit }) {
 		try {
 			const notifications = await getNotifications()
+
+			commit("setNotifications", notifications)
+		} catch(e) {
+			throw new Error(e.response?.data.message || e.message)
+		}
+	},
+	async markAllNotificationAsRead({ commit }) {
+		try {
+			const notifications = await markAllNotificationAsRead()
 
 			commit("setNotifications", notifications)
 		} catch(e) {
