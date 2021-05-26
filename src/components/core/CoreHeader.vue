@@ -103,6 +103,8 @@
 				{
 					key: "document",
 					title: "Des documents sont manquants, cliquez-ici pour en rajouter.",
+					to: "/documents",
+					class: "cursor-pointer"
 					/*timeLabel: "Important",
 					to: "/documents",
 					status: "not_read",*/

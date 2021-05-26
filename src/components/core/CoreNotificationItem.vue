@@ -1,5 +1,5 @@
 <template>
-	<li class="core-notification-item">
+	<li class="core-notification-item" :class="notification.class" @click="onChangeRoute">
 		<h2 class="font-regular">{{ notification.title }}</h2>
 		<p>{{ notification.description }}</p>
 		<!--			<span class="font-medium">{{ notification.timeLabel }}</span>-->
@@ -8,6 +8,7 @@
 
 <script>
 	import { defineComponent } from "vue"
+	import { useRouter } from "vue-router"
 
 	export default defineComponent({
 		name: "CoreNotification",
@@ -17,11 +18,13 @@
 				required: true
 			}
 		},
-		emits: ["change-route"],
-		setup: (props, { emit }) => {
+		setup: (props) => {
+			const router = useRouter()
 			/* Methods */
 			const onChangeRoute = () => {
-				emit("change-route")
+				if(props.notification.to) {
+					router.push(props.notification.to)
+				}
 			}
 
 			return {

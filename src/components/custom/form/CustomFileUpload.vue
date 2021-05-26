@@ -1,8 +1,10 @@
 <template>
 	<section class="custom-file-upload" @drop.prevent="addFileToUpload" @dragover.prevent>
-		<h2 class="font-medium text-h4">Glissez et déposez</h2>
-		<p class="text-h5">votre fichier ici</p>
-		<p class="custom-file-upload__or text-body-1">ou</p>
+		<template v-if="isDesktop">
+			<h2 v-if="isDesktop" class="font-medium text-h4">Glissez et déposez</h2>
+			<p class="text-h5">votre fichier ici</p>
+			<p class="custom-file-upload__or text-body-1">ou</p>
+		</template>
 		<form id="test">
 			<input ref="inputFile" multiple type="file" @change="addFileToUpload">
 		</form>
@@ -18,7 +20,7 @@
 </template>
 
 <script>
-	import { defineComponent, reactive, ref } from "vue"
+	import { computed, defineComponent, reactive, ref } from "vue"
 
 	export default defineComponent({
 		name: "CustomFileUpload",
@@ -51,13 +53,16 @@
 				files.value[fileIndex] = file.Id
 			}
 
+			const isDesktop = computed(() => window.innerWidth >= 768)
+
 			return {
 				/* Datas */
 				inputFile,
 				files,
 				/* Methods */
 				addFileToUpload,
-				removeFile
+				removeFile,
+				isDesktop
 			}
 		}
 	})
