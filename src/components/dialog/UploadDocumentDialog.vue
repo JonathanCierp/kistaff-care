@@ -2,10 +2,6 @@
   <CustomDialog max-width="450px" transition="slide-down">
     <CustomDialogTitle :label="label" @close="$emit('update:modelValue', false)" />
     <CustomDialogBody>
-      <p class="text-body-2">
-        Plus d'informations sur l'attestation de vigilance et comment la
-        récupérer dans la FAQ
-      </p>
       <CustomFileUpload v-model="files" />
     </CustomDialogBody>
     <CustomDialogActions>
