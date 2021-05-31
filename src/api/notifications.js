@@ -19,8 +19,7 @@ const normalizeNotification = (notification) => {
     title: notification.xTitle__c,
     description: notification.xMessage__c,
     isRead: notification.xMarkAsRead__c,
-    show: true,
-    to: "/"
+    show: true
     /*timeLabel: "Important",*/
     /*to: "/documents",*/
     /*status: "not_read",*/

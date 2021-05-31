@@ -257,7 +257,7 @@
                 right-label
               />
             </CustomRow>
-            <CustomRow>
+<!--            <CustomRow>
               <CustomCheckbox
                 v-model="preferences"
                 label="Notfication mobile"
@@ -265,7 +265,7 @@
                 value="App"
                 right-label
               />
-            </CustomRow>
+            </CustomRow>-->
             <CustomRow>
               <CustomCheckbox
                 v-model="theme"
@@ -423,9 +423,9 @@ export default defineComponent({
             xPrimary_Channel__c: preferences.value.includes("Email")
               ? "Email"
               : "",
-            xSecondary_Channel__c: preferences.value.includes("App")
+            /*xSecondary_Channel__c: preferences.value.includes("App")
               ? "App"
-              : "",
+              : "",*/
           },
         });
         localStorage.setItem("theme", theme.value);

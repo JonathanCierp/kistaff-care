@@ -113,7 +113,7 @@
 				},
 				...store.getters.getNotificationsNotRead
 			]);
-			
+
 
 			return {
 				store,
