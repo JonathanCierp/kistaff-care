@@ -16,7 +16,7 @@
 				<p class="font-medium text-body-1">Adresse : </p>
 				<a class="my-1 ml-1" :href="organizationMapsUrl" target="_blank">{{ mission.organization.address }}</a>
 			</div>
-			<div class="flex items-center mt-4 text-red-primary text-body-2" v-if="!mission.documentReceived">
+			<div class="flex items-center mt-4 text-red-primary text-body-2" v-if="!store.state.user.xDocuments_Received__c">
 				<div>
 					<IconWarning class="mr-2" />
 				</div>
@@ -28,7 +28,7 @@
 		</CustomDialogBody>
 		<CustomDialogActions>
 			<CustomButton size="sm" text @click="$emit('update:modelValue', false)">Fermer</CustomButton>
-			<CustomButton :disabled="loading || !mission.documentReceived" :loading="loading" size="sm" type="success" @click="acceptMission">Accepter
+			<CustomButton :disabled="loading || !store.state.user.xDocuments_Received__c" :loading="loading" size="sm" type="success" @click="acceptMission">Accepter
 			</CustomButton>
 		</CustomDialogActions>
 	</CustomDialog>
@@ -83,6 +83,7 @@
 			const organizationMapsUrl = computed(() => `https://www.google.com/maps?q=${props.mission.organization.address}`)
 
 			return {
+				store,
 				/* Datas */
 				loading,
 				/* Methods */

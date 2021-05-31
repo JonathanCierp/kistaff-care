@@ -1,5 +1,5 @@
 <template>
-	<li class="core-notification-item" :class="notification.class" @click="onChangeRoute">
+	<li v-if="notification.show" class="core-notification-item" :class="notification.class" @click="onChangeRoute">
 		<h2 class="font-regular">{{ notification.title }}</h2>
 		<p>{{ notification.description }}</p>
 		<!--			<span class="font-medium">{{ notification.timeLabel }}</span>-->

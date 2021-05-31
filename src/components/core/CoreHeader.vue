@@ -13,9 +13,10 @@
 			<li>
 				<CustomDropdown ref="notificationDropdown" icon>
 					<template #title>
-						<CustomBadge type="error" inset="10" :content="notifications.length">
+						<CustomBadge v-if="notifications.filter(notification => notification.show).length" type="error" inset="10" :content="notifications.filter(notification => notification.show).length">
 							<IconOutlinedBell />
 						</CustomBadge>
+						<IconOutlinedBell v-else />
 					</template>
 					<template #popover>
 						<CoreNotification :notifications="notifications" @change-route="onChangeRoute" />
@@ -104,7 +105,8 @@
 					key: "document",
 					title: "Des documents sont manquants, cliquez-ici pour en rajouter.",
 					to: "/documents",
-					class: "cursor-pointer"
+					class: "cursor-pointer",
+					show: !store.state.user.xDocuments_Received__c
 					/*timeLabel: "Important",
 					to: "/documents",
 					status: "not_read",*/

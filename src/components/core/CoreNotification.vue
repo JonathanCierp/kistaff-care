@@ -2,7 +2,7 @@
   <div class="core-notification">
     <div class="core-notification__header">
       <h2 class="text-h5 font-medium">Notifications</h2>
-      <CustomButton size="sm" @click="onReadAllNotifications" :loading="loading">
+      <CustomButton v-if="notifications.filter(notification => notification.show && notification.key !== 'document').length" size="sm" @click="onReadAllNotifications" :loading="loading">
         Marquer comme lu
       </CustomButton>
     </div>
@@ -11,6 +11,8 @@
         v-for="notification in notifications"
         :notification="notification"
       />
+	    <CustomEntriesNotFound v-if="!notifications.filter(notification => notification.show).length" alt="Aucunes notifications"
+	                           label="Aucunes notifications" size="150px" style="padding: 1rem 0;" />
     </ul>
     <!--<div class="core-notification__footer">
       <CustomLink
