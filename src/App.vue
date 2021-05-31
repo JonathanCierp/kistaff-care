@@ -12,6 +12,13 @@ import { useRoute } from "vue-router";
 export default defineComponent({
   name: "App",
   setup: () => {
+	  if(!localStorage.getItem("needReload")) {
+		  window.location.reload()
+		  localStorage.setItem("needReload", "true")
+	  }
+	  setTimeout(() => {
+		  localStorage.removeItem("needReload")
+	  }, 5000)
     /*if(navigator.userAgent.match(/Windows/i) === "Windows") {
       provide("firebaseMessaging", firebaseMessaging)
     }*/
@@ -22,6 +29,7 @@ export default defineComponent({
 
     /* Lifecycle Hooks */
     onMounted(async () => {
+
 	    if(isDefaultLayout.value) {
 		    await getNotifications()
 				setInterval(async () => await getNotifications(), 30000)
