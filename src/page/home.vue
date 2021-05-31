@@ -1,5 +1,6 @@
 <template>
 	<main class="missions">
+		<h1>Hellow</h1>
 		<PageHeader label="Mes missions" />
 		<div v-if="show" class="missions__body">
 			<CustomTabs v-model="tab">
