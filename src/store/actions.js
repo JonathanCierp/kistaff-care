@@ -71,7 +71,7 @@ export default {
 			delete user.MailingCity
 
 			await commit("setUser", { user })
-			notification.success("Information modifié avec succès.")
+			notification.success("Information modifiée avec succès.")
 		} catch(e) {
 			notification.error("Erreur lors de la modification des informations.")
 			throw new Error(e.response?.data.message || e.message)
@@ -107,7 +107,7 @@ export default {
 			await acceptMission(missionId)
 
 			await commit("acceptMission", missionId)
-			notification.success("Mission acceptée avec succès.")
+			notification.success("Candidature acceptée, votre mission est en attente.")
 		} catch(e) {
 			notification.error("Erreur lors de l'acceptation de la mission.")
 			throw new Error(e.response?.data.message || e.message)

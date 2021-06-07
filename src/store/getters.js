@@ -29,6 +29,7 @@ export default {
 		if(v !== "") {
 			return state.organizations.filter(organization =>
 				normalize(organization.Account.Name).includes(normalize(v)) ||
+				normalize(organization.Account.Type).includes(normalize(v)) ||
 				normalize(organization.Account.BillingPostalCode).includes(normalize(v)) ||
 				normalize(organization.Account.BillingCity).includes(normalize(v))
 			)

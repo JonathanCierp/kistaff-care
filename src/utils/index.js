@@ -7,7 +7,7 @@ const ucFirst = s => {
 }
 const getId = (i => () => i++)(0)
 const normalize = s => {
-	return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+	return s ? s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : ""
 }
 const moveTawkToWidget = () => {
 	/*const iframes = document.querySelectorAll("body > div > iframe")

@@ -5,7 +5,7 @@
 			<h3 class="font-medium text-h5">{{ mission.organization.name }}</h3>
 			<br>
 			<div class="my-2">
-				<p class="font-medium text-body-1">Profil recherché : </p>
+				<p class="font-medium text-body-1">Service : </p>
 				<p class="my-1 ml-1">{{ mission.job.name }}</p>
 			</div>
 			<div class="my-2">
