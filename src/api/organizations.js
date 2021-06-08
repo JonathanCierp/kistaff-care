@@ -1,7 +1,7 @@
 import { useAxiosAuthInstance } from "../plugins/axios"
 
 const getOrganizations = async () => {
-	const { data } = await useAxiosAuthInstance().get("/organizations")
+	const { data } = await useAxiosAuthInstance().get("/organizations?$limit=1000")
 
 	return normalizeOrganisations(data)
 }
