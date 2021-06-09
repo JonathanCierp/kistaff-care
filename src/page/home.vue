@@ -1,7 +1,7 @@
 <template>
 	<main class="missions">
 		<PageHeader label="Mes missions" />
-		<div v-if="show" class="missions__body">
+		<div v-if="show && !error" class="missions__body">
 			<CustomTabs v-model="tab">
 				<CustomTab icon="IconCalendarPlus" name="new">
 					A pourvoir&nbsp;<sub class="hide-on-mobile text-caption">({{ newMissions.value.missions.length }})</sub>
@@ -65,7 +65,9 @@
 			</CustomTabItems>
 		</div>
 		<div v-else class="page-loader">
-			<CustomProgressCircle color="var(--color-blue-primary)" indeterminate />
+			<CustomProgressCircle v-if="!show" color="var(--color-blue-primary)" indeterminate />
+			<CustomEntriesNotFound v-else alt="Erreur lors du chargement des missions, merci de contacter l'administrateur."
+			                       label="Erreur lors du chargement des missions, merci de contacter l'administrateur." />
 		</div>
 		<AcceptMissionDialog v-model="acceptDialogOpen" :mission="currentMission" />
 		<RefuseMissionDialog v-model="refuseDialogOpen" :mission="currentMission" />
@@ -90,6 +92,7 @@
 
 			/* Datas */
 			const show = ref(false)
+			const error = ref(false)
 			const acceptDialogOpen = ref(false)
 			const refuseDialogOpen = ref(false)
 			const tab = ref("new")
@@ -133,21 +136,25 @@
 
 			/* Lifecycle hooks */
 			onMounted(async () => {
-				await store.dispatch("getMissions")
+				try {
+					await store.dispatch("getMissions")
 
-				newMissions.value = store.getters.filterMissions("new")
-				upcomingMissions.value = store.getters.filterMissions("upcoming")
-				pendingMissions.value = store.getters.filterMissions("pending")
-				passedMissions.value = store.getters.filterMissions("passed")
-
-				show.value = true
-				moveTawkToWidget()
+					newMissions.value = store.getters.filterMissions("new")
+					upcomingMissions.value = store.getters.filterMissions("upcoming")
+					pendingMissions.value = store.getters.filterMissions("pending")
+					passedMissions.value = store.getters.filterMissions("passed")
+				}catch(e) {
+					error.value = true
+				}finally {
+					show.value = true
+				}
 			})
 
 			return {
 				store,
 				/* Datas */
 				show,
+				error,
 				acceptDialogOpen,
 				refuseDialogOpen,
 				tab,
