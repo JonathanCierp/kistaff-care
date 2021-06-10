@@ -251,7 +251,7 @@
             <CustomRow>
               <CustomCheckbox
                 v-model="preferences"
-                label="Notfication email"
+                label="Notification email"
                 name="email"
                 value="Email"
                 right-label
