@@ -6,7 +6,7 @@ const uploadDocument = async (document) => {
 	return data
 }
 const getDocumentBelongsToUser = async () => {
-	const { data } = await useAxiosAuthInstance().get("/documents")
+	const { data } = await useAxiosAuthInstance().get("/documents?$limit=1000")
 
 	return data
 }

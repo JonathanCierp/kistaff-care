@@ -2,7 +2,7 @@ import store from "../store/store"
 import { useAxiosAuthInstance } from "../plugins/axios";
 
 const getNotifications = async () => {
-  const { data } = await useAxiosAuthInstance().get("/notifications");
+  const { data } = await useAxiosAuthInstance().get("/notifications?$limit=1000");
 
   return data.map(notification => normalizeNotification(notification))
 };

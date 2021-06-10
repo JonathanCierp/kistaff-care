@@ -9,7 +9,7 @@ const SOBJECTS_FIELD = {
 let sobjects = []
 
 const findSobjectsForUserConnected = async () => {
-	const { data } = await useAxiosAuthInstance().get("/sobjects/Contact")
+	const { data } = await useAxiosAuthInstance().get("/sobjects/Contact?$limit=1000")
 
 	sobjects = data?.fields
 }

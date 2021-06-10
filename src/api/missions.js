@@ -21,10 +21,10 @@ const findItemsForUserConnected = async (endPoint) => {
 	return data.map(mission => normalizeMission(mission))
 }
 const findMissionsForUserConnected = async () => {
-	missions = await findItemsForUserConnected("/missions")
+	missions = await findItemsForUserConnected("/missions?$limit=1000")
 }
 const findRequestsForUserConnected = async () => {
-	requests = await findItemsForUserConnected("/requests")
+	requests = await findItemsForUserConnected("/requests?$limit=1000")
 }
 const findMissionsForUserConnectedFilteredByStatus = async (status) => {
 	let missionFiltered = []

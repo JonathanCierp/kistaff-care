@@ -20,7 +20,7 @@ const saveDevice = async ({ userId, token }) => {
 	})
 }
 const getDevices = async () => {
-	const { data } = await useAxiosAuthInstance().get("/devices")
+	const { data } = await useAxiosAuthInstance().get("/devices?$limit=1000")
 
 	return data
 }
