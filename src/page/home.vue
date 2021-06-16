@@ -22,8 +22,8 @@
 					           title="Missions à pourvoir"
 					           @update:modelValue="v => onSearch('new', v)" />
 					<ListItems>
-						<CustomEntriesNotFound v-if="!newMissions.value.missions.length" alt="Aucunes missions à pourvoir"
-						                       label="Aucunes missions à pourvoir" />
+						<CustomEntriesNotFound v-if="!newMissions.value.missions.length" alt="Aucune mission à pourvoir"
+						                       label="Aucune mission à pourvoir" />
 						<ListItem v-for="mission in newMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-confirm" confirm @open-accept="openDialog('accept', mission)"
 						          @open-refuse="openDialog('refuse', mission)" />
@@ -34,8 +34,8 @@
 					           title="Missions en cours"
 					           @update:modelValue="v => onSearch('upcoming', v)" />
 					<ListItems>
-						<CustomEntriesNotFound v-if="!upcomingMissions.value.missions.length" alt="Aucunes missions en cours"
-						                       label="Aucunes missions en cours" />
+						<CustomEntriesNotFound v-if="!upcomingMissions.value.missions.length" alt="Aucune mission en cours"
+						                       label="Aucune mission en cours" />
 						<ListItem v-for="mission in upcomingMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-details" details />
 					</ListItems>
@@ -45,8 +45,8 @@
 					           title="Missions en attente"
 					           @update:modelValue="v => onSearch('pending', v)" />
 					<ListItems>
-						<CustomEntriesNotFound v-if="!pendingMissions.value.missions.length" alt="Aucunes missions en attente"
-						                       label="Aucunes missions en attente" />
+						<CustomEntriesNotFound v-if="!pendingMissions.value.missions.length" alt="Aucune mission en attente"
+						                       label="Aucune mission en attente" />
 						<ListItem v-for="mission in pendingMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-details" details />
 					</ListItems>
@@ -56,8 +56,8 @@
 					           title="Missions passées"
 					           @update:modelValue="v => onSearch('passed', v)" />
 					<ListItems>
-						<CustomEntriesNotFound v-if="!passedMissions.value.missions.length" alt="Aucunes missions passées"
-						                       label="Aucunes missions passées" />
+						<CustomEntriesNotFound v-if="!passedMissions.value.missions.length" alt="Aucune mission passée"
+						                       label="Aucune mission passée" />
 						<ListItem v-for="mission in passedMissions.value.missions" :key="mission.id" :mission="mission"
 						          class="list-item-details" details />
 					</ListItems>

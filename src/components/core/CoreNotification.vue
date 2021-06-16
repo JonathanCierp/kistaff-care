@@ -11,8 +11,8 @@
         v-for="notification in notifications"
         :notification="notification"
       />
-	    <CustomEntriesNotFound v-if="!notifications.filter(notification => notification.show).length" alt="Aucunes notifications"
-	                           label="Aucunes notifications" size="150px" style="padding: 1rem 0;" />
+	    <CustomEntriesNotFound v-if="!notifications.filter(notification => notification.show).length" alt="Aucune notification"
+	                           label="Aucune notification" size="150px" style="padding: 1rem 0;" />
     </ul>
     <!--<div class="core-notification__footer">
       <CustomLink
